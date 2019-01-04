@@ -3,10 +3,11 @@
 # Each route describes how an incoming URL is going
 # to be processed by Platform.sh.
 
-"https://{default}/":
+"https://php.{default}/":
     type: upstream
-    upstream: "app:http"
+    upstream: "php:http"
 
-"https://www.{default}/":
-    type: redirect
-    to: "https://{default}/"
+"https://nodejs.{default}/":
+    type: upstream
+    upstream: "nodejs:http"
+
