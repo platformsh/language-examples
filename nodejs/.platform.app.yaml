@@ -5,6 +5,21 @@ dependencies:
   nodejs:
     pm2: "^2.5.0"
 
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+relationships:
+  database: 'mysql:mysql'
+  postgresql: 'postgresql:postgresql'
+  solr: 'solr:solr'
+  redis: 'redis:redis'
+  elasticsearch: 'elasticsearch:elasticsearch'
+  mongodb: 'mongodb:mongodb'
+  rabbitmq: 'rabbitmq:rabbitmq'
+  influxdb: 'influxdb:influxdb'
+  memcached: 'memcached:memcached'
+
 web:
   commands:
     start: "PM2_HOME=$PLATFORM_APP_DIR/run pm2 start index.js --no-daemon"
