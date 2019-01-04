@@ -1,21 +1,51 @@
-// Load the http module to create an http server.
-var http = require('http');
+const http = require('http');
+const config = require("platformsh").config();
+const fs = require('fs');
 
-// Load the Platform.sh configuration.
-var config = require("platformsh").config();
+var data = {};
+
+// @todo Do this for all services.
+data.MongoDB = require('./examples/MongoDB.js');
+data.MongoDB.source = fs.readFileSync('./examples/MongoDB.js');
+
+// Call all of the run() methods of all services, and store their output once.
+const promises = Object.keys(data).map(async (key) => { data[key].output = await data[key].run(); });
 
 var server = http.createServer(function (request, response) {
+  // noop if the promises have already succeeded
+  await Promise.all(promises);
+
   response.writeHead(200, {"Content-Type": "text/html"});
-  response.end(`
-<html>
+
+  response.write(`<html>
 <head>
 <title>Platform.sh Node.js service examples</title>
 </head>
 <body>
-<h1><img src='public/js.png'>Hello Node</h1>
-<h3>Platform configuration:</h3>
-<pre>${JSON.stringify(config, null, 4)}</pre></body>
-</html>`);
+<h1>Service examples for Node.js</h1>
+`);
+
+  Object.keys(data).foreach (function (key) {
+     let name = key;
+    response.write(`<details>
+      <summary>${name} Sample Code</summary>    
+      <section>
+      <h3>Source</h3>
+      ${data[key].source}
+      </section>
+      <section>
+      <h3>Output</h3>
+      ${data[key].output}
+      </section>
+      <section>
+      <h3>Relationship</h3>
+      <pre>${data[key].relationship()}</pre>
+      </section>
+      </details>
+      `);
+  });
+
+  response.end(`</body></html>`);
 });
 
 server.listen(config.port);
