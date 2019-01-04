@@ -11,7 +11,7 @@ data.MongoDB.source = fs.readFileSync('./examples/MongoDB.js');
 // Call all of the run() methods of all services, and store their output once.
 const promises = Object.keys(data).map(async (key) => { data[key].output = await data[key].run(); });
 
-var server = http.createServer(function (request, response) {
+var server = http.createServer(async function (request, response) {
   // noop if the promises have already succeeded
   await Promise.all(promises);
 
