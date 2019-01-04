@@ -1,0 +1,69 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+
+# The name of this app. Must be unique within a project.
+name: app
+
+# The type of the application to build.
+type: php:7.2
+build:
+    flavor: composer
+
+relationships:
+    database: 'mysql:mysql'
+    postgresql: 'postgresql:postgresql'
+    solr: 'solr:solr'
+    redis: 'redis:redis'
+    elasticsearch: 'elasticsearch:elasticsearch'
+    mongodb: 'mongodb:mongodb'
+    rabbitmq: 'rabbitmq:rabbitmq'
+    influxdb: 'influxdb:influxdb'
+    memcached: 'memcached:memcached'
+
+# See https://docs.platform.sh/languages/php/ini.html for a list of
+# PECL extensions that can be enabled.
+runtime:
+    extensions:
+        - redis
+        - pdo_pgsql
+        - mongodb
+        - memcached
+
+# The hooks that will be performed when the package is deployed.
+hooks:
+    build: |
+        set -e
+
+    deploy: |
+        set -e
+
+# The relationships of the application with services or other applications.
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
+#relationships:
+#    database: "mysqldb:mysql"
+
+# The size of the persistent disk of the application (in MB).
+disk: 128
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+    # Because this directory is in the webroot, files here will be web-accessible.
+    'web/uploads':
+        source: local
+        source_path: uploads
+    # Files in this directory will not be web-accessible.
+    'private':
+        source: local
+        source_path: private
+
+
+# The configuration of app when it is exposed to the web.
+web:
+    locations:
+        "/":
+            # The public directory of the app, relative to its root.
+            root: "web"
+            # The front-controller script to send non-static requests to.
+            passthru: "/index.php"
