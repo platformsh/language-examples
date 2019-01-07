@@ -42,5 +42,8 @@ exports.run = async function() {
 
     output += `</tbody>\n</table>\n`;
 
+    // Clean up after ourselves.
+    collection.remove();
+
     return output;
 };
