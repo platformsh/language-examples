@@ -8,9 +8,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "htmlencode": "0.0.4",
+    "platformsh": "^1.0.0",
     "mongodb": "^2.0.48",
-    "mongoose": "^4.2.5",
-    "platformsh": "^1.0.0"
+    "mongoose": "^4.2.5"
   }
 }

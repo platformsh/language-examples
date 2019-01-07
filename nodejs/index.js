@@ -1,13 +1,12 @@
 const http = require('http');
 const config = require("platformsh").config();
 const fs = require('fs');
-const htmlencode = require('htmlencode');
 
 var data = {};
 
 // @todo Do this for all services.
 data.MongoDB = require('./examples/MongoDB.js');
-data.MongoDB.source = htmlencode.htmlEncode(fs.readFileSync('./examples/MongoDB.js'));
+data.MongoDB.source = fs.readFileSync('./examples/MongoDB.js');
 
 // Call all of the run() methods of all services, and store their output once.
 const promises = Object.keys(data).map(async (key) => { data[key].output = await data[key].run(); });
@@ -61,7 +60,7 @@ var server = http.createServer(async function (request, response) {
   Object.keys(data).forEach ((key) => {
      let name = key;
     response.write(`<details>
-      <summary>${name} Sample Code</summary>
+      <summary>${name} Sample Code</summary>    
       <section>
       <h3>Source</h3>
       <pre>${data[key].source}</pre>
