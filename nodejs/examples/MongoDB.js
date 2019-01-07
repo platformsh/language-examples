@@ -9,7 +9,7 @@ exports.relationship = () => {
 exports.run = async function() {
     const credentials = config.relationships.mongodb[0];
     const MongoClient = require('mongodb').MongoClient;
-    const connectionString = `mongodb://${credentials["username"]}:${credentials["password"]}@${credentials["host"]}:${credentials["port"]}`;
+    const connectionString = `mongodb://${credentials["username"]}:${credentials["password"]}@${credentials["host"]}:${credentials["port"]}/${credentials["path"]}`;
 
     var client = await MongoClient.connect(connectionString);
 
