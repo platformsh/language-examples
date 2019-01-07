@@ -12,8 +12,12 @@ data.MongoDB.source = fs.readFileSync('./examples/MongoDB.js');
 const promises = Object.keys(data).map(async (key) => { data[key].output = await data[key].run(); });
 
 var server = http.createServer(async function (request, response) {
-  // noop if the promises have already succeeded
-  await Promise.all(promises);
+  try {
+    await Promise.all(promises);
+  }
+  catch (error) {
+    console.error(error);
+  }
 
   response.writeHead(200, {"Content-Type": "text/html"});
 
