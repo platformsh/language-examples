@@ -35,7 +35,7 @@ var server = http.createServer(async function (request, response) {
       <summary>${name} Sample Code</summary>    
       <section>
       <h3>Source</h3>
-      ${data[key].source}
+      <pre>${data[key].source}</pre>
       </section>
       <section>
       <h3>Output</h3>
