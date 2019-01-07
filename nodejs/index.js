@@ -29,7 +29,7 @@ var server = http.createServer(async function (request, response) {
 <h1>Service examples for Node.js</h1>
 `);
 
-  Object.keys(data).forEach (function (key) {
+  Object.keys(data).forEach ((key) => {
      let name = key;
     response.write(`<details>
       <summary>${name} Sample Code</summary>    

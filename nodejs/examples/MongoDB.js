@@ -1,6 +1,6 @@
 const config = require("platformsh").config();
 
-exports.relationships = () => {
+exports.relationship = () => {
     const credentials = config.relationships.mongodb[0];
 
     return JSON.stringify(credentials);
