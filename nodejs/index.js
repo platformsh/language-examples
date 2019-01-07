@@ -29,9 +29,7 @@ var server = http.createServer(async function (request, response) {
 <h1>Service examples for Node.js</h1>
 `);
 
-  console.debug(Object.keys(data));
-
-  Object.keys(data).foreach (function (key) {
+  Object.keys(data).forEach (function (key) {
      let name = key;
     response.write(`<details>
       <summary>${name} Sample Code</summary>    
