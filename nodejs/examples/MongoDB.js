@@ -36,7 +36,7 @@ exports.run = async function() {
 </thead>
 <tbody>`;
 
-    result.forEach((key) => {
+    Object.keys(result).forEach((key) => {
         output += `<tr><td>${result[key].name}</td><td>${result[key].rank}</td></tr>\n`;
     });
 
