@@ -9,7 +9,20 @@ data.MongoDB = require('./examples/MongoDB.js');
 data.MongoDB.source = fs.readFileSync('./examples/MongoDB.js');
 
 // Call all of the run() methods of all services, and store their output once.
-const promises = Object.keys(data).map(async (key) => { data[key].output = await data[key].run(); });
+const runData = async function(key) {
+  let value = undefined;
+  try{
+    const method = data[key].run;
+    value = await method();
+  } catch (err) {
+    console.error(err);
+  }
+  if (value) {
+    data[key].output = value;
+  }
+};
+// array of Promise<void>
+const promises = Object.keys(data).map(runData);
 
 var server = http.createServer(async function (request, response) {
   try {
@@ -60,7 +73,7 @@ var server = http.createServer(async function (request, response) {
   Object.keys(data).forEach ((key) => {
      let name = key;
     response.write(`<details>
-      <summary>${name} Sample Code</summary>    
+      <summary>${name} Sample Code</summary>
       <section>
       <h3>Source</h3>
       <pre>${data[key].source}</pre>
