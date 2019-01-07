@@ -11,7 +11,7 @@ exports.run = async function() {
     const MongoClient = require('mongodb').MongoClient;
     const connectionString = `'mongodb://${credentials["username"]}:${credentials["password"]}@${credentials["host"]}:${credentials["port"]}`;
 
-    var client = await MongoClient.connect(connectionString, { useNewUrlParser: true });
+    var client = await MongoClient.connect(connectionString);
 
     let db = client.db(credentials["path"]);
 
