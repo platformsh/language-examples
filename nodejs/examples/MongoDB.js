@@ -8,14 +8,11 @@ exports.relationship = () => {
 
 exports.run = async function() {
 
-    // Do various mongoDB calls, using await on them.
-    // Then construct and return a string of output at the end.
-
     const credentials = config.relationships.mongodb[0];
     let mongoose = require('mongoose');
 
     // Mongoose connection to MongoDB
-    mongoose.connect(`'mongodb://${db["username"]}:${db['password']}@${db['host']}:${db['port']}/${db['path']}`, function (err) {
+    mongoose.connect(`'mongodb://${credentials["username"]}:${credentials['password']}@${credentials['host']}:${credentials['port']}/${credentials['path']}`, function (err) {
         if (err) {
             if (err) console.error(err);
         }
@@ -27,13 +24,15 @@ exports.run = async function() {
     var foo = new Thing({
         title: 'Platform.sh'
     });
-    foo.save(function(err, foo) {
+    await foo.save(function(err, foo) {
         if (err) console.error(err);
     });
-    Thing.find({}, function(err, foo) {
-        if (err) { console.error(err) } else { resp = JSON.stringify(foo, null, 4) };
-    });
-    
+    // Thing.find({}, function(err, foo) {
+    //     if (err) { console.error(err) } else { resp = JSON.stringify(foo, null, 4) };
+    // });
+    let things = await Thing.find();
+
+    console.debug(things);
     
     return "Some output";
 };
