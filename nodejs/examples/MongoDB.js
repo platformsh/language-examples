@@ -3,7 +3,7 @@ const config = require("platformsh").config();
 exports.relationship = () => {
     const credentials = config.relationships.mongodb[0];
 
-    return JSON.stringify(credentials);
+    return JSON.stringify(credentials, null, 2);
 };
 
 exports.run = async function() {
