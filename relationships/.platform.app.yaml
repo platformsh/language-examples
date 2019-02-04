@@ -1,0 +1,33 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+
+# The name of this app. Must be unique within a project.
+name: relationships
+
+# The type of the application to build.
+type: php:7.3
+build:
+    flavor: none
+
+relationships:
+    database: 'mysql:mysql'
+    postgresql: 'postgresql:postgresql'
+    solr: 'solr:solr'
+    redis: 'redis:redis'
+    elasticsearch: 'elasticsearch:elasticsearch'
+    mongodb: 'mongodb:mongodb'
+    rabbitmq: 'rabbitmq:rabbitmq'
+    influxdb: 'influxdb:influxdb'
+    memcached: 'memcached:memcached'
+
+# The size of the persistent disk of the application (in MB).
+disk: 128
+
+# The configuration of app when it is exposed to the web.
+web:
+    locations:
+        "/":
+            # The public directory of the app, relative to its root.
+            root: "web"
+            # The front-controller script to send non-static requests to.
+            passthru: "/index.php"
