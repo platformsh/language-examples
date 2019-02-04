@@ -3,6 +3,10 @@
 # Each route describes how an incoming URL is going
 # to be processed by Platform.sh.
 
+"https://relationships.{default}/":
+    type: upstream
+    upstream: "relationships:http"
+
 "https://php.{default}/":
     type: upstream
     upstream: "php:http"
