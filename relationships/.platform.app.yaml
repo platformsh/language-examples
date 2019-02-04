@@ -14,7 +14,7 @@ hooks:
         curl -sS https://platform.sh/cli/installer | php
 
 relationships:
-    database: 'mysql:mysql'
+    mysql: 'mysql:mysql'
     postgresql: 'postgresql:postgresql'
     solr: 'solr:solr'
     redis: 'redis:redis'
