@@ -12,10 +12,6 @@ $config = new Config();
 // It could be anything, though, as in the case here here where it's called "postgresql".
 $database = $config->relationships['postgresql'][0];
 
-print "<pre>\n";
-print_r($database);
-print "</pre>\n";
-
 try {
     // Connect to the database using PDO.  If using some other abstraction layer you would
     // inject the values from $database into whatever your abstraction layer asks for.

@@ -11,10 +11,6 @@ $config = new Config();
 // Get the credentials to connect to the Solr service.
 $credentials = $config->relationships['solr'][0];
 
-print "<pre>\n";
-print_r($credentials);
-print "</pre>\n";
-
 try {
 
     $config = [

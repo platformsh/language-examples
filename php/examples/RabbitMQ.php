@@ -13,10 +13,6 @@ $config = new Config();
 // Get the credentials to connect to the RabbitMQ service.
 $credentials = $config->relationships['rabbitmq'][0];
 
-print "<pre>\n";
-print_r($credentials);
-print "</pre>\n";
-
 try {
 
     $queueName = 'deploy_days';

@@ -15,10 +15,6 @@ $config = new Config();
 // Get the credentials to connect to the InfluxDB service.
 $credentials = $config->relationships['influxdb'][0];
 
-print "<pre>\n";
-print_r($credentials);
-print "</pre>\n";
-
 try {
     // Connecting to the InfluxDB server. By default it has no user defined, so you will need to create it.
     $client = new Client($credentials['host'], $credentials['port']);
