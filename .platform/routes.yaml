@@ -6,6 +6,10 @@
 "https://relationships.{default}/":
     type: upstream
     upstream: "relationships:http"
+    cache:
+        enabled: true
+        cookies: []
+        default_ttl: 300
 
 "https://php.{default}/":
     type: upstream
