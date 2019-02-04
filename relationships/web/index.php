@@ -11,4 +11,4 @@ if (empty($relationships[$relName])) {
     return;
 }
 
-print \json_encode($relationships[$relName], JSON_PRETTY_PRINT);
+print \json_encode($relationships[$relName][0], JSON_PRETTY_PRINT);
