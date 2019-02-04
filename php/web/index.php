@@ -13,7 +13,7 @@ require __DIR__.'/../vendor/autoload.php';
             border: 1px solid #aaa;
             border-radius: 4px;
             padding: 0.5em;
-            wdith: 90%;
+            width: 90%;
         }
 
         summary {
