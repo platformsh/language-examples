@@ -11,10 +11,6 @@ $config = new Config();
 // Get the credentials to connect to the Redis service.
 $credentials = $config->relationships['redis'][0];
 
-print "<pre>\n";
-print_r($credentials);
-print "</pre>\n";
-
 try {
     // Connecting to Redis server.
     $redis = new Redis();

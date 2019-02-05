@@ -82,10 +82,6 @@ var server = http.createServer(async function (request, response) {
       <h3>Output</h3>
       ${data[key].output}
       </section>
-      <section>
-      <h3>Relationship</h3>
-      <pre>${data[key].relationship()}</pre>
-      </section>
       </details>
       `);
   });

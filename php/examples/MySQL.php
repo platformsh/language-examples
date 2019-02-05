@@ -12,10 +12,6 @@ $config = new Config();
 // That's not required, but much of our default automation code assumes it.
 $credentials = $config->relationships['database'][0];
 
-print "<pre>\n";
-print_r($credentials);
-print "</pre>\n";
-
 try {
     // Connect to the database using PDO.  If using some other abstraction layer you would
     // inject the values from $database into whatever your abstraction layer asks for.

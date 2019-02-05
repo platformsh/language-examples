@@ -13,10 +13,6 @@ $config = new Config();
 // It could be anything, though, as in the case here here where it's called "mongodb".
 $credentials = $config->relationships['mongodb'][0];
 
-print "<pre>\n";
-print_r($credentials);
-print "</pre>\n";
-
 try {
 
     $server = sprintf('%s://%s:%s@%s:%d/%s',

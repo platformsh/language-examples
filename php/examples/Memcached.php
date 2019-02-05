@@ -11,10 +11,6 @@ $config = new Config();
 // Get the credentials to connect to the Memcached service.
 $credentials = $config->relationships['memcached'][0];
 
-print "<pre>\n";
-print_r($credentials);
-print "</pre>\n";
-
 try {
     // Connecting to Memcached server.
     $memcached = new Memcached();

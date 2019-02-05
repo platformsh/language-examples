@@ -12,10 +12,6 @@ $config = new Config();
 // Get the credentials to connect to the Elasticsearch service.
 $credentials = $config->relationships['elasticsearch'][0];
 
-print "<pre>\n";
-print_r($credentials);
-print "</pre>\n";
-
 try {
     // The Elasticsearch library lets you connect to multiple hosts.
     // On Platform.sh Standard there is only a single host so just
