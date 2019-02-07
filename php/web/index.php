@@ -18,7 +18,8 @@ function handleRequest(string $path)
     $routes = routeList();
 
     if (!isset($routes[$path])) {
-        $path = '/';
+        print 'Sorry, no sample code is available.';
+        return;
     }
 
     print $routes[$path]();

@@ -7,6 +7,7 @@
 * The example source and output should be "bare", not full HTML pages, as they are intended to be embedded into other resources.
 * The example source should be reasonably documented, as it will be shown to users.
 * Every container should respond to requests at `/` with a collapsible collection of all services and the output of them. (See PHP as the reference implementation.)
+* Responses to any other URL should get the bare string "Sorry, no sample code is available."
 * Every container should make use of the appropriate Platform.sh client library to the extent reasonable. It does NOT need to use parts of the library that are not relevant.
 * The implementation for each language should follow standard practices and conventions for the language in question so as to make a good impression for that language.
 * The implementation for each language can use popular 3rd party libraries where appropriate.
