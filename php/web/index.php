@@ -51,6 +51,9 @@ function capture_output(callable $callable) {
     return $contents;
 }
 
+print_r($_SERVER);
+
+
 $files = glob("../examples/*.php");
 foreach ($files as $filename) {
     $name = pathinfo($filename)['filename'];
