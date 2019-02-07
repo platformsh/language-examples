@@ -9,7 +9,7 @@ use Platformsh\ConfigReader\Config;
 $config = new Config();
 
 // Get the credentials to connect to the Memcached service.
-$credentials = $config->relationships['memcached'][0];
+$credentials = $config->credentials('memcached');
 
 try {
     // Connecting to Memcached server.

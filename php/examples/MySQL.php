@@ -10,7 +10,7 @@ $config = new Config();
 
 // The 'database' relationship is generally the name of primary SQL database of an application.
 // That's not required, but much of our default automation code assumes it.
-$credentials = $config->relationships['database'][0];
+$credentials = $config->credentials('database');
 
 try {
     // Connect to the database using PDO.  If using some other abstraction layer you would

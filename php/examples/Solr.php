@@ -9,7 +9,7 @@ use Solarium\Client;
 $config = new Config();
 
 // Get the credentials to connect to the Solr service.
-$credentials = $config->relationships['solr'][0];
+$credentials = $config->credentials('solr');
 
 try {
 

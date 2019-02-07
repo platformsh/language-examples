@@ -11,7 +11,7 @@ $config = new Config();
 
 // The 'database' relationship is generally the name of primary database of an application.
 // It could be anything, though, as in the case here here where it's called "mongodb".
-$credentials = $config->relationships['mongodb'][0];
+$credentials = $config->credentials('mongodb');
 
 try {
 
