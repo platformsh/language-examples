@@ -48,8 +48,7 @@ function routeList() : array
         $file = basename($filename, '.php');
         $path = strtolower($file);
         $routes['/' . $path] = function() use ($filename) {
-            // We may not want to highlight the code, depending on where it's being used.
-            return highlight_file($filename, true);
+            return file_get_contents($filename);
         };
         $routes["/{$path}/output"] = function() use ($filename) {
             return capture_output(function() use ($filename) {
