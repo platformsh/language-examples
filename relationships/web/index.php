@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-$relName = $_GET['service'];
+$relName = $_GET['service'] ?? '';
 
 $relationships = json_decode(base64_decode(getenv('PLATFORM_RELATIONSHIPS')), TRUE);
 
 if (empty($relationships[$relName])) {
-    return;
+    print "No such relationship: {$relName}";
 }
 
 // Cache real output for 5 minutes.
