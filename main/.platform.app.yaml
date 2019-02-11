@@ -2,7 +2,7 @@
 # in the same project.
 
 # The name of this app. Must be unique within a project.
-name: relationships
+name: main
 
 # The type of the application to build.
 type: php:7.3
@@ -31,10 +31,13 @@ disk: 128
 web:
     locations:
         "/":
+            root: 'web'
+            index: ['index.html']
+        "/relationships":
             # The public directory of the app, relative to its root.
-            root: "web"
+            root: "relationships/web"
             # The front-controller script to send non-static requests to.
-            passthru: "/index.php"
+            passthru: "/relationships/index.php"
 
 crons:
     renewcert:

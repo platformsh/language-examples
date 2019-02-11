@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Platformsh\ConfigReader\Config;
+
 require __DIR__.'/../vendor/autoload.php';
 
 
@@ -13,16 +15,16 @@ function capture_output(callable $callable) {
     return $contents;
 }
 
-function handleRequest(string $path)
+function handleRequest(string $path) : void
 {
-    $routes = routeList();
+    try {
+        $router = buildRouter();
 
-    if (!isset($routes[$path])) {
-        print 'Sorry, no sample code is available.';
-        return;
+        print $router->match($path)();
     }
-
-    print $routes[$path]();
+    catch (InvalidArgumentException $e) {
+        print 'Sorry, no sample code is available.';
+    }
 }
 
 function debug($var) : void
@@ -32,31 +34,71 @@ function debug($var) : void
     print "<div style='display:none'>{$val}</div>\n";
 }
 
-function routeList() : array
+class NanoRouter
 {
-    $routes = [];
+    protected $basePath = '';
 
-    $routes['/'] = function() {
+    protected $routes;
+
+    public function __construct(string $basePath = '')
+    {
+        $this->basePath = '/' . trim($basePath, '/');
+    }
+
+    public function addRoute(string $path, callable $callable) : self
+    {
+        $path = trim($path, '/');
+        $realPath = rtrim(implode('/', [$this->basePath, $path]), '/');
+
+        $this->routes[$realPath] = $callable;
+
+        return $this;
+    }
+
+    public function match(string $path) : callable
+    {
+        $path = rtrim($path, '/');
+
+        if (!isset($this->routes[$path])) {
+            throw new \InvalidArgumentException(sprintf('No route found: %s', $path));
+        }
+
+        return $this->routes[$path];
+    }
+}
+
+function buildRouter() : NanoRouter
+{
+    $platformRoute = (new Config())->getRoute('php');
+    $basePath = trim(parse_url($platformRoute['url'], PHP_URL_PATH), '/');
+
+    $router = new NanoRouter($basePath);
+
+    $files = glob("../examples/*.php");
+
+    $default = function() {
         return capture_output(function() {
             require 'list.php';
         });
     };
 
-    $files = glob("../examples/*.php");
+    $router->addRoute('/', $default);
+    $router->addRoute('/index.php', $default);
 
     foreach ($files as $filename) {
-        $file = basename($filename, '.php');
-        $path = strtolower($file);
-        $routes['/' . $path] = function() use ($filename) {
+        $path = strtolower(basename($filename, '.php'));
+
+        $router->addRoute($path, function() use ($filename) {
             return file_get_contents($filename);
-        };
-        $routes["/{$path}/output"] = function() use ($filename) {
+        });
+        $router->addRoute($path . '/output', function() use ($filename) {
             return capture_output(function() use ($filename) {
                 include $filename;
             });
-        };
+        });
     }
-    return $routes;
+
+    return $router;
 }
 
 handleRequest($_SERVER['REQUEST_URI']);
