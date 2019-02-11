@@ -11,7 +11,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 $config = new Config();
 
 // Get the credentials to connect to the RabbitMQ service.
-$credentials = $config->relationships['rabbitmq'][0];
+$credentials = $config->credentials('rabbitmq');
 
 try {
 

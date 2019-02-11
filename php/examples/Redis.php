@@ -9,7 +9,7 @@ use Platformsh\ConfigReader\Config;
 $config = new Config();
 
 // Get the credentials to connect to the Redis service.
-$credentials = $config->relationships['redis'][0];
+$credentials = $config->credentials('redis');
 
 try {
     // Connecting to Redis server.

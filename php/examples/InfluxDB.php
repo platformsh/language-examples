@@ -13,7 +13,7 @@ use InfluxDB\Database\RetentionPolicy;
 $config = new Config();
 
 // Get the credentials to connect to the InfluxDB service.
-$credentials = $config->relationships['influxdb'][0];
+$credentials = $config->credentials('influxdb');
 
 try {
     // Connecting to the InfluxDB server. By default it has no user defined, so you will need to create it.
