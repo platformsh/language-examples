@@ -89,9 +89,11 @@ function buildRouter() : NanoRouter
         $path = strtolower(basename($filename, '.php'));
 
         $router->addRoute($path, function() use ($filename) {
+            header('Content-Type: text/plain', true);
             return file_get_contents($filename);
         });
         $router->addRoute($path . '/output', function() use ($filename) {
+            header('Content-Type: text/plain', true);
             return capture_output(function() use ($filename) {
                 include $filename;
             });
