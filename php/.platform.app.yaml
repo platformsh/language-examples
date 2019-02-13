@@ -47,8 +47,8 @@ disk: 128
 # The configuration of app when it is exposed to the web.
 web:
     locations:
-        "/":
+        "/php":
             # The public directory of the app, relative to its root.
             root: "web"
             # The front-controller script to send non-static requests to.
-            passthru: "/index.php"
+            passthru: "/php/index.php"

@@ -3,19 +3,21 @@
 # Each route describes how an incoming URL is going
 # to be processed by Platform.sh.
 
-"https://relationships.{default}/":
+"https://{default}/":
+    id: main
     type: upstream
-    upstream: "relationships:http"
+    upstream: "main:http"
     cache:
         enabled: true
         cookies: []
         default_ttl: 300
 
-"https://php.{default}/":
+"https://{default}/php":
+    id: php
     type: upstream
     upstream: "php:http"
 
-"https://nodejs.{default}/":
+"https://{default}/nodejs":
+    id: nodejs
     type: upstream
     upstream: "nodejs:http"
-
