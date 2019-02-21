@@ -180,7 +180,7 @@
         "pshconfig": {
             "editable": true,
             "git": "https://github.com/platformsh/platformsh-config-reader-python3.git",
-            "ref": "26ac52b5af864751d8683f00e4091f6ede7c5714"
+            "ref": "552f54f308f6b223200f5ea9840fc2b5d5b95afb"
         },
         "pshexs": {
             "path": "."
