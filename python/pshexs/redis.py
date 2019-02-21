@@ -33,7 +33,7 @@ def test_output():
 
         # return('Found value <strong>{0}</strong> for key <strong>{1}</strong>.'.format(test, key))
         # return relationships if isinstance(relationships, str) else str(relationships)
-        return 'platform.sh config was properly imported'
+        return 'Platform.sh config was properly imported'
 
     except Exception:
         # return 'platform.sh config WAS NOT properly imported.'
