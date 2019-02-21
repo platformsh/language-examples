@@ -26,7 +26,13 @@ def test_output():
 
         client = MongoClient(server)
 
-        collection = client.starwars
+        # db = client.test_database
+        #
+        # collection = db.test_collection
+
+        db = client.starwars
+        collection = db.test_collection
+
 
         result = collection.insert_one(
             {"name": "Rey",
