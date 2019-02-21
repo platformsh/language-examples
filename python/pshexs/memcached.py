@@ -28,12 +28,7 @@ def test_output():
         # Read it back.
         test = memcached.get(key)
 
-        print('Found value {0} for key {1}'.format(test, key))
-
-
-        credentials = config.credentials('memcached')
-
-        return credentials
+        return 'Found value {0} for key {1}'.format(test, key)
 
 
     except Exception as e:

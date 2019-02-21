@@ -24,7 +24,7 @@ def test_output():
         # Read it back
         test = redis.get(key)
 
-        return('Found value <strong>{0}</strong> for key <strong>{1}</strong>.'.format(test.decode("utf-8"), key))
+        return 'Found value <strong>{0}</strong> for key <strong>{1}</strong>.'.format(test.decode("utf-8"), key)
 
     except Exception as e:
         return e
