@@ -26,12 +26,12 @@ def test_output():
 
         client = MongoClient(server)
 
-        # db = client.test_database
-        #
-        # collection = db.test_collection
-
         db = client.test_database
-        collection = db.starwars
+        #
+        collection = db.test_collection
+
+        # db = client.test_database
+        # collection = client.starwars
 
         rey = {"name": "Rey",
                "occupation": "Jedi"}
