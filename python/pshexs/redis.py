@@ -35,5 +35,6 @@ def test_output():
         return 'platform.sh config was properly imported'
 
     except Exception as e:
-        return 'platform.sh config WAS NOT properly imported.'
+        # return 'platform.sh config WAS NOT properly imported.'
+        return str(e)
 
