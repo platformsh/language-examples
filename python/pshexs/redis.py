@@ -1,5 +1,3 @@
-# from redis import Redis
-# import os
 from pshconfig import Config
 
 
@@ -34,10 +32,8 @@ def test_output():
 
         # return('Found value <strong>{0}</strong> for key <strong>{1}</strong>.'.format(test, key))
         # return relationships if isinstance(relationships, str) else str(relationships)
-        return "config object imported"
+        return 'platform.sh config was properly imported'
 
     except Exception as e:
-        return "config object could not be imported"
+        return 'platform.sh config WAS NOT properly imported.'
 
-
-# print(test_output())

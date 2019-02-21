@@ -29,13 +29,6 @@ disk: 1024
 relationships:
     mysql: 'mysql:mysql'
     redis: 'redis:redis'
-    postgresql: 'postgresql:postgresql'
-    solr: 'solr:solr'
-    elasticsearch: 'elasticsearch:elasticsearch'
-    mongodb: 'mongodb:mongodb'
-    rabbitmq: 'rabbitmq:rabbitmq'
-    influxdb: 'influxdb:influxdb'
-    memcached: 'memcached:memcached'
 #    postgresql: 'postgresql:postgresql'
 #    solr: 'solr:solr'
 #    elasticsearch: 'elasticsearch:elasticsearch'
@@ -47,11 +40,11 @@ relationships:
 # The configuration of app when it is exposed to the web.
 web:
     commands:
-        start: python pshexs/web/index.py
+        start: python web/index.py
 
     locations:
         "/python":
             # The public directory of the app, relative to its root.
-            root: "pshexs/web"
+            root: "web"
 #            # The front-controller script to send non-static requests to.
 #            passthru: "python/index.py"
