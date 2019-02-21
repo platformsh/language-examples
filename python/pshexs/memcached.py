@@ -1,5 +1,5 @@
 
-# import pymemcache
+import pymemcache
 from pshconfig import Config
 import traceback, sys
 
@@ -10,11 +10,26 @@ def test_output():
     # You can alternatively use os.environ yourself.
     config = Config()
 
-    # The 'database' relationship is generally the name of primary SQL database of an application.
-    # That's not required, but much of our default automation code assumes it.' \
-    # credentials = config.credentials('database')
+    # Get the credentials to connect to the Memcached service.
+    credentials = config.credentials('memcached')
 
     try:
+
+        # Try connecting to Memached server.
+        memcached = pymemcache.Client((credentials['host'], credentials['port']))
+        memcached.set('Memcached::OPT_BINARY_PROTOCOL', True)
+
+        key = "Deploy day"
+        value = "Friday"
+
+        # Set a value
+        memcached.set(key, value)
+
+        # Read it back.
+        test = memcached.get(key)
+
+        print('Found value {0} for key {1}'.format(test, key))
+
 
         credentials = config.credentials('memcached')
 
