@@ -1,5 +1,5 @@
 
-# import pysolr
+import pysolr
 from pshconfig import Config
 import traceback, sys
 
@@ -10,32 +10,18 @@ def test_output():
     # You can alternatively use os.environ yourself.
     config = Config()
 
-    # The 'database' relationship is generally the name of primary SQL database of an application.
-    # That's not required, but much of our default automation code assumes it.' \
-    # credentials = config.credentials('database')
+    # Get the credentials to connect to the Solr service.
+    credentials = config.credentials('solr')
 
     try:
 
-        credentials = config.credentials('solr')
+
 
         return credentials
 
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]
-
-# import pysolr
-# from pshconfig import Config
-
-
-# def test_output():
-
-    # Create a new config object to ease reading the Platform.sh environment variables.
-    # You can alternatively use getenv() yourself.
-    # config = Config()
-
-    # Get the credentials to connect to the Solr service.
-    # credentials = config.credentials('solr')
 
     # try:
 
