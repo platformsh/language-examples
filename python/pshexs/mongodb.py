@@ -30,16 +30,15 @@ def test_output():
         #
         # collection = db.test_collection
 
-        db = client.starwars
-        collection = db.test_collection
+        db = client.test_database
+        collection = db.starwars
 
+        rey = {"name": "Rey",
+               "occupation": "Jedi"}
 
-        result = collection.insert_one(
-            {"name": "Rey",
-             "occupation": "Jedi"}
-        )
+        result_id = collection.insert_one(rey).inserted_id
 
-        result_id = result.inserted_id
+        # result_id = result.inserted_id
 
         document = collection.find_one(
             {"_id": result_id}
