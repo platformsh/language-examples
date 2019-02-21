@@ -1,4 +1,4 @@
-# import elasticsearch
+import elasticsearch
 from pshconfig import Config
 import traceback, sys
 
@@ -9,13 +9,32 @@ def test_output():
     # You can alternatively use os.environ yourself.
     config = Config()
 
-    # The 'database' relationship is generally the name of primary SQL database of an application.
-    # That's not required, but much of our default automation code assumes it.' \
-    # credentials = config.credentials('database')
+    # Get the credentials to connect to the Elasticsearch service.
+    credentials = config.credentials('elasticsearch')
 
     try:
+        # The Elasticsearch library lets you connect to multiple hosts.
+        # On Platform.sh Standard there is only a single host so just register that.
+        hosts = {
+            "scheme": credentials['scheme'],
+            "host": credentials['host'],
+            "port": credentials['port']
+        }
 
-        credentials = config.credentials('elasticsearch')
+        # Create an Elasticsearch client object.
+        builder = elasticsearch.Elasticsearch([hosts])
+        # $builder = ClientBuilder::create();
+        # $builder->setHosts($hosts);
+        # $client = $builder->build();
+
+        es_index = 'my_index'
+        es_type = 'People'
+
+        # Index a few documents.
+        params = {
+            "index": es_index,
+            "type": es_type
+        }
 
         return credentials
 
@@ -25,22 +44,6 @@ def test_output():
 
 
 
-
-# def test_output():
-#     return '{"elastic_search_test": "passed"}'
-
-
-# from pshconfig import Config
-# import elasticsearch
-#
-#
-# # Create a new Config object to ease reading the Platform.sh environment variables.
-# # You can alternatively use os.environ yourself.
-# config = Config()
-#
-# # Get the credentials to connect to the Elasticsearch service
-# credentials = config.credentials('elasticsearch')
-#
 # try:
 #     # The Elasticsearch library lets you connect to multiple hosts.
 #     # On Platform.sh Standard there is only a single host so just register that.
