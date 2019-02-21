@@ -2,6 +2,17 @@ import pika
 from pshconfig import Config
 import traceback, sys
 
+# Step #3
+def on_open(connection):
+    connection.channel(on_channel_open)
+
+# Step #4
+def on_channel_open(channel):
+    channel.basic_publish('exchange_name',
+                          'routing_key',
+                          'Test Message',
+                          pika.BasicProperties(content_type='text/plain',
+                                               type='example'))
 def callback(body):
     # In a real application you'd put the following in a separate script in a loop.
     print("[x] Deploying on %s<br />\n".format(body))
@@ -25,7 +36,7 @@ def test_output():
         # Connect to the RabbitMQ server.
         connection = pika.SelectConnection(parameters)
 
-        channel = connection.channel()
+        channel = connection.channel(on_open_callback=on_open)
 
         channel.queue_declare(queue_name)
 
