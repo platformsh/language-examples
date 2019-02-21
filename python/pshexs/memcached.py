@@ -19,7 +19,7 @@ def test_output():
         memcached = pymemcache.Client((credentials['host'], credentials['port']))
         memcached.set('Memcached::OPT_BINARY_PROTOCOL', True)
 
-        key = "Deploy day"
+        key = "Deploy_day"
         value = "Friday"
 
         # Set a value
