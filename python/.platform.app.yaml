@@ -27,15 +27,15 @@ disk: 1024
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
-    mysql: 'mysql:mysql'
+    database: 'mysql:mysql'
+    postgresql: 'postgresql:postgresql'
+    solr: 'solr:solr'
     redis: 'redis:redis'
-#    postgresql: 'postgresql:postgresql'
-#    solr: 'solr:solr'
-#    elasticsearch: 'elasticsearch:elasticsearch'
-#    mongodb: 'mongodb:mongodb'
-#    rabbitmq: 'rabbitmq:rabbitmq'
-#    influxdb: 'influxdb:influxdb'
-#    memcached: 'memcached:memcached'
+    elasticsearch: 'elasticsearch:elasticsearch'
+    mongodb: 'mongodb:mongodb'
+    rabbitmq: 'rabbitmq:rabbitmq'
+    influxdb: 'influxdb:influxdb'
+    memcached: 'memcached:memcached'
 
 # The configuration of app when it is exposed to the web.
 web:

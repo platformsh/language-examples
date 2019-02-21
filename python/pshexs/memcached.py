@@ -1,6 +1,28 @@
 
+# import pymemcache
+from pshconfig import Config
+import traceback, sys
+
+
 def test_output():
-    return '{"memcached_test": "passed"}'
+
+    # Create a new Config object to ease reading the Platform.sh environment variables.
+    # You can alternatively use os.environ yourself.
+    config = Config()
+
+    # The 'database' relationship is generally the name of primary SQL database of an application.
+    # That's not required, but much of our default automation code assumes it.' \
+    # credentials = config.credentials('database')
+
+    try:
+
+        credentials = config.credentials('memcached')
+
+        return credentials
+
+
+    except Exception as e:
+        return traceback.format_exc(), sys.exc_info()[0]
 
 
 # from pshconfig import Config
