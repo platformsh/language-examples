@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+name = "pypi"
+verify_ssl = true
+
+[packages]
+pshconfig = {editable = true,git = "https://github.com/platformsh/platformsh-config-reader-python3.git"}
+redis = "*"
+pymysql = "*"
+flask = "*"
+gevent = "*"
+elasticsearch = "*"
+pymongo = "*"
+influxdb = "*"
+pymemcache = "*"
+pysolr = "*"
+pika = "*"
+pshexs = {path = "."}
+
+[requires]
+python_version = "3.7"
+
+[dev-packages]
