@@ -1,5 +1,6 @@
 from pshconfig import Config
-
+import traceback
+import sys
 
 def test_output():
 
@@ -34,8 +35,8 @@ def test_output():
         # return relationships if isinstance(relationships, str) else str(relationships)
         return 'platform.sh config was properly imported'
 
-    except Exception as e:
+    except Exception:
         # return 'platform.sh config WAS NOT properly imported.'
-        return e, e.args
+        return traceback.format_exc(), sys.exc_info()[0]
 
 
