@@ -27,18 +27,13 @@ def test_output():
         client = MongoClient(server)
 
         db = client.test_database
-        #
-        collection = db.test_collection
 
-        # db = client.test_database
-        # collection = client.starwars
+        collection = db.starwars
 
         rey = {"name": "Rey",
                "occupation": "Jedi"}
 
         result_id = collection.insert_one(rey).inserted_id
-
-        # result_id = result.inserted_id
 
         document = collection.find_one(
             {"_id": result_id}
