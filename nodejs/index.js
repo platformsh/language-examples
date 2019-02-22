@@ -41,7 +41,6 @@ app.listen(config.port, function() {
     console.log(`Listening on port ${config.port}`)
 });
 
-
 /*
 
 var server = http.createServer(async function (request, response) {
