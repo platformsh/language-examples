@@ -1,6 +1,8 @@
 const http = require('http');
 const config = require("platformsh").config();
 const fs = require('fs');
+const express = require('express');
+const parseUrl = require('parse_url');
 
 var data = {};
 
@@ -23,6 +25,26 @@ const runData = async function(key) {
 };
 // array of Promise<void>
 const promises = Object.keys(data).map(runData);
+
+const platformRoute = config.getRoute('nodejs');
+
+console.log(parseUrl(platformRoute['url']));
+
+//basePath = trim(parse_url($platformRoute['url'], PHP_URL_PATH), '/');
+
+
+var basePath = '';
+app.use(basePath, require('./routes'));
+
+
+app.listen(config.port, function() {
+    console.log(`Listening on port ${config.port}`)
+});
+
+
+
+
+/*
 
 var server = http.createServer(async function (request, response) {
   try {
@@ -90,3 +112,4 @@ var server = http.createServer(async function (request, response) {
 });
 
 server.listen(config.port);
+*/
