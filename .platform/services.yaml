@@ -31,6 +31,6 @@ rabbitmq:
     disk: 256
     size: S
 solr:
-    type: solr:6.6
+    type: solr:7.6
     disk: 256
     size: S
