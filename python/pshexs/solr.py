@@ -45,10 +45,10 @@ def test_output():
             "id": 123,
             "name": "Valentina Tereshkova"
         }
-        doc_2 = {
-            "id": 124,
-            "name": "Robert California"
-        }
+        # doc_2 = {
+        #     "id": 124,
+        #     "name": "Robert California"
+        # }
 
         result0 = client.add([doc_1])
         result1 = client.commit()
@@ -67,7 +67,7 @@ def test_output():
 
         # result0 - string. info in string?
         # result1 - string. info in string?
-        return result0, result1, result2.hits
+        return dir(result2), result2.hits
 
 
     except Exception as e:
