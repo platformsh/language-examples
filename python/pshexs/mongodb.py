@@ -25,12 +25,14 @@ def test_output():
         # )
 
 
-        # client = MongoClient(credentials['host'], credentials['port'])
-        client = MongoClient(credentials['host'], credentials['port'], credentials['username'], credentials['password'])
+        client = MongoClient(credentials['host'], credentials['port'])
+        # client = MongoClient(credentials['host'], credentials['port'], credentials['username'], credentials['password'])
 
         # client = MongoClient(server)
 
         db = client.test_database
+
+        db.command("createUser", credentials['username'], pwd=credentials['password'], roles=["root"])
 
         # db.createUser(credentials['username'], "readWrite")
 
