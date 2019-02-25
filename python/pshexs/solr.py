@@ -58,6 +58,7 @@ def test_output():
 
         # Delete one document
         client.delete(doc_1['id'])
+        client.commit()
 
         # Am I getting no output for result2 because it is not a string but an object? need dir()?
 
