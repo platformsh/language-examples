@@ -42,7 +42,7 @@ def test_output():
         rey = {"name": "Rey",
                "occupation": "Jedi"}
 
-        result_id = collection.insert_one(rey).inserted_id
+        result_id = collection.insert(rey).inserted_id
 
         document = collection.find_one(
             {"_id": result_id}
