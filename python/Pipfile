@@ -15,6 +15,7 @@ influxdb = "*"
 pymemcache = "*"
 pysolr = "*"
 pika = "*"
+psycopg2 ='*'
 pshexs = {path = "."}
 
 [requires]

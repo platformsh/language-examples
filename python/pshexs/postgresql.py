@@ -1,4 +1,4 @@
-import influxdb
+import psycopg2
 from pshconfig import Config
 import traceback, sys
 
@@ -11,84 +11,64 @@ def test_output():
 
     # The 'database' relationship is generally the name of primary SQL database of an application.
     # That's not required, but much of our default automation code assumes it.' \
-    # credentials = config.credentials('database')
+    database = config.credentials('postgresql')
 
     try:
 
-        credentials = config.credentials('postgresql')
+        # Connect to the database.
+        conn_params = {
+            'host': database['host'],
+            'port': database['port'],
+            'dbname': database['path'],
+            'user': database['username'],
+            'password': database['password']
+        }
 
-        return credentials
+        conn = psycopg2.connect(**conn_params)
+
+        # Open a cursor to perform database operations.
+        cur = conn.cursor()
+
+        # Creating a table.
+        sql = "CREATE TABLE People (" \
+              "id SERIAL PRIMARY KEY," \
+              "name VARCHAR(30) NOT NULL," \
+              "city VARCHAR(30) NOT NULL" \
+              ")"
+
+        cur.execute(sql)
+
+        # Insert data.
+        sql = "INSERT INTO People (name, city) VALUES" \
+              "('Neil Armstrong', 'Moon')," \
+              "('Buzz Aldrin', 'Glen Ridge')," \
+              "('Sally Ride', 'La Jolla');"
+
+        cur.execute(sql)
+
+        # Show table.
+        sql = "SELECT * FROM People"
+        cur.execute(sql)
+        result = cur.fetchone()  # fetchmany(), fetchall()
+
+        if result:
+            table = "<table>" \
+                    "<thead>" \
+                    "<tr><th>ID</th><th>Name</th></tr>" \
+                    "</thead>" \
+                    "<tbody>"
+
+            for record in result:
+                table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record['name'], record['city'])
+
+            table += "</tbody>\n</table>\n"
+
+        # Close communication with the database
+        cur.close()
+        conn.close()
+
+        return table
 
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]
-
-# from pshconfig import Config
-
-
-
-# <?php
-#
-# declare(strict_types=1);
-#
-# use Platformsh\ConfigReader\Config;
-#
-# // Create a new config object to ease reading the Platform.sh environment variables.
-# // You can alternatively use getenv() yourself.
-# $config = new Config();
-#
-# // The 'database' relationship is generally the name of primary SQL database of an application.
-# // It could be anything, though, as in the case here here where it's called "postgresql".
-# $database = $config->credentials('postgresql');
-#
-# try {
-#     // Connect to the database using PDO.  If using some other abstraction layer you would
-#     // inject the values from $database into whatever your abstraction layer asks for.
-#     $dsn = sprintf('pgsql:host=%s;port=%d;dbname=%s', $database['host'], $database['port'], $database['path']);
-#     $conn = new \PDO($dsn, $database['username'], $database['password'], [
-#         // Always use Exception error mode with PDO, as it's more reliable.
-#         \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-#         // So we don't have to mess around with cursors and unbuffered queries by default.
-#     ]);
-#
-#     // Creating a table.
-#     $sql = "CREATE TABLE People (
-#       id SERIAL PRIMARY KEY,
-#       name VARCHAR(30) NOT NULL,
-#       city VARCHAR(30) NOT NULL
-#       )";
-#     $conn->query($sql);
-#
-#     // Insert data.
-#     $sql = "INSERT INTO People (name, city) VALUES
-#         ('Neil Armstrong', 'Moon'),
-#         ('Buzz Aldrin', 'Glen Ridge'),
-#         ('Sally Ride', 'La Jolla');";
-#     $conn->query($sql);
-#
-#     // Show table.
-#     $sql = "SELECT * FROM People";
-#     $result = $conn->query($sql);
-#     $result->setFetchMode(\PDO::FETCH_OBJ);
-#
-#     if ($result) {
-#         print <<<TABLE
-# <table>
-# <thead>
-# <tr><th>Name</th><th>City</th></tr>
-# </thead>
-# <tbody>
-# TABLE;
-#         foreach ($result as $record) {
-#             printf("<tr><td>%s</td><td>%s</td></tr>\n", $record->name, $record->city);
-#         }
-#         print "</tbody>\n</table>\n";
-#     }
-#
-#     // Drop table.
-#     $sql = "DROP TABLE People";
-#     $conn->query($sql);
-#
-# } catch (\Exception $e) {
-#     print $e->getMessage();
-# }
