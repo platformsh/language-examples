@@ -33,7 +33,7 @@ def test_output():
 
         response = client.select('name:Valentina Tereshkova')
 
-        return result, response
+        return result, dir(response)
 
         # # ----- pysolr attempt -----
         #
