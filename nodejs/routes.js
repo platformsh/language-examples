@@ -5,8 +5,23 @@ const fs = require('fs');
 var data = {};
 
 // @todo Do this for all services.
-data.MongoDB = require('./examples/mongodb.js');
-data.MongoDB.source = fs.readFileSync('./examples/mongodb.js');
+
+let services = {
+    mongodb: 'MongoDB'
+};
+
+Object.keys(services).forEach((key) => {
+    data[key] = require(`./examples/${key}.js`);
+    data[key].source = escapeHtml(fs.readFileSync(`./examples/${key}.js`, 'utf8'));
+    data[key].label = 'MongoDB';
+});
+
+
+function escapeHtml(s) {
+    return s.replace(/[^0-9A-Za-z ]/g, function(c) {
+        return "&#" + c.charCodeAt(0) + ";";
+    });
+}
 
 // Call all of the run() methods of all services, and store their output once.
 async function runData(key) {
@@ -20,7 +35,8 @@ async function runData(key) {
     if (value) {
         data[key].output = value;
     }
-};
+}
+
 // array of Promise<void>
 const promises = Object.keys(data).map(runData);
 
@@ -75,7 +91,7 @@ async function index(req, res) {
     Object.keys(data).forEach ((key) => {
         let name = key;
         res.write(`<details>
-      <summary>${name} Sample Code</summary>
+      <summary>${data[key].label} Sample Code</summary>
       <section>
       <h3>Source</h3>
       <pre>${data[key].source}</pre>
@@ -107,8 +123,15 @@ router.get('/:service', (req, res) => {
     res.sendFile(`${req.params.service}.js`, options);
 });
 
-router.get('/:service/output', (req, res) => {
+router.get('/:service/output', async (req, res) => {
+    try {
+        await Promise.all(promises);
+    }
+    catch (error) {
+        console.error(error);
+    }
 
+    res.end(data[req.params.service].output);
 });
 
 module.exports = router;
