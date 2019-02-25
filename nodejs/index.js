@@ -1,14 +1,44 @@
 const http = require('http');
-const config = require("platformsh").config();
 const fs = require('fs');
 const express = require('express');
 const parseUrl = require('parse_url');
+const platformsh = require('platformsh');
 
+let config = platformsh.config();
+
+if (process.env.NODE_ENV === 'test') {
+
+    config = {
+        applicationName: 'test',
+        port: 8080,
+        getRoute: (id) => {
+            return {url: 'http://localhost/nodejs'}
+        }
+    };
+}
+else {
+}
+
+var app = express();
+
+// Set up a base path for routes based on the Route definition.
+const platformRoute = config.getRoute('nodejs');
+const basePath = '/' + (parseUrl(platformRoute['url'])[5] || '');
+app.use(basePath, require('./routes'));
+
+// Start the server.
+app.listen(config.port, function() {
+    console.log(`Listening on port ${config.port}`)
+});
+
+
+
+/*
 var data = {};
 
 // @todo Do this for all services.
-data.MongoDB = require('./examples/MongoDB.js');
-data.MongoDB.source = fs.readFileSync('./examples/MongoDB.js');
+data.MongoDB = require('./examples/mongodb.js');
+data.MongoDB.source = fs.readFileSync('./examples/mongodb.js');
 
 // Call all of the run() methods of all services, and store their output once.
 const runData = async function(key) {
@@ -25,22 +55,7 @@ const runData = async function(key) {
 };
 // array of Promise<void>
 const promises = Object.keys(data).map(runData);
-
-const platformRoute = config.getRoute('nodejs');
-
-console.log(parseUrl(platformRoute['url']));
-
-//basePath = trim(parse_url($platformRoute['url'], PHP_URL_PATH), '/');
-
-
-var basePath = '';
-app.use(basePath, require('./routes'));
-
-
-app.listen(config.port, function() {
-    console.log(`Listening on port ${config.port}`)
-});
-
+*/
 
 
 /*

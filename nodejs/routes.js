@@ -64,9 +64,19 @@ router.get('/', index);
 
 router.get('/:service', (req, res) => {
 
-    res.sendFile(`examples/${req.params.service}`);
+    let options = {
+        root: __dirname + '/examples/',
+        dotfiles: 'deny',
+        headers: {
+            'Content-Type': 'text/plain',
+        }
+    };
+
+    res.sendFile(`${req.params.service}.js`, options);
 });
 
 router.get('/:service/output', (req, res) => {
 
 });
+
+module.exports = router;
