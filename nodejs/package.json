@@ -12,6 +12,7 @@
     "mongodb": "^2.0.48",
     "mongoose": "^4.2.5",
     "parse_url": "^0.1.1",
-    "platformsh": "https://github.com/platformsh/platformsh-nodejs-helper.git#v2"
+    "platformsh": "https://github.com/platformsh/platformsh-nodejs-helper.git#v2",
+    "redis": "^2.8.0"
   }
 }

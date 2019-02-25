@@ -7,13 +7,14 @@ var data = {};
 // @todo Do this for all services.
 
 let services = {
-    mongodb: 'MongoDB'
+    mongodb: 'MongoDB',
+    redis: 'Redis',
 };
 
 Object.keys(services).forEach((key) => {
     data[key] = require(`./examples/${key}.js`);
     data[key].source = escapeHtml(fs.readFileSync(`./examples/${key}.js`, 'utf8'));
-    data[key].label = 'MongoDB';
+    data[key].label = services[key];
 });
 
 
