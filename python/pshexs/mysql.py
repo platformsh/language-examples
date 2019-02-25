@@ -1,4 +1,4 @@
-# import pymysql
+import pymysql
 from pshconfig import Config
 import traceback, sys
 
@@ -11,11 +11,17 @@ def test_output():
 
     # The 'database' relationship is generally the name of primary SQL database of an application.
     # That's not required, but much of our default automation code assumes it.' \
-    # credentials = config.credentials('database')
+    credentials = config.credentials('database')
 
     try:
 
-        credentials = config.credentials('database')
+        # Connect to the database using PDO. If using some other abstraction layer you would inject the values
+        # from `database` into whatever your abstraction layer asks for.
+        connection = pymysql.connect(host=credentials['host'],
+                                     port=credentials['port'])
+
+
+
 
         return credentials
 

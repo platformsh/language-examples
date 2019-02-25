@@ -1,4 +1,4 @@
-# import influxdb
+import influxdb
 from pshconfig import Config
 import traceback, sys
 

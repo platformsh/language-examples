@@ -28,6 +28,10 @@ def test_output():
 
         db = client.test_database
 
+        db.grantRolesToUser(credentials['username'], ["readWrite"])
+
+        # db.grantRolesToUser('admin', [{role: "root", db: "admin"}])
+
         collection = db.starwars
 
         rey = {"name": "Rey",
