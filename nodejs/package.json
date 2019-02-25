@@ -9,6 +9,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.4",
+    "memcached": "^2.2.2",
     "mongodb": "^2.0.48",
     "mongoose": "^4.2.5",
     "parse_url": "^0.1.1",

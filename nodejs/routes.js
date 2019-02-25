@@ -9,6 +9,7 @@ var data = {};
 let services = {
     mongodb: 'MongoDB',
     redis: 'Redis',
+    memcached: 'MemcacheD',
 };
 
 Object.keys(services).forEach((key) => {
