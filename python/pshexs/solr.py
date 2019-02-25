@@ -16,8 +16,12 @@ def test_output():
 
     try:
 
+        url = "http://{0}:{1}/{2}".format(credentials['ip'],
+                                              credentials['port'],
+                                              credentials['path'])
+
         # Create a new Solr Client using config variables
-        client = pysolr.Solr(credentials['host'])
+        client = pysolr.Solr(url)
 
         # Add a document
         doc_1 = {
