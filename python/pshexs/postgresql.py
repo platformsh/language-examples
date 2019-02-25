@@ -54,7 +54,7 @@ def test_output():
         if result:
             table = "<table>" \
                     "<thead>" \
-                    "<tr><th>ID</th><th>Name</th></tr>" \
+                    "<tr><th>Name</th><th>City</th></tr>" \
                     "</thead>" \
                     "<tbody>"
 
