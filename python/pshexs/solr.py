@@ -63,7 +63,7 @@ def test_output():
         # messages = 'Adding one document. Status (0 is success): {0} <br />\n'.format(result'
         #            ' .$result->getStatus(). "<br />\n'
 
-        return result
+        return result, results
 
 
     except Exception as e:
