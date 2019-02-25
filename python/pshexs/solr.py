@@ -34,16 +34,16 @@ def test_output():
 
         result0 = client.add([doc_1])
         client.commit()
-        message += 'Adding one document. Status (01 is success): {0}\n'.format(result0)
+        message += 'Adding one document. Status (01 is success): {0}'.format(result0)
 
         # Select one document
         query = client.search('*:*')
-        message += 'Selecting documents (1 expected): {0}\n'.format(query.hits)
+        message += '\nSelecting documents (1 expected): {0}\n'.format(query.hits)
 
         # # Delete one document
         result1 = client.delete(doc_1['id'])
         client.commit()
-        message += 'Deleting one document. Status (0 is success): {0}\n'.format(result1)
+        message += '\nDeleting one document. Status (00 is success): {0}\n'.format(result1)
 
         return message
 
