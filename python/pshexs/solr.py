@@ -1,5 +1,6 @@
 
 import pysolr
+import urllib
 from pshconfig import Config
 import traceback, sys
 
@@ -15,9 +16,23 @@ def test_output():
 
     try:
 
+        solr = pysolr.Solr(credentials['host'])
 
+        solr.add([
+            {
+                "id": 123,
+                "name": "Valentina Tereshkova"
+            }
+        ])
 
-        return credentials
+        # results = solr.search()
+        #
+        # print("Saw {0} result(s).".format(len(results)))
+        #
+        # messages = 'Adding one document. Status (0 is success): {0} <br />\n'.format(result'
+        #            ' .$result->getStatus(). "<br />\n'
+
+        return dir(solr)
 
 
     except Exception as e:

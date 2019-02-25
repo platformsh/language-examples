@@ -49,7 +49,7 @@ def test_output():
         # Show table.
         sql = "SELECT * FROM People"
         cur.execute(sql)
-        result = cur.fetchall()  # fetchmany(), fetchall()
+        result = cur.fetchall()
 
         if result:
             table = "<table>" \
