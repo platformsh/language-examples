@@ -20,14 +20,14 @@ def test_output():
         port = credentials['port']
 
 
-        solr = pysolr.Solr(credentials['host'])
-
-        solr.add([
-            {
-                "id": 123,
-                "name": "Valentina Tereshkova"
-            }
-        ])
+        # solr = pysolr.Solr(credentials['host'])
+        #
+        # solr.add([
+        #     {
+        #         "id": 123,
+        #         "name": "Valentina Tereshkova"
+        #     }
+        # ])
 
 
         # results = solr.search()
