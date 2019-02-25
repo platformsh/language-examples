@@ -25,7 +25,9 @@ def test_output():
             "name": "Valentina Tereshkova"
         }
 
-        client.add(doc_1)
+        result = client.add([doc_1])
+
+        # result.
 
         # Add a document
 
