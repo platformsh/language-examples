@@ -33,15 +33,15 @@ def test_output():
             "name": "Robert California"
         }
 
-        client.add([doc_1, doc_2])
-        result = client.commit()
+        result0 = client.add([doc_1, doc_2])
+        result1 = client.commit()
 
         # Select one document
-        results = client.search('*:*')
+        result2 = client.search('*:*')
 
         # Delete one document
 
-        return result, results
+        return result0, result1, result2
 
 
     except Exception as e:
