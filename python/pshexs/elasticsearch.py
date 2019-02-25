@@ -28,16 +28,20 @@ def test_output():
         es_index = 'my_index'
         es_type = 'People'
 
-        # # Index a few documents.
-        # params = {
-        #     "index": es_index,
-        #     "type": es_type
-        # }
+        # Index a few documents.
+        params = {
+            "index": es_index,
+            "type": es_type
+        }
 
         names = ['Ada Lovelace', 'Alonzo Church', 'Barbara Liskov']
 
         for name in names:
-            client.index(index=es_index, doc_type=es_type, body={"name": name})
+
+            params['body']['name'] = name
+            client.index(params)
+
+            # client.index(index=es_index, doc_type=es_type, body={"name": name})
 
         # Force just-added items to be indexed.
         client.indices.refresh(index=es_index)
