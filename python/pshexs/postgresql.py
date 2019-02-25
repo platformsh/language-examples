@@ -63,6 +63,10 @@ def test_output():
 
             table += "</tbody>\n</table>\n"
 
+        # Drop table
+        sql = "DROP TABLE People"
+        cur.execute(sql)
+
         # Close communication with the database
         cur.close()
         conn.close()
