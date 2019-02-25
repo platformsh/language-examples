@@ -1,8 +1,9 @@
+const mongodb = require('mongodb');
 const config = require("platformsh").config();
 
 exports.run = async function() {
     const credentials = config.credentials('mongodb');
-    const MongoClient = require('mongodb').MongoClient;
+    const MongoClient = mongodb.MongoClient;
     const connectionString = `mongodb://${credentials["username"]}:${credentials["password"]}@${credentials["host"]}:${credentials["port"]}/${credentials["path"]}`;
 
     var client = await MongoClient.connect(connectionString);

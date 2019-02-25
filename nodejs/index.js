@@ -1,5 +1,3 @@
-const http = require('http');
-const fs = require('fs');
 const express = require('express');
 const parseUrl = require('parse_url');
 const platformsh = require('platformsh');

@@ -1,10 +1,42 @@
 const express = require('express');
 const router = express.Router();
+const fs = require('fs');
 
-function index() {
-    response.writeHead(200, {"Content-Type": "text/html"});
+var data = {};
 
-    response.write(`<html>
+// @todo Do this for all services.
+data.MongoDB = require('./examples/mongodb.js');
+data.MongoDB.source = fs.readFileSync('./examples/mongodb.js');
+
+// Call all of the run() methods of all services, and store their output once.
+async function runData(key) {
+    let value = undefined;
+    try{
+        const method = data[key].run;
+        value = await method();
+    } catch (err) {
+        console.error(err);
+    }
+    if (value) {
+        data[key].output = value;
+    }
+};
+// array of Promise<void>
+const promises = Object.keys(data).map(runData);
+
+
+async function index(req, res) {
+
+    try {
+        await Promise.all(promises);
+    }
+    catch (error) {
+        console.error(error);
+    }
+
+    res.writeHead(200, {"Content-Type": "text/html"});
+
+    res.write(`<html>
 <head>
     <title>Platform.sh Node.js service examples</title>
     <style type="text/css">
@@ -42,7 +74,7 @@ function index() {
 
     Object.keys(data).forEach ((key) => {
         let name = key;
-        response.write(`<details>
+        res.write(`<details>
       <summary>${name} Sample Code</summary>
       <section>
       <h3>Source</h3>
@@ -56,7 +88,7 @@ function index() {
       `);
     });
 
-    response.end(`</body></html>`);
+    res.end(`</body></html>`);
 }
 
 
