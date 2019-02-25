@@ -17,26 +17,12 @@ def test_output():
 
     try:
 
+        message = ''
 
         url = "http://{0}:{1}/{2}".format(credentials['ip'],
                                           credentials['port'],
                                           credentials['path'])
-        #
-        # client = solr.Solr(url)
-        #
-        # doc_1 = {
-        #     "id": 123,
-        #     "name": "Valentina Tereshkova"
-        # }
-        #
-        # result = client.add(doc_1, commit=True)
-        #
-        # response = client.select('name:Valentina Tereshkova')
-        #
-        # return result, dir(response)
 
-        # # ----- pysolr attempt -----
-        #
         # Create a new Solr Client using config variables
         client = pysolr.Solr(url)
 
@@ -48,22 +34,18 @@ def test_output():
 
         result0 = client.add([doc_1])
         result1 = client.commit()
+        message += 'Adding one document. Status (0 is success): {0}\n'.format(str(0))
 
         # Select one document
-        result2 = client.search('*:*')
+        query = client.search('*:*')
+        message += 'Selecting documents (1 expected): {0}\n'.format(query.hits)
 
         # Delete one document
         client.delete(doc_1['id'])
         client.commit()
+        message += 'Deleting one document. Status (0 is success): {0}\n'.format(str(0))
 
-        # Am I getting no output for result2 because it is not a string but an object? need dir()?
-
-        # return result0, result1, result2
-        # return dir(result0), dir(result1), dir(result2)
-
-        # result0 - string. info in string?
-        # result1 - string. info in string?
-        return result2.docs, result2.hits
+        return result0, result1
 
 
     except Exception as e:
