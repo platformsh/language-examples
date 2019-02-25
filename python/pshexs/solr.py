@@ -28,8 +28,12 @@ def test_output():
             "id": 123,
             "name": "Valentina Tereshkova"
         }
+        doc_2 = {
+            "id": 124,
+            "name": "Robert California"
+        }
 
-        client.add([doc_1])
+        client.add([doc_1, doc_2])
         result = client.commit()
 
         # Select one document
