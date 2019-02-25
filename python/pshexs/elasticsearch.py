@@ -66,7 +66,7 @@ def test_output():
 
             table += "</tbody>\n</table>\n"
 
-            print(table)
+            # print(table)
 
         # Delete documents.
         params = {
@@ -76,7 +76,7 @@ def test_output():
         }
 
 
-            # return table
+        return table
             # print(table)
 
 
