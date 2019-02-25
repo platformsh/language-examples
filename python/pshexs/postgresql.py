@@ -59,7 +59,7 @@ def test_output():
                     "<tbody>"
 
             for record in result:
-                table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record['name'], record['city'])
+                table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record.name, record.city)
 
             table += "</tbody>\n</table>\n"
 
