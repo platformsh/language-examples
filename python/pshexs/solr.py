@@ -17,8 +17,8 @@ def test_output():
     try:
 
         url = "http://{0}:{1}/{2}".format(credentials['ip'],
-                                              credentials['port'],
-                                              credentials['path'])
+                                          credentials['port'],
+                                          credentials['path'])
 
         # Create a new Solr Client using config variables
         client = pysolr.Solr(url)
@@ -29,89 +29,16 @@ def test_output():
             "name": "Valentina Tereshkova"
         }
 
-        result = client.add([doc_1])
+        client.add([doc_1])
+        result = client.commit()
 
         # Select one document
         results = client.search('*:*')
 
         # Delete one document
 
-
-        # credentials = {'service': 'solr', 'ip': '169.254.70.40',
-        # 'hostname': '63wf3k4p72q6pxnhkrps3i4csy.solr.service._.eu-3.platformsh.site',
-        # 'cluster': 'rjify4yjcwxaa-pythonexs-y2koaha', 'host': 'solr.internal',s
-        # 'rel': 'solr', 'path': 'solr/collection1', 'scheme': 'solr', 'type': 'solr:6.6', 'port': 8080}
-
-        # host = credentials['host']
-        # port = credentials['port']
-
-
-        # solr = pysolr.Solr(credentials['host'])
-        #
-        # solr.add([
-        #     {
-        #         "id": 123,
-        #         "name": "Valentina Tereshkova"
-        #     }
-        # ])
-
-
-        # results = solr.search()
-        #
-        # print("Saw {0} result(s).".format(len(results)))
-        #
-        # messages = 'Adding one document. Status (0 is success): {0} <br />\n'.format(result'
-        #            ' .$result->getStatus(). "<br />\n'
-
-        return result, results
+        return result
 
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]
-
-    # try:
-
-        # config_solr = {
-        #     "enpoint": {
-        #         "localhost": {
-        #             "host": credentials['host'],
-        #             "port": credentials['port'],
-        #             "path": '/' + credentials['path']
-        #         }
-        #     }
-        # }
-    #
-    # client = KazooClient(config_solr)
-    #
-    # # Add a document
-    # update = client.createUpdate()
-#
-#     // Add a document
-#     $update = $client->createUpdate();
-#
-#     $doc1 = $update->createDocument();
-#     $doc1->id = 123;
-#     $doc1->name = 'Valentina Tereshkova';
-#
-#     $update->addDocuments(array($doc1));
-#     $update->addCommit();
-#
-#     $result = $client->update($update);
-#     print "Adding one document. Status (0 is success): " .$result->getStatus(). "<br />\n";
-#
-#     // Select one document
-#     $query = $client->createQuery($client::QUERY_SELECT);
-#     $resultset = $client->execute($query);
-#     print  "Selecting documents (1 expected): " .$resultset->getNumFound() . "<br />\n";
-#
-#     // Delete one document
-#     $update = $client->createUpdate();
-#
-#     $update->addDeleteById(123);
-#     $update->addCommit();
-#     $result = $client->update($update);
-#     print "Deleting one document. Status (0 is success): " .$result->getStatus(). "<br />\n";
-#
-# } catch (Exception $e) {
-#     print $e->getMessage();
-# }
