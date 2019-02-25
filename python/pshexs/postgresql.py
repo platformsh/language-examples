@@ -1,6 +1,5 @@
 import psycopg2
 from pshconfig import Config
-import traceback, sys
 
 
 def test_output():
@@ -72,4 +71,4 @@ def test_output():
 
 
     except Exception as e:
-        return traceback.format_exc(), sys.exc_info()[0]
+        return e
