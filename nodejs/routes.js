@@ -7,9 +7,10 @@ var data = {};
 // @todo Do this for all services.
 
 let services = {
+    elasticsearch: 'Elasticsearch',
+    memcached: 'MemcacheD',
     mongodb: 'MongoDB',
     redis: 'Redis',
-    memcached: 'MemcacheD',
 };
 
 Object.keys(services).forEach((key) => {
