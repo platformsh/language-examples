@@ -41,7 +41,7 @@ def test_output():
 
             params['body']['name'] = name
             # client.index(params)
-            client.index(index=params["index"], doc_type=params["type"], body=params)
+            client.index(index=params["index"], doc_type=params["type"], body=params['body'])
 
             # client.index(index=es_index, doc_type=es_type, body={"name": name})
 
