@@ -28,7 +28,6 @@ def test_output():
         es_index = 'my_index'
         es_type = 'People'
 
-        # Index a few documents.
         params = {
             "index": es_index,
             "type": es_type,
@@ -67,12 +66,18 @@ def test_output():
 
             table += "</tbody>\n</table>\n"
 
-            # Delete documents.
+            print(table)
+
+        # Delete documents.
+        params = {
+            "index": es_index,
+            "type": es_type,
+            # "body": {"name": ''}
+        }
 
 
-
-
-            return table
+            # return table
+            # print(table)
 
 
     except Exception as e:
