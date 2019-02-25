@@ -43,7 +43,13 @@ def test_output():
         client.indices.refresh(index=es_index)
 
         # Search for documents.
-        result = client.search(index=es_index, type=es_type, body={"query": {"match": {"name": "Barbara Liskov"}}})
+        result = client.search(index=es_index, type=es_type, body={
+            'query': {
+                'match': {
+                    'name': 'Barbara Liskov'
+                }
+            }
+        })
 
         if result['hits']['hits']:
 
