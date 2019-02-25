@@ -49,7 +49,7 @@ def test_output():
         client.indices.refresh(index=es_index)
 
         # Search for documents.
-        result = client.search(index=es_index, type=es_type, body={
+        result = client.search(index=es_index, body={
             'query': {
                 'match': {
                     'name': 'Barbara Liskov'
