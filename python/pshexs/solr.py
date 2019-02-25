@@ -16,6 +16,10 @@ def test_output():
 
     try:
 
+        host = credentials['host']
+        port = credentials['port']
+
+
         solr = pysolr.Solr(credentials['host'])
 
         solr.add([
@@ -25,6 +29,7 @@ def test_output():
             }
         ])
 
+
         # results = solr.search()
         #
         # print("Saw {0} result(s).".format(len(results)))
@@ -32,7 +37,7 @@ def test_output():
         # messages = 'Adding one document. Status (0 is success): {0} <br />\n'.format(result'
         #            ' .$result->getStatus(). "<br />\n'
 
-        return dir(solr)
+        return credentials
 
 
     except Exception as e:
