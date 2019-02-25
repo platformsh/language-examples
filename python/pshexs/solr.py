@@ -37,7 +37,7 @@ def test_output():
 
         # Delete one document
 
-        return result
+        return result, results
 
 
     except Exception as e:
