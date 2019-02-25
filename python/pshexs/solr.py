@@ -1,5 +1,6 @@
 
 import pysolr
+import solr
 import urllib
 from pshconfig import Config
 import traceback, sys
@@ -16,32 +17,48 @@ def test_output():
 
     try:
 
+
         url = "http://{0}:{1}/{2}".format(credentials['ip'],
                                           credentials['port'],
                                           credentials['path'])
 
-        # Create a new Solr Client using config variables
-        client = pysolr.Solr(url)
+        client = solr.Solr(url)
 
-        # Add a document
         doc_1 = {
             "id": 123,
             "name": "Valentina Tereshkova"
         }
-        doc_2 = {
-            "id": 124,
-            "name": "Robert California"
-        }
 
-        result0 = client.add([doc_1])
-        result1 = client.commit()
+        result = client.add(doc_1, commit=True)
 
-        # Select one document
-        result2 = client.search('*:*')
+        response = client.select('name:Valentina Tereshkova')
 
-        # Delete one document
+        return result, response
 
-        return result0, result1, result2
+        # # ----- pysolr attempt -----
+        #
+        # # Create a new Solr Client using config variables
+        # client = pysolr.Solr(url)
+        #
+        # # Add a document
+        # doc_1 = {
+        #     "id": 123,
+        #     "name": "Valentina Tereshkova"
+        # }
+        # doc_2 = {
+        #     "id": 124,
+        #     "name": "Robert California"
+        # }
+        #
+        # result0 = client.add([doc_1])
+        # result1 = client.commit()
+        #
+        # # Select one document
+        # result2 = client.search('*:*')
+        #
+        # # Delete one document
+        #
+        # return result0, result1, result2
 
 
     except Exception as e:

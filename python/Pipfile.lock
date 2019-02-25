@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "69b0ad407a53a33ad35aa5623c244e3d687ba75d74a7c0374b16372b8a50e285"
+            "sha256": "c59da33c95992f9e6659bb84cd87fea632c7c1bc394a61fdd35d7292cdcc306d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -52,6 +52,12 @@
             ],
             "index": "pypi",
             "version": "==1.0.2"
+        },
+        "future": {
+            "hashes": [
+                "sha256:67045236dcfd6816dc439556d009594abf643e5eb48992e36beac09c2ca659b8"
+            ],
+            "version": "==0.17.1"
         },
         "gevent": {
             "hashes": [
@@ -320,6 +326,14 @@
                 "sha256:d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"
             ],
             "version": "==1.12.0"
+        },
+        "solrpy": {
+            "hashes": [
+                "sha256:12bcab426a3d83793528b3e4c09073fa6086864a7557c7f8bcd62ee9d7d36abd",
+                "sha256:aba1218350d4d6000286e2295f85d46028f2c8d2adcff880bb8ae67f5a19206a"
+            ],
+            "index": "pypi",
+            "version": "==0.9.9"
         },
         "urllib3": {
             "hashes": [

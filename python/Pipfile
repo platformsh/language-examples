@@ -16,6 +16,7 @@ pymemcache = "*"
 pysolr = "*"
 pika = "*"
 psycopg2 ='*'
+solrpy = '*'
 pshexs = {path = "."}
 
 [requires]
