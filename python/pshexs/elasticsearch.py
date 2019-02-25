@@ -59,13 +59,19 @@ def test_output():
 
         if result['hits']['hits']:
 
-            table = "<<<TABLE" \
-                    "<table>" \
+            # table = "<<<TABLE" \
+            #         "<table>" \
+            #         "<thead>" \
+            #         "<tr><th>ID</th><th>Name</th></tr>" \
+            #         "</thead>" \
+            #         "<tbody>" \
+            #         "TABLE;"
+
+            table = "<table>" \
                     "<thead>" \
                     "<tr><th>ID</th><th>Name</th></tr>" \
                     "</thead>" \
-                    "<tbody>" \
-                    "TABLE;"
+                    "<tbody>"
 
             for record in result['hits']['hits']:
 
