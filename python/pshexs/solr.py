@@ -31,11 +31,8 @@ def test_output():
 
         result = client.add([doc_1])
 
-        # result.
-
-        # Add a document
-
         # Select one document
+        results = client.search('*:*')
 
         # Delete one document
 
@@ -66,7 +63,7 @@ def test_output():
         # messages = 'Adding one document. Status (0 is success): {0} <br />\n'.format(result'
         #            ' .$result->getStatus(). "<br />\n'
 
-        return credentials
+        return result
 
 
     except Exception as e:
