@@ -49,7 +49,7 @@ def test_output():
         # Show table.
         sql = "SELECT * FROM People"
         cur.execute(sql)
-        result = cur.fetchone()  # fetchmany(), fetchall()
+        result = cur.fetchall()  # fetchmany(), fetchall()
 
         if result:
             table = "<table>" \
@@ -59,8 +59,7 @@ def test_output():
                     "<tbody>"
 
             for record in result:
-                # table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record.name, record.city)
-                pass
+                table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record[1], record[2])
 
             table += "</tbody>\n</table>\n"
 
@@ -68,7 +67,7 @@ def test_output():
         cur.close()
         conn.close()
 
-        return str(result), str(record), dir(record)
+        return table
 
 
     except Exception as e:
