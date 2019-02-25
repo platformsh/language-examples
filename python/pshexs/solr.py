@@ -61,7 +61,11 @@ def test_output():
         # Am I getting no output for result2 because it is not a string but an object? need dir()?
 
         # return result0, result1, result2
-        return dir(result0), dir(result1), dir(result2)
+        # return dir(result0), dir(result1), dir(result2)
+
+        # result0 - string. info in string?
+        # result1 - string. info in string?
+        return result0, result1, result2.hits
 
 
     except Exception as e:
