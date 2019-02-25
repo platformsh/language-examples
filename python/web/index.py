@@ -117,7 +117,7 @@ def create_list():
                '<summary>{0} Sample Code</summary>' \
                '<section>' \
                '<h3>Source</h3>' \
-               '<pre class="prettyprint lang-py">{1}</pre>' \
+               '<pre class="prettyprint"><code class="language-py">{1}</code></pre>' \
                '</section>' \
                '<section>' \
                '<h3>Output</h3>' \
