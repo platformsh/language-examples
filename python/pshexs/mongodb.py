@@ -15,20 +15,23 @@ def test_output():
 
     try:
 
-        server = '{}://{}:{}@{}:{}/{}'.format(
-            credentials['scheme'],
-            credentials['username'],
-            credentials['password'],
-            credentials['host'],
-            credentials['port'],
-            credentials['path']
-        )
+        # server = '{}://{}:{}@{}:{}/{}'.format(
+        #     credentials['scheme'],
+        #     credentials['username'],
+        #     credentials['password'],
+        #     credentials['host'],
+        #     credentials['port'],
+        #     credentials['path']
+        # )
 
-        client = MongoClient(server)
+
+        client = MongoClient(credentials['host'], credentials['port'])
+
+        # client = MongoClient(server)
 
         db = client.test_database
 
-        db.grantRolesToUser(credentials['username'], ["readWrite"])
+        # db.grantRolesToUser(credentials['username'], ["readWrite"])
 
         # db.grantRolesToUser('admin', [{role: "root", db: "admin"}])
 
