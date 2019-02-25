@@ -59,7 +59,8 @@ def test_output():
                     "<tbody>"
 
             for record in result:
-                table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record.name, record.city)
+                # table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record.name, record.city)
+                pass
 
             table += "</tbody>\n</table>\n"
 
@@ -67,7 +68,7 @@ def test_output():
         cur.close()
         conn.close()
 
-        return table
+        return str(result), str(record), dir(record)
 
 
     except Exception as e:
