@@ -1,5 +1,4 @@
 
-import influxdb
 import base64
 import secrets
 from influxdb import InfluxDBClient

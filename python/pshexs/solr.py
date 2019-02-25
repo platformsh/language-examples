@@ -16,8 +16,24 @@ def test_output():
 
     try:
 
-        host = credentials['host']
-        port = credentials['port']
+        # Create a new Solr Client using config variables
+        client = pysolr.Solr(credentials['host'])
+
+
+        # Add a document
+
+        # Select one document
+
+        # Delete one document
+
+
+        # credentials = {'service': 'solr', 'ip': '169.254.70.40',
+        # 'hostname': '63wf3k4p72q6pxnhkrps3i4csy.solr.service._.eu-3.platformsh.site',
+        # 'cluster': 'rjify4yjcwxaa-pythonexs-y2koaha', 'host': 'solr.internal',
+        # 'rel': 'solr', 'path': 'solr/collection1', 'scheme': 'solr', 'type': 'solr:6.6', 'port': 8080}
+
+        # host = credentials['host']
+        # port = credentials['port']
 
 
         # solr = pysolr.Solr(credentials['host'])
