@@ -20,10 +20,7 @@ def test_output():
         connection = pymysql.connect(host=credentials['host'],
                                      port=credentials['port'])
 
-
-
-
-        return credentials
+        return connection
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]

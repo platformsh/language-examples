@@ -66,8 +66,6 @@ def test_output():
 
             table += "</tbody>\n</table>\n"
 
-            # print(table)
-
         # Delete documents.
         params = {
             "index": es_index,
