@@ -58,6 +58,8 @@ def test_output():
         #
         # # Delete one document
         #
+        # Am I getting no output for result2 because it is not a string but an object? need dir()?
+        #
         # return result0, result1, result2
 
 
