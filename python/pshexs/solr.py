@@ -33,7 +33,7 @@ def test_output():
             "name": "Robert California"
         }
 
-        result0 = client.add([doc_1, doc_2])
+        result0 = client.add([doc_1])
         result1 = client.commit()
 
         # Select one document
