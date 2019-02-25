@@ -18,9 +18,9 @@ def test_output():
     try:
 
 
-        # url = "http://{0}:{1}/{2}".format(credentials['ip'],
-        #                                   credentials['port'],
-        #                                   credentials['path'])
+        url = "http://{0}:{1}/{2}".format(credentials['ip'],
+                                          credentials['port'],
+                                          credentials['path'])
         #
         # client = solr.Solr(url)
         #
