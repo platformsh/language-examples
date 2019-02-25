@@ -45,10 +45,6 @@ def test_output():
             "id": 123,
             "name": "Valentina Tereshkova"
         }
-        doc_2 = {
-            "id": 124,
-            "name": "Robert California"
-        }
 
         result0 = client.add([doc_1])
         result1 = client.commit()
@@ -58,7 +54,6 @@ def test_output():
 
         # Delete one document
         client.delete(doc_1['id'])
-        client.delete(doc_2['id'])
         client.commit()
 
         # Am I getting no output for result2 because it is not a string but an object? need dir()?
