@@ -31,7 +31,7 @@ def test_output():
 
         db = client.test_database
 
-        db.createUser(credentials['username'], "readWrite")
+        # db.createUser(credentials['username'], "readWrite")
 
         # db.grantRolesToUser(credentials['username'], ["readWrite"])
 
