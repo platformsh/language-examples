@@ -67,7 +67,7 @@ def test_output():
 
         # result0 - string. info in string?
         # result1 - string. info in string?
-        return dir(result2), result2.hits
+        return result2.docs, result2.hits
 
 
     except Exception as e:
