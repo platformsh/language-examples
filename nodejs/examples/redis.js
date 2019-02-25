@@ -3,7 +3,7 @@ const config = require("platformsh").config();
 
 exports.run = async function() {
 
-    const credentials = config.credentials('mongodb');
+    const credentials = config.credentials('redis');
 
     var client = redis.createClient(credentials.port, credentials.host);
 
