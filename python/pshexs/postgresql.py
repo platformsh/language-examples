@@ -51,12 +51,13 @@ def test_output():
         cur.execute(sql)
         result = cur.fetchall()
 
+        table = "<table>" \
+                "<thead>" \
+                "<tr><th>Name</th><th>City</th></tr>" \
+                "</thead>" \
+                "<tbody>"
+
         if result:
-            table = "<table>" \
-                    "<thead>" \
-                    "<tr><th>Name</th><th>City</th></tr>" \
-                    "</thead>" \
-                    "<tbody>"
 
             for record in result:
                 table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record[1], record[2])
