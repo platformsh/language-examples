@@ -19,6 +19,13 @@ def test_output():
         # Create a new Solr Client using config variables
         client = pysolr.Solr(credentials['host'])
 
+        # Add a document
+        doc_1 = {
+            "id": 123,
+            "name": "Valentina Tereshkova"
+        }
+
+        client.add(doc_1)
 
         # Add a document
 
@@ -29,7 +36,7 @@ def test_output():
 
         # credentials = {'service': 'solr', 'ip': '169.254.70.40',
         # 'hostname': '63wf3k4p72q6pxnhkrps3i4csy.solr.service._.eu-3.platformsh.site',
-        # 'cluster': 'rjify4yjcwxaa-pythonexs-y2koaha', 'host': 'solr.internal',
+        # 'cluster': 'rjify4yjcwxaa-pythonexs-y2koaha', 'host': 'solr.internal',s
         # 'rel': 'solr', 'path': 'solr/collection1', 'scheme': 'solr', 'type': 'solr:6.6', 'port': 8080}
 
         # host = credentials['host']
