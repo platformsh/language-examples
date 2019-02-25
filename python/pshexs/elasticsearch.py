@@ -31,7 +31,8 @@ def test_output():
         # Index a few documents.
         params = {
             "index": es_index,
-            "type": es_type
+            "type": es_type,
+            "body": {"name": ''}
         }
 
         names = ['Ada Lovelace', 'Alonzo Church', 'Barbara Liskov']
