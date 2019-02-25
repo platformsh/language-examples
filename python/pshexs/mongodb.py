@@ -25,7 +25,8 @@ def test_output():
         # )
 
 
-        client = MongoClient(credentials['host'], credentials['port'])
+        # client = MongoClient(credentials['host'], credentials['port'])
+        client = MongoClient(credentials['host'], credentials['port'], credentials['username'], credentials['password'])
 
         # client = MongoClient(server)
 
