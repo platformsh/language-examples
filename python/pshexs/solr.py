@@ -57,6 +57,7 @@ def test_output():
         result2 = client.search('*:*')
 
         # Delete one document
+        client.delete(doc_1['id'])
 
         # Am I getting no output for result2 because it is not a string but an object? need dir()?
 
