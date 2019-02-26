@@ -25,8 +25,8 @@ def test_output():
 
         # Create a table.
         # ERROR in MariaDB syntax somewhere around here
-        sql = "DROP TABLE IF EXISTS People" \
-              "CREATE TABLE People (" \
+        # sql = "DROP TABLE IF EXISTS People" \
+        sql = "CREATE TABLE People (" \
               "id SERIAL PRIMARY KEY," \
               "name VARCHAR(30) NOT NULL," \
               "city VARCHAR(30) NOT NULL" \
