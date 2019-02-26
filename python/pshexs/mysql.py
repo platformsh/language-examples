@@ -1,4 +1,5 @@
 import pymysql
+import traceback, sys
 from pshconfig import Config
 
 
@@ -67,6 +68,9 @@ def test_output():
 
         return table
 
+    # except Exception as e:
+    #     return e
+
     except Exception as e:
-        return e
+        return traceback.format_exc(), sys.exc_info()[0]
 
