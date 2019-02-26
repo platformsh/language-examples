@@ -24,7 +24,17 @@ def test_output():
 
         db = client.test_database
 
+        collection = db.test_collection
 
+        post = {
+            "author": "Chad Carlson",
+            "text": "Lorem ipsum",
+            "date": "02-26-2019"
+        }
+
+        posts = db.posts
+
+        post_id = posts.insert_one(post).inserted_id
 
 
 
@@ -59,7 +69,7 @@ def test_output():
         # )
 
         # return print('Found {0} ({1})<br />\n'.format(document.name, document.occupation))
-        return credentials
+        return credentials, post_id
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]
