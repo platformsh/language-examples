@@ -1,6 +1,5 @@
 from pymongo import MongoClient
 from pshconfig import Config
-import traceback, sys
 
 
 def test_output():
@@ -39,7 +38,7 @@ def test_output():
             {"_id": post_id}
         )
 
-        return print('Found {0} ({1})<br />\n'.format(document['name'], document['occupation']))
+        return 'Found {0} ({1})<br />\n'.format(document['name'], document['occupation'])
 
     except Exception as e:
-        return traceback.format_exc(), sys.exc_info()[0]
+        return e
