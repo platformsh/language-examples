@@ -21,14 +21,14 @@ def test_output():
     channel = connection.channel()
 
     # Check to make sure that the recipient queue exists
-    channel.queue_declare(queue='hello')
+    channel.queue_declare(queue='deploy_days')
 
     # Try sending a message over the channel
     try:
         # Try sending a message over the channel
         channel.basic_publish(exchange='',
-                              routing_key='hello',
-                              body='Hello World!')
+                              routing_key='deploy_days',
+                              body='Friday!')
 
         # Receive the message
         def callback(ch, method, properties, body):
@@ -36,15 +36,16 @@ def test_output():
 
         # Tell RabbitMQ that this particular function should receive messages from our 'hello' queue
         channel.basic_consume(callback,
-                              queue='hello',
+                              queue='deploy_days',
                               no_ack=True)
 
-        print(' [*] Waiting for messages. To exit press CTRL+C')
-        channel.start_consuming()
+        # This blocks on waiting for an item from the queue, so comment it out in this demo script.
+        # print(' [*] Waiting for messages. To exit press CTRL+C')
+        # channel.start_consuming()
 
         connection.close()
 
-        return " [x] Sent 'Hello World!'"
+        return " [x] Sent 'Friday!'"
     except Exception as e:
         return e
 
