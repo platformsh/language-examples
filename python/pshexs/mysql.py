@@ -25,14 +25,14 @@ def test_output():
 
         # Create a table.
         # ERROR in MariaDB syntax somewhere around here
-        sql = "DROP TABLE IF EXISTS People"
+        # sql = "DROP TABLE IF EXISTS People"
 
 
-        # sql = "CREATE TABLE People (" \
-        #       "id SERIAL PRIMARY KEY," \
-        #       "name VARCHAR(30) NOT NULL," \
-        #       "city VARCHAR(30) NOT NULL" \
-        #       ")"
+        sql = "CREATE TABLE People (" \
+              "id SERIAL PRIMARY KEY," \
+              "name VARCHAR(30) NOT NULL," \
+              "city VARCHAR(30) NOT NULL" \
+              ")"
 
         # Create a table.
         # sql = "CREATE TABLE People (" \
@@ -44,41 +44,41 @@ def test_output():
         cur = conn.cursor()
         cur.execute(sql)
 
-        # # Insert data.
-        # sql = "INSERT INTO People (name, city) VALUES" \
-        #       "('Neil Armstrong', 'Moon')," \
-        #       "('Buzz Aldrin', 'Glen Ridge')," \
-        #       "('Sally Ride', 'La Jolla');"
-        #
-        # cur.execute(sql)
-        #
-        # # Show table.
-        # sql = "SELECT * FROM People"
-        # cur.execute(sql)
-        # result = cur.fetchall()
-        #
-        # table = "<table>" \
-        #         "<thead>" \
-        #         "<tr><th>Name</th><th>City</th></tr>" \
-        #         "</thead>" \
-        #         "<tbody>"
-        #
-        # if result:
-        #     for record in result:
-        #         table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record[1], record[2])
-        #
-        #     table += "</tbody>\n</table>\n"
-        #
-        # # Drop table
-        # sql = "DROP TABLE People"
-        # cur.execute(sql)
-        #
-        # # Close communication with the database
-        # cur.close()
-        # conn.close()
+        # Insert data.
+        sql = "INSERT INTO People (name, city) VALUES" \
+              "('Neil Armstrong', 'Moon')," \
+              "('Buzz Aldrin', 'Glen Ridge')," \
+              "('Sally Ride', 'La Jolla');"
 
-        # return table
-        return 'success'
+        cur.execute(sql)
+
+        # Show table.
+        sql = "SELECT * FROM People"
+        cur.execute(sql)
+        result = cur.fetchall()
+
+        table = "<table>" \
+                "<thead>" \
+                "<tr><th>Name</th><th>City</th></tr>" \
+                "</thead>" \
+                "<tbody>"
+
+        if result:
+            for record in result:
+                table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record[1], record[2])
+
+            table += "</tbody>\n</table>\n"
+
+        # Drop table
+        sql = "DROP TABLE People"
+        cur.execute(sql)
+
+        # Close communication with the database
+        cur.close()
+        conn.close()
+
+        return table
+        # return 'success'
 
     # except Exception as e:
     #     return e
