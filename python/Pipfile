@@ -17,7 +17,7 @@ pysolr = "*"
 pika = "*"
 psycopg2 ='*'
 solrpy = '*'
-pshexs = {path = "."}
+examples = {path = "."}
 
 [requires]
 python_version = "3.7"

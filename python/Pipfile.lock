@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c59da33c95992f9e6659bb84cd87fea632c7c1bc394a61fdd35d7292cdcc306d"
+            "sha256": "0d3b4cf5adfe5c050556f166596c1efae2eae4995f0614e32977a02187b19d1d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -44,6 +44,9 @@
             ],
             "index": "pypi",
             "version": "==6.3.1"
+        },
+        "examples": {
+            "path": "."
         },
         "flask": {
             "hashes": [
@@ -187,9 +190,6 @@
             "editable": true,
             "git": "https://github.com/platformsh/platformsh-config-reader-python3.git",
             "ref": "552f54f308f6b223200f5ea9840fc2b5d5b95afb"
-        },
-        "pshexs": {
-            "path": "."
         },
         "psycopg2": {
             "hashes": [

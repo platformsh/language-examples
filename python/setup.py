@@ -12,7 +12,7 @@ cwd = os.path.abspath(os.path.dirname(__file__))
 
 setup(
     version='0.1.0',
-    name='pshexs',
+    name='examples',
     description='Small helper to access Platform.sh environment variables.',
     packages=find_packages(),
 )

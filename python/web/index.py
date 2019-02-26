@@ -2,7 +2,7 @@ import os
 import flask
 import gevent.pywsgi
 
-import pshexs
+import examples
 # from .list import create_list
 
 app = flask.Flask(__name__)
@@ -14,7 +14,7 @@ def root():
 
 
 def file_get_contents(example):
-    current_example = os.getcwd() + '/pshexs/{0}.py'.format(example)
+    current_example = os.getcwd() + '/examples/{0}.py'.format(example)
 
     text = open(current_example, "r")
     contents = text.read()
@@ -28,8 +28,8 @@ def file_get_contents(example):
 @app.route('/python/<example>')
 def add_example_route(example):
 
-    if hasattr(pshexs, example):
-        # current_example = os.getcwd() + '/pshexs/{0}.py'.format(example)
+    if hasattr(examples, example):
+        # current_example = os.getcwd() + '/examples/{0}.py'.format(example)
         #
         # text = open(current_example, "r")
         # contents = text.read()
@@ -46,8 +46,8 @@ def add_example_route(example):
 @app.route('/python/<example>/output')
 def add_example_output_route(example):
 
-    if hasattr(pshexs, example):
-        contents = getattr(getattr(pshexs, example), 'test_output')()
+    if hasattr(examples, example):
+        contents = getattr(getattr(examples, example), 'test_output')()
 
         resp = flask.make_response(contents)
         resp.headers['Content-Type'] = 'text/plain'
@@ -106,11 +106,11 @@ def create_list():
              '<h1>Service examples for Python</h1>'
 
     body = ''
-    services = [service for service in dir(pshexs) if '_' not in service]
+    services = [service for service in dir(examples) if '_' not in service]
     for service in services:
         name = names[service]
         source = file_get_contents(service)
-        output = getattr(getattr(pshexs, service), 'test_output')()
+        output = getattr(getattr(examples, service), 'test_output')()
 
         first = '<details>' \
                '<summary>{0} Sample Code</summary>' \
