@@ -31,23 +31,23 @@ def test_output():
 
         # "mongodb://user:password@example.com/default_db?authSource=admin"
 
-        # client = MongoClient(server)
+        client = MongoClient(server)
 
-        db = MongoClient(server).get_database()
+        # db = MongoClient(server).get_database()
 
-        # db = client.test_database
-        #
-        # collection = db.test_collection
-        #
-        # post = {
-        #     "author": "Chad Carlson",
-        #     "text": "Lorem ipsum",
-        #     "date": "02-26-2019"
-        # }
-        #
-        # posts = db.posts
-        #
-        # post_id = posts.insert_one(post).inserted_id
+        db = client.test_database
+
+        collection = db.test_collection
+
+        post = {
+            "author": "Chad Carlson",
+            "text": "Lorem ipsum",
+            "date": "02-26-2019"
+        }
+
+        posts = db.posts
+
+        post_id = posts.insert_one(post).inserted_id
 
 
 
@@ -82,7 +82,7 @@ def test_output():
         # )
 
         # return print('Found {0} ({1})<br />\n'.format(document.name, document.occupation))
-        return db
+        return post_id
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]
