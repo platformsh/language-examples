@@ -28,6 +28,10 @@ def test_output():
 
         client.switch_user('deploy_user', password)
 
+        database = client.create_database('deploys')
+        client.create_retention_policy('test', '1d', 2, database, default=True)
+
+
         # # ERROR - authorization fails here.
         # client.grant_admin_privileges('deploy_user')
         #
@@ -39,46 +43,48 @@ def test_output():
         # # if database is None:
         # client.create_retention_policy('test', '1d', 2, database, default=True)
         #
-        # # Write some data.
-        # points = [
-        #     ['deploy_time',  # name of the measurement
-        #      0.64,  # the measurement value
-        #      {"host": "server01", "region": "us-west"},  # optional tags
-        #      {"cpucount": 10},  # optional additional fields
-        #      1546556400],  # Time precision has to be set to seconds!
-        #     ['deploy_time',  # name of the measurement
-        #      0.84,  # the measurement value
-        #      {"host": "server01", "region": "us-west"},  # optional tags
-        #      {"cpucount": 10},  # optional additional fields
-        #      1547161200]]  # Time precision has to be set to seconds!
-        #
-        # client.write_points(points, time_precision='PRECISION_SECONDS', database=database)
-        #
-        # # Read the data back
-        # result = client.query('select * from deploy_time LIMIT 5')
-        #
-        # if result:
-        #
-        #     table = "<<<TABLE" \
-        #             "<table>" \
-        #             "<thead>" \
-        #             "<tr><th>ID</th><th>Name</th></tr>" \
-        #             "</thead>" \
-        #             "<tbody>" \
-        #             "TABLE;"
-        #
-        #     for res in result:
-        #         table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(result['time'], result['value'])
-        #
-        #     table += "</tbody>\n</table>\n"
-        #
-        # # Drop the database.
-        # client.drop_database(database)
-        #
-        #
-        # return table
+        # Write some data.
+        points = [
+            ['deploy_time',  # name of the measurement
+             0.64,  # the measurement value
+             {"host": "server01", "region": "us-west"},  # optional tags
+             {"cpucount": 10},  # optional additional fields
+             1546556400],  # Time precision has to be set to seconds!
+            ['deploy_time',  # name of the measurement
+             0.84,  # the measurement value
+             {"host": "server01", "region": "us-west"},  # optional tags
+             {"cpucount": 10},  # optional additional fields
+             1547161200]]  # Time precision has to be set to seconds!
 
-        return credentials
+        client.write_points(points, time_precision='PRECISION_SECONDS', database=database)
+
+        # Read the data back
+        result = client.query('select * from deploy_time LIMIT 5')
+
+        # if result:
+
+        table = "<<<TABLE" \
+                "<table>" \
+                "<thead>" \
+                "<tr><th>ID</th><th>Name</th></tr>" \
+                "</thead>" \
+                "<tbody>" \
+                "TABLE;"
+
+        if result:
+
+            for res in result:
+                table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(result['time'], result['value'])
+
+            table += "</tbody>\n</table>\n"
+
+        # Drop the database.
+        client.drop_database(database)
+
+
+        return table
+
+        # return credentials
 
 
     except Exception as e:
