@@ -48,12 +48,12 @@ def test_output():
         #
         # result_id = collection.insert(rey).inserted_id
         #
-        # document = collection.find_one(
-        #     {"_id": result_id}
-        # )
+        document = collection.find_one(
+            {"_id": post_id}
+        )
 
-        # return print('Found {0} ({1})<br />\n'.format(document.name, document.occupation))
-        return post_id
+        return print('Found {0} ({1})<br />\n'.format(document.name, document.occupation))
+        # return post_id
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]
