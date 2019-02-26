@@ -17,17 +17,13 @@ def test_output():
     credentials = config.credentials('influxdb')
 
     try:
-
-        # credentials = {'service': 'influxdb', 'ip': '169.254.115.138',
-        # 'hostname': 'e7tyf2jpidxt2hvw2spdxhqlha.influxdb.service._.eu-3.platformsh.site',
-        # 'cluster': 'rjify4yjcwxaa-pythonexs-y2koaha', 'host': 'influxdb.internal',
-        # 'rel': 'influxdb', 'scheme': 'http', 'type': 'influxdb:1.3', 'port': 8086}
+        password = secrets.token_bytes()
 
         # Connecting to the InfluxDB server. By default it has no user defined, so you will need to create it.
-        # client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
-        client = influxdb.InfluxDBClient(credentials['host'], credentials['port'])
+        client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
+        # client = InfluxDBClient(credentials['host'], credentials['port'])
 
-        password = secrets.token_bytes()
+        # password = secrets.token_bytes()
         client.create_user('deploy_user', password, admin=True)
 
         client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
@@ -35,18 +31,6 @@ def test_output():
         database = client.create_database('deploys')
         client.create_retention_policy('test', '1d', replication='2', database=database, default=True)
 
-
-        # # ERROR - authorization fails here.
-        # client.grant_admin_privileges('deploy_user')
-        #
-        # # Now reconnect with an authenticated connection so that we can access a database.
-        # client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
-        # database = client.create_database('deploys')
-        #
-        # # No database is created by default, so it needs to be created by the user.
-        # # if database is None:
-        # client.create_retention_policy('test', '1d', 2, database, default=True)
-        #
         # Write some data.
         points = [
             ['deploy_time',  # name of the measurement
