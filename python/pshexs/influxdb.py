@@ -27,7 +27,7 @@ def test_output():
         # client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
         client = influxdb.InfluxDBClient(credentials['host'], credentials['port'])
 
-        password = base64.b64encode(secrets.token_bytes())
+        password = secrets.token_bytes()
         client.create_user('deploy_user', password, admin=True)
 
         client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
