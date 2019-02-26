@@ -51,11 +51,13 @@ def test_output():
             }
         })
 
-        table = "<table>" \
+        table = "<<<TABLE" \
+                "<table>" \
                 "<thead>" \
                 "<tr><th>ID</th><th>Name</th></tr>" \
                 "</thead>" \
-                "<tbody>"
+                "<tbody>" \
+                "TABLE;"
 
         if result['hits']['hits']:
 

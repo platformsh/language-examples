@@ -19,9 +19,6 @@ def file_get_contents(example):
     text = open(current_example, "r")
     contents = text.read()
     text.close()
-    # resp = flask.make_response(contents)
-    # resp.headers['Content-Type'] = 'text/plain'
-    # return resp
     return contents
 
 
@@ -29,16 +26,10 @@ def file_get_contents(example):
 def add_example_route(example):
 
     if hasattr(examples, example):
-        # current_example = os.getcwd() + '/examples/{0}.py'.format(example)
-        #
-        # text = open(current_example, "r")
-        # contents = text.read()
-        # text.close()
         contents = file_get_contents(example)
         resp = flask.make_response(contents)
         resp.headers['Content-Type'] = 'text/plain'
         return resp
-        # return file_get_contents(example)
     else:
         return "Sorry, no sample code is available."
 
@@ -113,16 +104,16 @@ def create_list():
         output = getattr(getattr(examples, service), 'test_output')()
 
         first = '<details>' \
-               '<summary>{0} Sample Code</summary>' \
-               '<section>' \
-               '<h3>Source</h3>' \
-               '<pre class="prettyprint"><code class="language-py">{1}</code></pre>' \
-               '</section>' \
-               '<section>' \
-               '<h3>Output</h3>' \
-               '{2}' \
-               '</section>' \
-               '</details>'.format(name, source, output)
+            '<summary>{0} Sample Code</summary>' \
+            '<section>' \
+            '<h3>Source</h3>' \
+            '<pre class="prettyprint"><code class="language-py">{1}</code></pre>' \
+            '</section>' \
+            '<section>' \
+            '<h3>Output</h3>' \
+            '{2}' \
+            '</section>' \
+            '</details>'.format(name, source, output)
 
         body += first
 
