@@ -44,6 +44,6 @@ def test_output():
 
         connection.close()
 
-        return " [x] Sent 'Friday!'"
+        return " [x] Sent 'Friday!'<br/>"
     except Exception as e:
         return e

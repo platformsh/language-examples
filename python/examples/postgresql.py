@@ -50,11 +50,11 @@ def test_output():
         cur.execute(sql)
         result = cur.fetchall()
 
-        table = "<table>" \
-                "<thead>" \
-                "<tr><th>Name</th><th>City</th></tr>" \
-                "</thead>" \
-                "<tbody>"
+        table = "<table>\n" \
+                "<thead>\n" \
+                "<tr><th>Name</th><th>City</th></tr>\n" \
+                "</thead>\n" \
+                "<tbody>\n"
 
         if result:
 
