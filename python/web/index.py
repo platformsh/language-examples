@@ -34,10 +34,10 @@ def capture_output(example):
     # Capture the output
     sys.stdout = StringIO()
 
-    os.system('python ' + file)
+    # os.system('python ' + file)
 
     # release output
-    out = sys.stdout.getvalue()
+    out = backup.getvalue()
 
     return out
 
