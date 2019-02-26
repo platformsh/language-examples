@@ -25,6 +25,7 @@ def test_output():
         PASSWORD = base64.b64encode(secrets.token_bytes())
 
         client = InfluxDBClient(host=HOST, port=PORT, username=USER, password=PASSWORD, database=DATABASE)
+        client.create_user(username=USER, password=PASSWORD, admin=True)
         client.create_database(DATABASE)
 
 
