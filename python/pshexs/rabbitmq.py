@@ -25,15 +25,28 @@ def test_output():
 
     # Try sending a message over the channel
     try:
+        # Try sending a message over the channel
         channel.basic_publish(exchange='',
                               routing_key='hello',
                               body='Hello World!')
+
+        # Receive the message
+        def callback(ch, method, properties, body):
+            print(" [x] Received {}".format(body))
+
+        # Tell RabbitMQ that this particular function should receive messages from our 'hello' queue
+        channel.basic_consume(callback,
+                              queue='hello',
+                              no_ack=True)
+
+        print(' [*] Waiting for messages. To exit press CTRL+C')
+        channel.start_consuming()
 
         connection.close()
 
         return " [x] Sent 'Hello World!'"
     except Exception as e:
-        return "publish unsuccessful."
+        return e
 
 
     # return channel
