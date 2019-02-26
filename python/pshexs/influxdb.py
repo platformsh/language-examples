@@ -37,7 +37,7 @@ def test_output():
         # # client = InfluxDBClient(credentials['host'], credentials['port'])
         #
         # # password = secrets.token_bytes()
-        client.create_user('deploy_user', PASSWORD, admin=True)
+        # client.create_user('deploy_user', PASSWORD, admin=True)
         # #
         # # client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
         #
