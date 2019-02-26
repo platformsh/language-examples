@@ -55,22 +55,49 @@ def test_output():
         # database = client.create_database('deploys')
         # client.create_retention_policy('test', '1d', replication='2', database=DATABASE, default=True)
         #
+
+        points = [
+            {
+                "deploy_time": 0.64,
+                "time": 1546556400,
+                "fields": {
+                    "host": "server01",
+                    "region": "us-west"
+                },
+                "additional": {
+                    "cpucount": 10
+                }
+            },
+            {
+                "deploy_time": 0.84,
+                "time": 1547161200,
+                "fields": {
+                    "host": "server01",
+                    "region": "us-west"
+                },
+                "additional": {
+                    "cpucount": 10
+                }
+            }
+            ]
+
         # # Write some data.
-        points = {
-            "points":
-            [['deploy_time',  # name of the measurement
-             0.64,  # the measurement value
-             {"host": "server01", "region": "us-west"},  # optional tags
-             {"cpucount": 10},  # optional additional fields
-             1546556400],  # Time precision has to be set to seconds!
+        # points = {
+        #     "points":
+        #     [['deploy_time',  # name of the measurement
+        #      0.64,  # the measurement value
+        #      {"host": "server01", "region": "us-west"},  # optional tags
+        #      {"cpucount": 10},  # optional additional fields
+        #      1546556400],  # Time precision has to be set to seconds!
+        #
+        #     ['deploy_time',  # name of the measurement
+        #      0.84,  # the measurement value
+        #      {"host": "server01", "region": "us-west"},  # optional tags
+        #      {"cpucount": 10},  # optional additional fields
+        #      1547161200]]  # Time precision has to be set to seconds!
+        # }
 
-            ['deploy_time',  # name of the measurement
-             0.84,  # the measurement value
-             {"host": "server01", "region": "us-west"},  # optional tags
-             {"cpucount": 10},  # optional additional fields
-             1547161200]]  # Time precision has to be set to seconds!
-        }
-
+        # strin object has now attr get
         client.write_points(points, time_precision='s', database=DATABASE)
 
 
