@@ -24,7 +24,7 @@ def test_output():
                                password=credentials['password'])
 
         # Create a table.
-        sql = "DROP TABLE IF EXISTS People;" \
+        sql = "DROP TABLE IF EXISTS People" \
               "CREATE TABLE IF NOT EXISTS People (" \
               "id SERIAL PRIMARY KEY," \
               "name VARCHAR(30) NOT NULL," \
