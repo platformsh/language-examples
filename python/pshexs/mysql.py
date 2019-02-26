@@ -1,5 +1,4 @@
 import pymysql
-import traceback, sys
 from pshconfig import Config
 
 
@@ -23,23 +22,11 @@ def test_output():
                                user=credentials['username'],
                                password=credentials['password'])
 
-        # Create a table.
-        # ERROR in MariaDB syntax somewhere around here
-        # sql = "DROP TABLE IF EXISTS People"
-
-
         sql = "CREATE TABLE People (" \
               "id SERIAL PRIMARY KEY," \
               "name VARCHAR(30) NOT NULL," \
               "city VARCHAR(30) NOT NULL" \
               ")"
-
-        # Create a table.
-        # sql = "CREATE TABLE People (" \
-        #       "id SERIAL PRIMARY KEY," \
-        #       "name VARCHAR(30) NOT NULL," \
-        #       "city VARCHAR(30) NOT NULL" \
-        #       ")"
 
         cur = conn.cursor()
         cur.execute(sql)
@@ -78,11 +65,6 @@ def test_output():
         conn.close()
 
         return table
-        # return 'success'
-
-    # except Exception as e:
-    #     return e
 
     except Exception as e:
-        return traceback.format_exc(), sys.exc_info()[0]
-
+        return e
