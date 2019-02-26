@@ -53,22 +53,22 @@ def test_output():
         # # client.switch_user('deploy_user', password)
         #
         # database = client.create_database('deploys')
-        client.create_retention_policy('test', '1d', replication='2', database=DATABASE, default=True)
+        # client.create_retention_policy('test', '1d', replication='2', database=DATABASE, default=True)
         #
         # # Write some data.
-        # points = [
-        #     ['deploy_time',  # name of the measurement
-        #      0.64,  # the measurement value
-        #      {"host": "server01", "region": "us-west"},  # optional tags
-        #      {"cpucount": 10},  # optional additional fields
-        #      1546556400],  # Time precision has to be set to seconds!
-        #     ['deploy_time',  # name of the measurement
-        #      0.84,  # the measurement value
-        #      {"host": "server01", "region": "us-west"},  # optional tags
-        #      {"cpucount": 10},  # optional additional fields
-        #      1547161200]]  # Time precision has to be set to seconds!
-        #
-        # client.write_points(points, time_precision='PRECISION_SECONDS', database=database)
+        points = [
+            ['deploy_time',  # name of the measurement
+             0.64,  # the measurement value
+             {"host": "server01", "region": "us-west"},  # optional tags
+             {"cpucount": 10},  # optional additional fields
+             1546556400],  # Time precision has to be set to seconds!
+            ['deploy_time',  # name of the measurement
+             0.84,  # the measurement value
+             {"host": "server01", "region": "us-west"},  # optional tags
+             {"cpucount": 10},  # optional additional fields
+             1547161200]]  # Time precision has to be set to seconds!
+
+        client.write_points(points, time_precision='PRECISION_SECONDS', database=DATABASE)
         #
         # # Read the data back
         # result = client.query('select * from deploy_time LIMIT 5')
