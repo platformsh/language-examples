@@ -24,12 +24,19 @@ def test_output():
                                password=credentials['password'])
 
         # Create a table.
-        sql = "DROP TABLE IF EXISTS conn.People" \
-              "CREATE TABLE People (" \
+        sql = "DROP TABLE IF EXISTS `People`;" \
+              "CREATE TABLE IF NOT EXISTS `People`" \
               "id SERIAL PRIMARY KEY," \
               "name VARCHAR(30) NOT NULL," \
               "city VARCHAR(30) NOT NULL" \
               ")"
+
+        # # Create a table.
+        # sql = "CREATE TABLE People (" \
+        #       "id SERIAL PRIMARY KEY," \
+        #       "name VARCHAR(30) NOT NULL," \
+        #       "city VARCHAR(30) NOT NULL" \
+        #       ")"
 
         cur = conn.cursor()
         cur.execute(sql)
