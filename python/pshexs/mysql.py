@@ -25,7 +25,7 @@ def test_output():
 
         # Create a table.
         sql = "DROP TABLE IF EXISTS People" \
-              "CREATE TABLE IF NOT EXISTS People (" \
+              "CREATE TABLE People (" \
               "id SERIAL PRIMARY KEY," \
               "name VARCHAR(30) NOT NULL," \
               "city VARCHAR(30) NOT NULL" \
