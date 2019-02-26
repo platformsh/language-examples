@@ -37,6 +37,7 @@ def capture_output(example):
     # os.system('python ' + file)
 
     # release output
+    # out = sys.stdout.getvalue()
     out = backup.getvalue()
 
     return out
