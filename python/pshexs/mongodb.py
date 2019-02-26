@@ -20,13 +20,26 @@ def test_output():
         #  'cluster': 'rjify4yjcwxaa-pythonexs-y2koaha', 'host': 'mongodb.internal', 'rel': 'mongodb', 'path': 'main',
         #  'query': {'is_master': True}, 'password': 'main', 'type': 'mongodb:3.6', 'port': 27017}
 
-        # client = MongoClient(credentials['host'], credentials['port'])
-        client = MongoClient(credentials['host'], credentials['port'], credentials['username'], credentials['password'])
+        client = MongoClient(credentials['host'], credentials['port'])
 
         db = client.test_database
 
-        # # ERROR HERE - no users authenticated
-        db.command("createUser", credentials['username'], pwd=credentials['password'], roles=["root"])
+
+
+
+
+
+
+
+
+
+        # client = MongoClient(credentials['host'], credentials['port'], credentials['username'], credentials['password'])
+        # client = MongoClient()
+
+        # db = client.test_database
+        #
+        # # # ERROR HERE - no users authenticated
+        # db.command("createUser", credentials['username'], pwd=credentials['password'], roles=["root"])
         #
         # # db.createUser(credentials['username'], "readWrite")
         #
