@@ -35,7 +35,7 @@ def test_output():
 
         # db = MongoClient(server).get_database()
 
-        db = client.test_database
+        db = client.default_db
 
         collection = db.test_collection
 
