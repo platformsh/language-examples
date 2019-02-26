@@ -20,8 +20,23 @@ def test_output():
     connection = pika.BlockingConnection(parameters)
     channel = connection.channel()
 
+    # Check to make sure that the recipient queue exists
+    channel.queue_declare(queue='hello')
 
-    return channel
+    # Try sending a message over the channel
+    try:
+        channel.basic_publish(exchange='',
+                              routing_key='hello',
+                              body='Hello World!')
+
+        connection.close()
+
+        return " [x] Sent 'Hello World!'"
+    except Exception as e:
+        return "publish unsuccessful."
+
+
+    # return channel
 
 
 
