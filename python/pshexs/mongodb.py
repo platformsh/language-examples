@@ -20,11 +20,20 @@ def test_output():
         #  'cluster': 'rjify4yjcwxaa-pythonexs-y2koaha', 'host': 'mongodb.internal', 'rel': 'mongodb', 'path': 'main',
         #  'query': {'is_master': True}, 'password': 'main', 'type': 'mongodb:3.6', 'port': 27017}
 
-        client = MongoClient(credentials['host'], credentials['port'])
+        server  = '{0}://{1}:{2}@{3}:{4}/{5}'.format(
+            credentials['scheme'],
+            credentials['username'],
+            credentials['password'],
+            credentials['host'],
+            credentials['port'],
+            credentials['path']
+        )
+
+        client = MongoClient(server)
 
         db = client.test_database
 
-        db.addUser(credentials['username'], credentials['password'], roles=["root"])
+        # db.addUser(credentials['username'], credentials['password'], roles=["root"])
         # db.command("createUser", user=credentials['username'], pwd=credentials['password'], roles=["root"])
 
         # db.addUser(adminUser, adminPassword, {roles: [{role: "userAdminAnyDatabase", db: "admin"}]
