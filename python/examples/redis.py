@@ -1,3 +1,4 @@
+import sys
 from redis import Redis
 from pshconfig import Config
 
@@ -53,3 +54,7 @@ try:
 
 except Exception as e:
     print(e)
+
+
+if __name__ == "__main__":
+    print(sys.stdout)
