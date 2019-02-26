@@ -39,8 +39,7 @@ def test_output():
             {"_id": post_id}
         )
 
-        # return print('Found {0} ({1})<br />\n'.format(document.name, document.occupation))
-        return document['name'], dir(document)
+        return print('Found {0} ({1})<br />\n'.format(document['name'], document['occupation']))
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]
