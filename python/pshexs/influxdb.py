@@ -25,8 +25,8 @@ def test_output():
         PASSWORD = base64.b64encode(secrets.token_bytes())
 
         client = InfluxDBClient(host=HOST, port=PORT, username=USER, password=PASSWORD, database=DATABASE)
-        client.switch_user(username=USER, password=PASSWORD)
-        client.create_database(DATABASE)
+        # client.switch_user(username=USER, password=PASSWORD)
+        # client.create_database(DATABASE)
 
 
 
@@ -53,7 +53,7 @@ def test_output():
         # # client.switch_user('deploy_user', password)
         #
         # database = client.create_database('deploys')
-        # client.create_retention_policy('test', '1d', replication='2', database=database, default=True)
+        client.create_retention_policy('test', '1d', replication='2', database=DATABASE, default=True)
         #
         # # Write some data.
         # points = [
