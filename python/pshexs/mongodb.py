@@ -32,7 +32,7 @@ def test_output():
 
         client = MongoClient(server)
 
-        collection = client.starwars
+        collection = client.main.starwars
 
         post = {
             "name": "Rey",
