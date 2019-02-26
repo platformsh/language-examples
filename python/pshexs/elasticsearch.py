@@ -1,6 +1,5 @@
 import elasticsearch
 from pshconfig import Config
-import traceback, sys
 
 
 def test_output():
@@ -52,13 +51,13 @@ def test_output():
             }
         })
 
-        if result['hits']['hits']:
+        table = "<table>" \
+                "<thead>" \
+                "<tr><th>ID</th><th>Name</th></tr>" \
+                "</thead>" \
+                "<tbody>"
 
-            table = "<table>" \
-                    "<thead>" \
-                    "<tr><th>ID</th><th>Name</th></tr>" \
-                    "</thead>" \
-                    "<tbody>"
+        if result['hits']['hits']:
 
             for record in result['hits']['hits']:
 
@@ -70,14 +69,11 @@ def test_output():
         params = {
             "index": es_index,
             "type": es_type,
-            # "body": {"name": ''}
         }
 
 
         return table
-            # print(table)
 
 
     except Exception as e:
-        return traceback.format_exc(), sys.exc_info()[0]
-
+        return e
