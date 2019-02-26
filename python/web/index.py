@@ -1,6 +1,8 @@
 import os
 import flask
 import gevent.pywsgi
+import sys
+from io import StringIO
 
 import examples
 # from .list import create_list
@@ -22,6 +24,24 @@ def file_get_contents(example):
     return contents
 
 
+def capture_output(example):
+
+    file = os.getcwd() + '/examples/' + example + '.py'
+
+    # setup the environment
+    backup = sys.stdout
+
+    # Capture the output
+    sys.stdout = StringIO()
+
+    os.system('python ' + file)
+
+    # release output
+    out = sys.stdout.getvalue()
+
+    return out
+
+
 @app.route('/python/<example>')
 def add_example_route(example):
 
@@ -38,7 +58,10 @@ def add_example_route(example):
 def add_example_output_route(example):
 
     if hasattr(examples, example):
-        contents = getattr(getattr(examples, example), 'test_output')()
+        if example == 'redis':
+            contents = capture_output(example)
+        else:
+            contents = getattr(getattr(examples, example), 'test_output')()
 
         resp = flask.make_response(contents)
         resp.headers['Content-Type'] = 'text/plain'
