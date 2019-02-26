@@ -26,50 +26,21 @@ def test_output():
             credentials['password'],
             credentials['host'],
             credentials['port'],
-            'default_db?authSource=admin'
+            credentials['path']
+            # 'default_db?authSource=admin'
         )
-
-        # "mongodb://user:password@example.com/default_db?authSource=admin"
 
         client = MongoClient(server)
 
-        # db = MongoClient(server).get_database()
-
-        db = client.default_db
-
-        collection = db.test_collection
+        collection = client.starwars
 
         post = {
-            "author": "Chad Carlson",
-            "text": "Lorem ipsum",
-            "date": "02-26-2019"
+            "name": "Rey",
+            "occupation": "Jedi"
         }
 
-        posts = db.posts
+        post_id = collection.insert_one(post).inserted_id
 
-        post_id = posts.insert_one(post).inserted_id
-
-
-
-
-
-
-
-
-        # client = MongoClient(credentials['host'], credentials['port'], credentials['username'], credentials['password'])
-        # client = MongoClient()
-
-        # db = client.test_database
-        #
-        # # # ERROR HERE - no users authenticated
-        # db.command("createUser", credentials['username'], pwd=credentials['password'], roles=["root"])
-        #
-        # # db.createUser(credentials['username'], "readWrite")
-        #
-        # # db.grantRolesToUser(credentials['username'], ["readWrite"])
-        #
-        # # db.grantRolesToUser('admin', [{role: "root", db: "admin"}])
-        #
         # collection = db.starwars
         #
         # rey = {"name": "Rey",
