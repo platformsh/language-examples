@@ -17,9 +17,16 @@ def test_output():
 
     try:
 
+        # credentials = {'service': 'influxdb', 'ip': '169.254.115.138',
+        # 'hostname': 'e7tyf2jpidxt2hvw2spdxhqlha.influxdb.service._.eu-3.platformsh.site',
+        # 'cluster': 'rjify4yjcwxaa-pythonexs-y2koaha', 'host': 'influxdb.internal',
+        # 'rel': 'influxdb', 'scheme': 'http', 'type': 'influxdb:1.3', 'port': 8086}
+
         # Connecting to the InfluxDB server. By default it has no user defined, so you will need to create it.
         password = base64.encodebytes(secrets.token_bytes())
         client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
+
+        client.switch_user('deploy_user', password)
 
         # # ERROR - authorization fails here.
         # client.grant_admin_privileges('deploy_user')
