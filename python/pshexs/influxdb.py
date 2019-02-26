@@ -68,7 +68,7 @@ def test_output():
              {"cpucount": 10},  # optional additional fields
              1547161200]]  # Time precision has to be set to seconds!
 
-        client.write_points(points, time_precision='PRECISION_SECONDS', database=DATABASE)
+        client.write_points(points, time_precision='s', database=DATABASE)
         #
         # # Read the data back
         # result = client.query('select * from deploy_time LIMIT 5')
