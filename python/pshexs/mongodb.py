@@ -24,8 +24,8 @@ def test_output():
 
         db = client.test_database
 
-        # db.addUser(credentials['username'], credentials['password'], roles=["root"])
-        db.command("createUser", user=credentials['username'], pwd=credentials['password'], roles=["root"])
+        db.addUser(credentials['username'], credentials['password'], roles=["root"])
+        # db.command("createUser", user=credentials['username'], pwd=credentials['password'], roles=["root"])
 
         # db.addUser(adminUser, adminPassword, {roles: [{role: "userAdminAnyDatabase", db: "admin"}]
 
