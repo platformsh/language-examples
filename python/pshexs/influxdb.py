@@ -21,7 +21,7 @@ def test_output():
 
         # Connecting to the InfluxDB server. By default it has no user defined, so you will need to create it.
         # client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
-        client = InfluxDBClient(credentials['host'], credentials['port'], username='root', password='root')
+        client = InfluxDBClient(credentials['host'], credentials['port'], username='root', password='root', database='deploys')
 
         # client = InfluxDBClient(credentials['host'], credentials['port'])
 
