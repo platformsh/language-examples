@@ -36,6 +36,7 @@ def test_output():
         # Connect to the RabbitMQ server.
         connection = pika.SelectConnection(parameters)
 
+        # ERROR - connection closed, need open connection somewhere here.
         channel = connection.channel(on_open_callback=on_open)
 
         channel.queue_declare(queue_name)

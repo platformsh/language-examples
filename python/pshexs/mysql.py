@@ -24,6 +24,7 @@ def test_output():
                                password=credentials['password'])
 
         # Create a table.
+        # ERROR in MariaDB syntax somewhere around here
         sql = "DROP TABLE IF EXISTS People" \
               "CREATE TABLE People (" \
               "id SERIAL PRIMARY KEY," \

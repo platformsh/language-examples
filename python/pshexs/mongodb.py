@@ -32,6 +32,7 @@ def test_output():
 
         db = client.test_database
 
+        # ERROR HERE - no users authenticated
         db.command("createUser", credentials['username'], pwd=credentials['password'], roles=["root"])
 
         # db.createUser(credentials['username'], "readWrite")
