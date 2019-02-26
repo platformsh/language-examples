@@ -46,5 +46,5 @@ web:
         "/python":
             # The public directory of the app, relative to its root.
             root: "web"
-#            # The front-controller script to send non-static requests to.
-#            passthru: "python/index.py"
+            # The front-controller script to send non-static requests to.
+#            passthru: true
