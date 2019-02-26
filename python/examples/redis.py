@@ -55,6 +55,6 @@ try:
 except Exception as e:
     print(e)
 
-
-if __name__ == "__main__":
-    print(sys.stdout)
+#
+# if __name__ == "__main__":
+#     print(sys.stdout)

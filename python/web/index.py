@@ -3,6 +3,7 @@ import flask
 import gevent.pywsgi
 import sys
 from io import StringIO
+from io import TextIOWrapper, BytesIO
 
 import examples
 # from .list import create_list
@@ -29,16 +30,35 @@ def capture_output(example):
     file = os.getcwd() + '/examples/' + example + '.py'
 
     # setup the environment
-    backup = sys.stdout
+    old_stdout = sys.stdout
+    sys.stdout = TextIOWrapper(BytesIO(), sys.stdout.encoding)
 
-    # Capture the output
-    sys.stdout = StringIO()
-
+    # do some writing (indirectly)
+    # write("blub")
     os.system('python ' + file)
 
-    # release output
-    # out = sys.stdout.getvalue()
-    out = backup.getvalue()
+    # get output
+    sys.stdout.seek(0)  # jump to the start
+    out = sys.stdout.read()  # read output
+
+    # restore stdout
+    sys.stdout.close()
+    sys.stdout = old_stdout
+
+
+    # file = os.getcwd() + '/examples/' + example + '.py'
+    #
+    # # setup the environment
+    # backup = sys.stdout
+    #
+    # # Capture the output
+    # sys.stdout = StringIO()
+    #
+    # os.system('python ' + file)
+    #
+    # # release output
+    # # out = sys.stdout.getvalue()
+    # out = backup.getvalue()
 
     return out
 
