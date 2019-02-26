@@ -24,14 +24,16 @@ def test_output():
         # 'rel': 'influxdb', 'scheme': 'http', 'type': 'influxdb:1.3', 'port': 8086}
 
         # Connecting to the InfluxDB server. By default it has no user defined, so you will need to create it.
-        password = base64.encodebytes(secrets.token_bytes())
         # client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
         client = influxdb.InfluxDBClient(credentials['host'], credentials['port'])
 
-        # client.switch_user('deploy_user', password)
+        password = base64.encodebytes(secrets.token_bytes())
+        client.create_user('deploy_user', password, admin=True)
+
+        client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
 
         database = client.create_database('deploys')
-        client.create_retention_policy('test', '1d', 2, database, default=True)
+        client.create_retention_policy('test', '1d', replication='2', database=database, default=True)
 
 
         # # ERROR - authorization fails here.
