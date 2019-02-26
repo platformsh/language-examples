@@ -1,6 +1,7 @@
 import os
 import flask
 import gevent.pywsgi
+import subprocess
 import sys
 from io import StringIO
 from io import TextIOWrapper, BytesIO
@@ -29,22 +30,24 @@ def capture_output(example):
 
     file = os.getcwd() + '/examples/' + example + '.py'
 
-    # setup the environment
-    old_stdout = sys.stdout
-    sys.stdout = TextIOWrapper(BytesIO(), sys.stdout.encoding)
+    # # setup the environment
+    # old_stdout = sys.stdout
+    # sys.stdout = TextIOWrapper(BytesIO(), sys.stdout.encoding)
+    #
+    # # do some writing (indirectly)
+    # # write("blub")
+    # os.system('python ' + file)
+    #
+    # # get output
+    # sys.stdout.seek(0)  # jump to the start
+    # out = sys.stdout.read()  # read output
+    #
+    # # restore stdout
+    # sys.stdout.close()
+    # sys.stdout = old_stdout
 
-    # do some writing (indirectly)
-    # write("blub")
-    os.system('python ' + file)
-
-    # get output
-    sys.stdout.seek(0)  # jump to the start
-    out = sys.stdout.read()  # read output
-
-    # restore stdout
-    sys.stdout.close()
-    sys.stdout = old_stdout
-
+    cmd = 'python3 ' + file
+    out = subprocess.check_output(cmd, shell=True)
 
     # file = os.getcwd() + '/examples/' + example + '.py'
     #
