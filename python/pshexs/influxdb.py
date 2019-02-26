@@ -28,10 +28,6 @@ def test_output():
         # client.switch_user(username=USER, password=PASSWORD)
         # client.create_database(DATABASE)
 
-
-
-
-
         # password = secrets.token_bytes()
         #
         # # Connecting to the InfluxDB server. By default it has no user defined, so you will need to create it.
@@ -41,7 +37,7 @@ def test_output():
         # # client = InfluxDBClient(credentials['host'], credentials['port'])
         #
         # # password = secrets.token_bytes()
-        # # client.create_user('deploy_user', password, admin=True)
+        client.create_user('deploy_user', PASSWORD, admin=True)
         # #
         # # client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
         #
@@ -50,8 +46,8 @@ def test_output():
         #
         # # client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password='')
         #
-        # # client.switch_user('deploy_user', password)
-        #
+        client.switch_user('deploy_user', PASSWORD)
+
         # database = client.create_database('deploys')
         # client.create_retention_policy('test', '1d', replication='2', database=DATABASE, default=True)
         #
