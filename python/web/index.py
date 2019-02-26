@@ -124,7 +124,14 @@ def create_list():
     for service in services:
         name = names[service]
         source = file_get_contents(service)
-        output = getattr(getattr(examples, service), 'test_output')()
+
+        if service == 'redis':
+            output = capture_output(service)
+        else:
+            output = getattr(getattr(examples, service), 'test_output')()
+
+
+        # output = getattr(getattr(examples, service), 'test_output')()
 
         first = '<details>' \
             '<summary>{0} Sample Code</summary>' \
