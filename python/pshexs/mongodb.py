@@ -38,7 +38,7 @@ def test_output():
             {"_id": post_id}
         )
 
-        return 'Found {0} ({1})<br />\n'.format(document['name'], document['occupation'])
+        return 'Found {0} ({1})<br />'.format(document['name'], document['occupation'])
 
     except Exception as e:
         return e
