@@ -24,9 +24,9 @@ def test_output():
         # client = InfluxDBClient(credentials['host'], credentials['port'])
 
         # password = secrets.token_bytes()
-        client.create_user('deploy_user', password, admin=True)
-
-        client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
+        # client.create_user('deploy_user', password, admin=True)
+        #
+        # client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password=password)
 
         database = client.create_database('deploys')
         client.create_retention_policy('test', '1d', replication='2', database=database, default=True)
