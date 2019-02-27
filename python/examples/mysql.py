@@ -22,12 +22,6 @@ def test_output():
                                user=credentials['username'],
                                password=credentials['password'])
 
-        # sql = "CREATE TABLE People (" \
-        #       "id SERIAL PRIMARY KEY," \
-        #       "name VARCHAR(30) NOT NULL," \
-        #       "city VARCHAR(30) NOT NULL" \
-        #       ")"
-
         sql = '''CREATE TABLE People (
         id SERIAL PRIMARY KEY,
         name VARCHAR(30) NOT NULL,
@@ -37,12 +31,6 @@ def test_output():
         cur = conn.cursor()
         cur.execute(sql)
 
-        # Insert data.
-        # sql = "INSERT INTO People (name, city) VALUES" \
-        #       "('Neil Armstrong', 'Moon')," \
-        #       "('Buzz Aldrin', 'Glen Ridge')," \
-        #       "('Sally Ride', 'La Jolla');"
-
         sql = '''INSERT INTO People (name, city) VALUES
         ('Neil Armstrong', 'Moon'),
         ('Buzz Aldrin', 'Glen Ridge'),
@@ -51,24 +39,30 @@ def test_output():
         cur.execute(sql)
 
         # Show table.
-        # sql = "SELECT * FROM People"
         sql = '''SELECT * FROM People'''
         cur.execute(sql)
         result = cur.fetchall()
 
-        table = "<table>\n" \
-                "<thead>\n" \
-                "<tr><th>Name</th><th>City</th></tr>\n" \
-                "</thead>\n" \
-                "<tbody>\n"
+        table = '''<table>\n
+        <thead>\n
+        <tr><th>Name</th><th>City</th></tr>\n
+        </thead>\n
+        <tbody>\n'''
+
+        # table = "<table>\n" \
+        #         "<thead>\n" \
+        #         "<tr><th>Name</th><th>City</th></tr>\n" \
+        #         "</thead>\n" \
+        #         "<tbody>\n"
 
         if result:
             for record in result:
-                table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record[1], record[2])
-            table += "</tbody>\n</table>\n"
+                # table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record[1], record[2])
+                table += '''<tr><td>{0}</td><td>{1}</td><tr>\n'''.format(record[1], record[2])
+            # table += "</tbody>\n</table>\n"
+            table += '''</tbody>\n</table>\n'''
 
         # Drop table
-        # sql = "DROP TABLE People"
         sql = '''DROP TABLE People'''
         cur.execute(sql)
 
