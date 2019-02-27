@@ -72,8 +72,8 @@ def test_output():
         }
 
         # NEED TO INCLUDE DELETE LOOP - this doesn't look right.
-        for name in names:
-            client.delete(index=params['index'], doc_type=params['type'], body=params['body'])
+        # for name in names:
+        #     client.delete(index=params['index'], doc_type=params['type'], body=params['body'])
 
         return table
 
