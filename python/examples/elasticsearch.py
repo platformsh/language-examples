@@ -58,11 +58,8 @@ def test_output():
                 "<tbody>\n"
 
         if result['hits']['hits']:
-
             for record in result['hits']['hits']:
-
                 table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record['_id'], record['_source']['name'])
-
             table += "</tbody>\n</table>\n"
 
         # Delete documents.
