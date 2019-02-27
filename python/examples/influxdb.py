@@ -29,7 +29,7 @@ def test_output():
         #
         client = InfluxDBClient(host=HOST, port=PORT, username=USER, password=PASSWORD, database=DATABASE)
 
-        client.grant_admin_privileges(username=USER)
+        # client.grant_admin_privileges(username=USER)
 
 
         # client.switch_user(username=USER, password=PASSWORD)
@@ -137,7 +137,9 @@ def test_output():
         #
         # return table
 
-        return client.get_list_users(), client.get_list_database()
+        user_list = client.get_list_privileges(username=USER)
+
+        return str(user_list)
 
 
     except Exception as e:
