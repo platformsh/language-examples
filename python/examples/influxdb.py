@@ -30,6 +30,8 @@ def test_output():
         # client = InfluxDBClient(host=HOST, port=PORT, username=USER, password=PASSWORD, database=DATABASE)
         client.switch_user('root', 'root')
 
+        client.create_user(username=USER, password=PASSWORD)
+
 
 
 
