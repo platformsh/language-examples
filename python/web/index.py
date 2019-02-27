@@ -47,8 +47,10 @@ def capture_output(example):
     # sys.stdout = old_stdout
 
     cmd = 'python3 ' + file
-    out = subprocess.check_output(cmd, shell=True)
+    # out = subprocess.check_output(cmd, shell=Truerue)
     # out = subprocess.run(cmd, stdout=subprocess.PIPE)
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    (out, err) = p.communicate()
 
     # file = os.getcwd() + '/examples/' + example + '.py'
     #
