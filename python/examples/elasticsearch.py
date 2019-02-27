@@ -1,5 +1,6 @@
 import elasticsearch
 from pshconfig import Config
+import traceback, sys
 
 
 def test_output():
@@ -77,4 +78,4 @@ def test_output():
         return table
 
     except Exception as e:
-        return 'is body error'
+        return traceback.format_exc(), sys.exc_info()[0]
