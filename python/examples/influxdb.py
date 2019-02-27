@@ -27,9 +27,11 @@ def test_output():
         client = InfluxDBClient(host=HOST, port=PORT)
 
         #
-        client = InfluxDBClient(host=HOST, port=PORT, username=USER, password=PASSWORD, database=DATABASE)
+        # client = InfluxDBClient(host=HOST, port=PORT, username=USER, password=PASSWORD, database=DATABASE)
+        client.switch_user('root', 'root')
 
-        client.grant_privilege('all', username=USER, database=DATABASE)
+
+        # client.grant_privilege('all', username=USER, database=DATABASE)
 
         # client.grant_admin_privileges(username=USER)
 
