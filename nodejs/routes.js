@@ -10,6 +10,7 @@ let services = {
     elasticsearch: 'Elasticsearch',
     memcached: 'MemcacheD',
     mongodb: 'MongoDB',
+    mysql: 'MySQL',
     redis: 'Redis',
 };
 
