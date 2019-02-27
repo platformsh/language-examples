@@ -47,7 +47,8 @@ def capture_output(example):
     # sys.stdout = old_stdout
 
     cmd = 'python3 ' + file
-    out = subprocess.check_output(cmd, shell=True)
+    # out = subprocess.check_output(cmd, shell=True)
+    out = subprocess.run(cmd, stdout=subprocess.PIPE)
 
     # file = os.getcwd() + '/examples/' + example + '.py'
     #
@@ -63,7 +64,7 @@ def capture_output(example):
     # # out = sys.stdout.getvalue()
     # out = backup.getvalue()
 
-    return out
+    return out.stdout
 
 
 @app.route('/python/<example>')
