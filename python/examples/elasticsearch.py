@@ -51,7 +51,7 @@ def test_output():
             }
         })
 
-        table = "<span class='nocode'><table>\n" \
+        table = "<table>\n" \
                 "<thead>\n" \
                 "<tr><th>ID</th><th>Name</th></tr>\n" \
                 "</thead>\n" \
@@ -63,7 +63,7 @@ def test_output():
 
                 table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record['_id'], record['_source']['name'])
 
-            table += "</tbody>\n</table><span class='nocode'>\n"
+            table += "</tbody>\n</table>\n"
 
         # Delete documents.
         params = {
