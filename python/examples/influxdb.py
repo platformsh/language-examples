@@ -24,12 +24,12 @@ def test_output():
         USER = 'deploy_user'
         PASSWORD = base64.b64encode(secrets.token_bytes())
 
-        client = InfluxDBClient(host=HOST, port=PORT)
+        # client = InfluxDBClient(host=HOST, port=PORT)
 
-        # client.grant_admin_privileges(username=USER)
         #
-        # client = InfluxDBClient(host=HOST, port=PORT, username=USER, password=PASSWORD, database=DATABASE)
+        client = InfluxDBClient(host=HOST, port=PORT, username=USER, password=PASSWORD, database=DATABASE)
 
+        client.grant_admin_privileges(username=USER)
 
 
         # client.switch_user(username=USER, password=PASSWORD)
