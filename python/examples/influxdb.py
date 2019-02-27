@@ -22,7 +22,8 @@ def test_output():
         HOST = credentials['host']
         PORT = credentials['port']
         USER = 'deploy_user'
-        PASSWORD = base64.b64encode(secrets.token_bytes())
+        # PASSWORD = base64.b64encode(secrets.token_bytes())
+        PASSWORD = secrets.token_bytes().encode('utf-8')
 
         client = InfluxDBClient(host=HOST, port=PORT)
 
