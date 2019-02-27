@@ -28,7 +28,8 @@ def test_output():
 
         # client.create_user(username=user, password=password)
         #
-        client = InfluxDBClient(host=credentials['host'], port=credentials['port'], username=user, password=password)
+        client = InfluxDBClient(host=credentials['host'], port=credentials['port'], username=user,
+                                password=password, database='deploys')
 
         # client.grant_admin_privileges(username=user)
 
