@@ -2,12 +2,8 @@ import os
 import flask
 import gevent.pywsgi
 import subprocess
-import sys
-from io import StringIO
-from io import TextIOWrapper, BytesIO
 
 import examples
-# from .list import create_list
 
 app = flask.Flask(__name__)
 
@@ -26,47 +22,47 @@ def file_get_contents(example):
     return contents
 
 
-def capture_output(example):
-
-    file = os.getcwd() + '/examples/' + example + '.py'
-
-    # # setup the environment
-    # old_stdout = sys.stdout
-    # sys.stdout = TextIOWrapper(BytesIO(), sys.stdout.encoding)
-    #
-    # # do some writing (indirectly)
-    # # write("blub")
-    # os.system('python ' + file)
-    #
-    # # get output
-    # sys.stdout.seek(0)  # jump to the start
-    # out = sys.stdout.read()  # read output
-    #
-    # # restore stdout
-    # sys.stdout.close()
-    # sys.stdout = old_stdout
-
-    cmd = 'python3 ' + file
-    # out = subprocess.check_output(cmd, shell=Truerue)
-    # out = subprocess.run(cmd, stdout=subprocess.PIPE)
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-    (out, err) = p.communicate()
-
-    # file = os.getcwd() + '/examples/' + example + '.py'
-    #
-    # # setup the environment
-    # backup = sys.stdout
-    #
-    # # Capture the output
-    # sys.stdout = StringIO()
-    #
-    # os.system('python ' + file)
-    #
-    # # release output
-    # # out = sys.stdout.getvalue()
-    # out = backup.getvalue()
-
-    return out
+# def capture_output(example):
+#
+#     file = os.getcwd() + '/examples/' + example + '.py'
+#
+#     # # setup the environment
+#     # old_stdout = sys.stdout
+#     # sys.stdout = TextIOWrapper(BytesIO(), sys.stdout.encoding)
+#     #
+#     # # do some writing (indirectly)
+#     # # write("blub")
+#     # os.system('python ' + file)
+#     #
+#     # # get output
+#     # sys.stdout.seek(0)  # jump to the start
+#     # out = sys.stdout.read()  # read output
+#     #
+#     # # restore stdout
+#     # sys.stdout.close()
+#     # sys.stdout = old_stdout
+#
+#     cmd = 'python3 ' + file
+#     # out = subprocess.check_output(cmd, shell=Truerue)
+#     # out = subprocess.run(cmd, stdout=subprocess.PIPE)
+#     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+#     (out, err) = p.communicate()
+#
+#     # file = os.getcwd() + '/examples/' + example + '.py'
+#     #
+#     # # setup the environment
+#     # backup = sys.stdout
+#     #
+#     # # Capture the output
+#     # sys.stdout = StringIO()
+#     #
+#     # os.system('python ' + file)
+#     #
+#     # # release output
+#     # # out = sys.stdout.getvalue()
+#     # out = backup.getvalue()
+#
+#     return out
 
 
 @app.route('/python/<example>')
@@ -84,14 +80,14 @@ def add_example_route(example):
 @app.route('/python/<example>/output')
 def add_example_output_route(example):
 
-    if example == 'redisdirect':
-        contents = capture_output(example)
+    # if example == 'redisdirect':
+    #     contents = capture_output(example)
+    #
+    #     resp = flask.make_response(contents)
+    #     resp.headers['Content-Type'] = 'text/plain'
+    #     return resp
 
-        resp = flask.make_response(contents)
-        resp.headers['Content-Type'] = 'text/plain'
-        return resp
-
-    elif hasattr(examples, example):
+    if hasattr(examples, example):
 
         contents = getattr(getattr(examples, example), 'test_output')()
 
@@ -168,13 +164,13 @@ def create_list():
         name = names[service]
         source = file_get_contents(service)
 
-        if service == 'redisdirect':
-            output = capture_output(service)
-        else:
-            output = getattr(getattr(examples, service), 'test_output')()
+        # if service == 'redisdirect':
+        #     output = capture_output(service)
+        # else:
+        #     output = getattr(getattr(examples, service), 'test_output')()
 
 
-        # output = getattr(getattr(examples, service), 'test_output')()
+        output = getattr(getattr(examples, service), 'test_output')()
 
         first = '<details>' \
             '<summary>{0} Sample Code</summary>' \
