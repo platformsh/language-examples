@@ -60,68 +60,110 @@ def create_list():
         "redis": "Redis",
         "solr": "Solr",
     }
-    header = '<html>' \
-             '<head>' \
-             '<title>Platform.sh Python service examples</title>' \
-             '<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>' \
-             '<style type="text/css">' \
-             '  details {' \
-             '      margin-top: 1em;' \
-             '      border: 1px solid #aaa;' \
-             '      border-radius: 4px;' \
-             '      padding: 0.5em;' \
-             '      width: 90%;' \
-             '  }' \
-             '' \
-             '  summary {' \
-             '      font-weight: bold;' \
-             '      margin: -.5em -.5em 0;' \
-             '      padding: .5em;' \
-             '  }' \
-             '' \
-             '  details[open] {' \
-             '      padding: .5em;' \
-             '  }' \
-             '' \
-             '  details[open] summary {' \
-             '      border-bottom: 1px solid #aaa;' \
-             '      margin-bottom: .5em;' \
-             '  }' \
-             '' \
-             '  table, table td, table th {' \
-             '      border: 1px solid black;' \
-             '  }' \
-             '</style>' \
-             '</head>' \
-             '<body>' \
-             '' \
-             '<h1>Service examples for Python</h1>'
+
+    header = '''
+            <html>
+            <head>
+            <title>Platform.sh Python service examples</title>
+            <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+            <style type="text/css">
+                details {
+                    margin-top: 1em;
+                    border: 1px solid #aaa;
+                    border-radius: 4px;
+                    padding: 0.5em;
+                    width: 90%;
+                }
+                summary {
+                    font-weight: bold;
+                    margin: -.5em -.5em 0;
+                    padding: .5em;
+                }
+                details[open] {
+                    padding: .5em;
+                }
+                details[open] summary {
+                    border-bottom: 1px solid #aaa;
+                    margin-bottom: .5em;
+                }
+                table, table td, table th {
+                    border: 1px solid black;
+                }
+              </style>
+              </head>
+              <body>
+              <h1>Service examples for Python</h1>
+            '''
+
+
+    # header = '<html>' \
+    #          '<head>' \
+    #          '<title>Platform.sh Python service examples</title>' \
+    #          '<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>' \
+    #          '<style type="text/css">' \
+    #          '  details {' \
+    #          '      margin-top: 1em;' \
+    #          '      border: 1px solid #aaa;' \
+    #          '      border-radius: 4px;' \
+    #          '      padding: 0.5em;' \
+    #          '      width: 90%;' \
+    #          '  }' \
+    #          '' \
+    #          '  summary {' \
+    #          '      font-weight: bold;' \
+    #          '      margin: -.5em -.5em 0;' \
+    #          '      padding: .5em;' \
+    #          '  }' \
+    #          '' \
+    #          '  details[open] {' \
+    #          '      padding: .5em;' \
+    #          '  }' \
+    #          '' \
+    #          '  details[open] summary {' \
+    #          '      border-bottom: 1px solid #aaa;' \
+    #          '      margin-bottom: .5em;' \
+    #          '  }' \
+    #          '' \
+    #          '  table, table td, table th {' \
+    #          '      border: 1px solid black;' \
+    #          '  }' \
+    #          '</style>' \
+    #          '</head>' \
+    #          '<body>' \
+    #          '' \
+    #          '<h1>Service examples for Python</h1>'
 
     body = ''
     services = [service for service in dir(examples) if '_' not in service]
     for service in services:
         name = names[service]
         source = file_get_contents(service)
-
-        # if service == 'redisdirect':
-        #     output = capture_output(service)
-        # else:
-        #     output = getattr(getattr(examples, service), 'test_output')()
-
-
         output = getattr(getattr(examples, service), 'test_output')()
 
-        first = '<details>' \
-            '<summary>{0} Sample Code</summary>' \
-            '<section>' \
-            '<h3>Source</h3>' \
-            '<pre class="prettyprint"><code class="language-py">{1}</code></pre>' \
-            '</section>' \
-            '<section>' \
-            '<h3>Output</h3>' \
-            '{2}' \
-            '</section>' \
-            '</details>'.format(name, source, output)
+        first = '''
+                <details>
+                <summary>{0} Sample Code</summary>
+                <section>
+                <h3>Source</h3>
+                <pre class="prettyprint"><code class="language-py">{1}</code></pre>
+                </section>
+                <section>
+                <h3>Output</h3>
+                {2}
+                </section>
+                </details>'''.format(name, source, output)
+
+        # first = '<details>' \
+        #     '<summary>{0} Sample Code</summary>' \
+        #     '<section>' \
+        #     '<h3>Source</h3>' \
+        #     '<pre class="prettyprint"><code class="language-py">{1}</code></pre>' \
+        #     '</section>' \
+        #     '<section>' \
+        #     '<h3>Output</h3>' \
+        #     '{2}' \
+        #     '</section>' \
+        #     '</details>'.format(name, source, output)
 
         body += first
 
