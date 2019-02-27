@@ -31,6 +31,8 @@ def test_output():
         client.switch_user('root', 'root')
 
 
+
+
         # client.grant_privilege('all', username=USER, database=DATABASE)
 
         # client.grant_admin_privileges(username=USER)
@@ -141,7 +143,7 @@ def test_output():
         #
         # return table
 
-        user_list = client.get_list_privileges(username=USER)
+        # user_list = client.get_list_privileges(username=USER)
 
         return 'SUCCESS?'
 
