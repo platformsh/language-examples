@@ -65,7 +65,7 @@ def create_list():
             <html>
             <head>
             <title>Platform.sh Python service examples</title>
-            <style type="text/plain">
+            <style type="text/css">
                 details {
                     margin-top: 1em;
                     border: 1px solid #aaa;
@@ -108,7 +108,7 @@ def create_list():
                 <summary>{0} Sample Code</summary>
                 <section>
                 <h3>Source</h3>
-                <code>{1}</code>
+                <pre><code>{1}</code></pre>
                 </section>
                 <section>
                 <h3>Output</h3>
