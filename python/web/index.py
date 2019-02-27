@@ -65,7 +65,7 @@ def create_list():
             <html>
             <head>
             <title>Platform.sh Python service examples</title>
-            <style type="text/css">
+            <style type="text/plain">
                 details {
                     margin-top: 1em;
                     border: 1px solid #aaa;
