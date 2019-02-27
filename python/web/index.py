@@ -81,12 +81,13 @@ def add_example_route(example):
 
 @app.route('/python/<example>/output')
 def add_example_output_route(example):
-
     if hasattr(examples, example):
-        if example == 'redis':
-            contents = capture_output(example)
-        else:
-            contents = getattr(getattr(examples, example), 'test_output')()
+        # if example == 'redis':
+        #     contents = capture_output(example)
+        # else:
+        #     contents = getattr(getattr(examples, example), 'test_output')()
+
+        contents = getattr(getattr(examples, example), 'test_output')()
 
         resp = flask.make_response(contents)
         resp.headers['Content-Type'] = 'text/plain'
@@ -150,13 +151,13 @@ def create_list():
         name = names[service]
         source = file_get_contents(service)
 
-        if service == 'redis':
-            output = capture_output(service)
-        else:
-            output = getattr(getattr(examples, service), 'test_output')()
+        # if service == 'redis':
+        #     output = capture_output(service)
+        # else:
+        #     output = getattr(getattr(examples, service), 'test_output')()
 
 
-        # output = getattr(getattr(examples, service), 'test_output')()
+        output = getattr(getattr(examples, service), 'test_output')()
 
         first = '<details>' \
             '<summary>{0} Sample Code</summary>' \
