@@ -8,6 +8,7 @@ exports.run = async function() {
 
     let client = new Memcached(`${credentials.host}:${credentials.port}`);
 
+    // The MemcacheD client is not Promise-aware, so make it so.
     const memcachedGet = promisify(client.get).bind(client);
     const memcachedSet = promisify(client.set).bind(client);
 
