@@ -11,6 +11,7 @@ let services = {
     memcached: 'MemcacheD',
     mongodb: 'MongoDB',
     mysql: 'MySQL',
+    postgresql: 'PostgreSQL',
     redis: 'Redis',
 };
 
