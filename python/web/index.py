@@ -108,7 +108,7 @@ def create_list():
                 <summary>{0} Sample Code</summary>
                 <section>
                 <h3>Source</h3>
-                {1}
+                <code>{1}</code>
                 </section>
                 <section>
                 <h3>Output</h3>
