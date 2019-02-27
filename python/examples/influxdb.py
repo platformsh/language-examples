@@ -24,7 +24,14 @@ def test_output():
         USER = 'deploy_user'
         PASSWORD = base64.b64encode(secrets.token_bytes())
 
-        client = InfluxDBClient(host=HOST, port=PORT, username=USER, password=PASSWORD, database=DATABASE)
+        client = InfluxDBClient(host=HOST, port=PORT)
+
+        # client.grant_admin_privileges(username=USER)
+        #
+        # client = InfluxDBClient(host=HOST, port=PORT, username=USER, password=PASSWORD, database=DATABASE)
+
+
+
         # client.switch_user(username=USER, password=PASSWORD)
         # client.create_database(DATABASE)
 
@@ -46,7 +53,11 @@ def test_output():
         #
         # # client = InfluxDBClient(credentials['host'], credentials['port'], username='deploy_user', password='')
         #
-        client.switch_user('deploy_user', PASSWORD)
+
+
+        # client.switch_user('deploy_user', PASSWORD)
+
+
 
         # database = client.create_database('deploys')
         # client.create_retention_policy('test', '1d', replication='2', database=DATABASE, default=True)
@@ -94,7 +105,7 @@ def test_output():
         # }
 
         # strin object has now attr get
-        client.write_points(points, time_precision='s', database=DATABASE)
+        # client.write_points(points, time_precision='s', database=DATABASE)
 
 
 
@@ -126,7 +137,7 @@ def test_output():
         #
         # return table
 
-        return credentials
+        return client.get_list_users(), client.get_list_database()
 
 
     except Exception as e:
