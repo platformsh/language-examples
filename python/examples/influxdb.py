@@ -23,7 +23,9 @@ def test_output():
         user = 'deploy_user'
         password = 'password'
 
-        client.create_user(username=user, password=password, admin=True)
+        # client.switch_user('root', 'root')
+
+        client.create_user(username=user, password=password)
 
         client = InfluxDBClient(host=credentials['host'], port=credentials['port'], username=user, password=password,
                                 database='deploys')
