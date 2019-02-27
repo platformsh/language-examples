@@ -13,7 +13,6 @@ def test_output():
     credentials = config.credentials('mongodb')
 
     try:
-
         server  = '{0}://{1}:{2}@{3}:{4}/{5}'.format(
             credentials['scheme'],
             credentials['username'],

@@ -12,7 +12,6 @@ def test_output():
     credentials = config.credentials('redis')
 
     try:
-
         redis = Redis(credentials['host'], credentials['port'])
 
         key = "Deploy day"

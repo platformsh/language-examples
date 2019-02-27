@@ -13,7 +13,6 @@ def test_output():
     credentials = config.credentials('memcached')
 
     try:
-
         # Try connecting to Memached server.
         memcached = pymemcache.Client((credentials['host'], credentials['port']))
         memcached.set('Memcached::OPT_BINARY_PROTOCOL', True)

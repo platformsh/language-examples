@@ -16,7 +16,6 @@ def test_output():
     credentials = config.credentials('solr')
 
     try:
-
         message = ''
         url = "http://{0}:{1}/{2}".format(credentials['ip'],
                                           credentials['port'],
@@ -45,7 +44,6 @@ def test_output():
         message += '\nDeleting one document. Status (00 is success): {0}\n'.format(str(result1))
 
         return message
-
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]

@@ -13,7 +13,6 @@ def test_output():
     database = config.credentials('postgresql')
 
     try:
-
         # Connect to the database.
         conn_params = {
             'host': database['host'],
