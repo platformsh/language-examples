@@ -64,7 +64,7 @@ def capture_output(example):
     # # out = sys.stdout.getvalue()
     # out = backup.getvalue()
 
-    return out.stdout
+    return out
 
 
 @app.route('/python/<example>')
