@@ -23,18 +23,18 @@ def test_output():
         user = 'deploy_user'
         password = 'password'
 
-        client.switch_user('root', 'root')
+        # client.switch_user('root', 'root')
 
         # client.create_user(username=user, password=password)
         #
-        # client = InfluxDBClient(host=credentials['host'], port=credentials['port'], username=user, password=password,
-        #                         database='deploys')
+        client = InfluxDBClient(host=credentials['host'], port=credentials['port'], username=user, password=password,
+                                database='deploys')
 
-        client.create_database('deploys')
-        client.create_retention_policy(name='test', duration='3d', replication='3', default=True)
-        client.switch_database('deploys')
-
-        ping = str(client.ping())
+        # client.create_database('deploys')
+        # client.create_retention_policy(name='test', duration='3d', replication='3', default=True)
+        # client.switch_database('deploys')
+        #
+        # ping = str(client.ping())
 
         points = [
             {
@@ -95,7 +95,7 @@ def test_output():
 
         # user_list = client.get_list_privileges(username=USER)
 
-        return ping
+        return 'success'
 
 
     except Exception as e:
