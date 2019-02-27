@@ -65,7 +65,6 @@ def create_list():
             <html>
             <head>
             <title>Platform.sh Python service examples</title>
-            <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
             <style type="text/css">
                 details {
                     margin-top: 1em;
@@ -94,44 +93,8 @@ def create_list():
               <body>
               <h1>Service examples for Python</h1>
             '''
-
-
-    # header = '<html>' \
-    #          '<head>' \
-    #          '<title>Platform.sh Python service examples</title>' \
-    #          '<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>' \
-    #          '<style type="text/css">' \
-    #          '  details {' \
-    #          '      margin-top: 1em;' \
-    #          '      border: 1px solid #aaa;' \
-    #          '      border-radius: 4px;' \
-    #          '      padding: 0.5em;' \
-    #          '      width: 90%;' \
-    #          '  }' \
-    #          '' \
-    #          '  summary {' \
-    #          '      font-weight: bold;' \
-    #          '      margin: -.5em -.5em 0;' \
-    #          '      padding: .5em;' \
-    #          '  }' \
-    #          '' \
-    #          '  details[open] {' \
-    #          '      padding: .5em;' \
-    #          '  }' \
-    #          '' \
-    #          '  details[open] summary {' \
-    #          '      border-bottom: 1px solid #aaa;' \
-    #          '      margin-bottom: .5em;' \
-    #          '  }' \
-    #          '' \
-    #          '  table, table td, table th {' \
-    #          '      border: 1px solid black;' \
-    #          '  }' \
-    #          '</style>' \
-    #          '</head>' \
-    #          '<body>' \
-    #          '' \
-    #          '<h1>Service examples for Python</h1>'
+# Taken out after <title>Platform.sh
+#             <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 
     body = ''
     services = [service for service in dir(examples) if '_' not in service]
@@ -145,13 +108,18 @@ def create_list():
                 <summary>{0} Sample Code</summary>
                 <section>
                 <h3>Source</h3>
-                <pre class="prettyprint"><code class="language-py">{1}</code></pre>
+                {1}
                 </section>
                 <section>
                 <h3>Output</h3>
                 {2}
                 </section>
                 </details>'''.format(name, source, output)
+
+
+# Take out after source
+#         < pre class ="prettyprint" > < code class ="language-py" > {1} < / code > < / pre >
+
 
         # first = '<details>' \
         #     '<summary>{0} Sample Code</summary>' \
