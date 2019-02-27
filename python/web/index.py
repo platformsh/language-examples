@@ -81,11 +81,15 @@ def add_example_route(example):
 
 @app.route('/python/<example>/output')
 def add_example_output_route(example):
-    if hasattr(examples, example):
-        # if example == 'redis':
-        #     contents = capture_output(example)
-        # else:
-        #     contents = getattr(getattr(examples, example), 'test_output')()
+
+    if example == 'redisdirect':
+        contents = capture_output(example)
+
+        resp = flask.make_response(contents)
+        resp.headers['Content-Type'] = 'text/plain'
+        return resp
+
+    elif hasattr(examples, example):
 
         contents = getattr(getattr(examples, example), 'test_output')()
 
@@ -94,6 +98,17 @@ def add_example_output_route(example):
         return resp
     else:
         return "Sorry, no sample code is available."
+
+
+    # if hasattr(examples, example):
+    #
+    #     contents = getattr(getattr(examples, example), 'test_output')()
+    #
+    #     resp = flask.make_response(contents)
+    #     resp.headers['Content-Type'] = 'text/plain'
+    #     return resp
+    # else:
+    #     return "Sorry, no sample code is available."
 
 
 def create_list():
@@ -151,13 +166,13 @@ def create_list():
         name = names[service]
         source = file_get_contents(service)
 
-        # if service == 'redis':
-        #     output = capture_output(service)
-        # else:
-        #     output = getattr(getattr(examples, service), 'test_output')()
+        if service == 'redisdirect':
+            output = capture_output(service)
+        else:
+            output = getattr(getattr(examples, service), 'test_output')()
 
 
-        output = getattr(getattr(examples, service), 'test_output')()
+        # output = getattr(getattr(examples, service), 'test_output')()
 
         first = '<details>' \
             '<summary>{0} Sample Code</summary>' \
