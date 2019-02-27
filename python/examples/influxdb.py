@@ -24,10 +24,12 @@ def test_output():
         USER = 'deploy_user'
         PASSWORD = base64.b64encode(secrets.token_bytes())
 
-        # client = InfluxDBClient(host=HOST, port=PORT)
+        client = InfluxDBClient(host=HOST, port=PORT)
 
         #
         client = InfluxDBClient(host=HOST, port=PORT, username=USER, password=PASSWORD, database=DATABASE)
+
+        client.grant_privilege('all', username=USER, database=DATABASE)
 
         # client.grant_admin_privileges(username=USER)
 
@@ -139,7 +141,7 @@ def test_output():
 
         user_list = client.get_list_privileges(username=USER)
 
-        return str(user_list)
+        return 'SUCCESS?'
 
 
     except Exception as e:
