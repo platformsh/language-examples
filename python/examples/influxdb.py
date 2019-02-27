@@ -21,7 +21,7 @@ def test_output():
         client = InfluxDBClient(host=credentials['host'], port=credentials['port'])
 
         user = 'deploy_user'
-        password = base64.b64encode(os.urandom(5))
+        password = 'password'
 
         client.create_user(username=user, password=password, admin=True)
 
