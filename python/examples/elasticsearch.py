@@ -51,16 +51,18 @@ def test_output():
             }
         })
 
-        table = "<table>\n" \
-                "<thead>\n" \
-                "<tr><th>ID</th><th>Name</th></tr>\n" \
-                "</thead>\n" \
-                "<tbody>\n"
+        table = '''
+                <table>\n
+                <thead>\n
+                <tr><th>ID</th><th>Name</th></tr>\n
+                </thead>\n
+                <tbody>\n
+                '''
 
         if result['hits']['hits']:
             for record in result['hits']['hits']:
-                table += "<tr><td>{0}</td><td>{1}</td><tr>\n".format(record['_id'], record['_source']['name'])
-            table += "</tbody>\n</table>\n"
+                table += '''<tr><td>{0}</td><td>{1}</td><tr>\n'''.format(record['_id'], record['_source']['name'])
+            table += '''</tbody>\n</table>\n'''
 
         # Delete documents.
         params = {

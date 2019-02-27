@@ -18,7 +18,6 @@ def test_output():
     try:
 
         message = ''
-
         url = "http://{0}:{1}/{2}".format(credentials['ip'],
                                           credentials['port'],
                                           credentials['path'])
