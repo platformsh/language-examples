@@ -18,7 +18,7 @@ def test_output():
 
     try:
 
-        client = InfluxDBClient(host=credentials['ip'], port=credentials['port'])
+        client = InfluxDBClient(host=credentials['hostname'], port=credentials['port'])
 
         user = 'deploy_user'
         password = 'password'
