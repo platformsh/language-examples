@@ -1,9 +1,12 @@
 import elasticsearch
 from pshconfig import Config
 import traceback, sys
+import html
 
 
 def test_output():
+
+    s = html.escape("""& < " ' >""")
 
     # Create a new Config object to ease reading the Platform.sh environment variables.
     # You can alternatively use os.environ yourself.
