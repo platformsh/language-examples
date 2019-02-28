@@ -25,10 +25,10 @@ def test_output():
         client = InfluxDBClient(host=credentials['host'], port=credentials['port'])
         client.query('CREATE USER {0} WITH PASSWORD {1} WITH ALL PRIVILEGES'.format(user, password))
 
-        client = InfluxDBClient(host=credentials['ip'], port=credentials['port'], username=user, password=password)
-
-        dbname = 'deploys'
-        client.create_database(dbname)
+        # client = InfluxDBClient(host=credentials['ip'], port=credentials['port'], username=user, password=password)
+        #
+        # dbname = 'deploys'
+        # client.create_database(dbname)
 
 
         # client.query('SHOW DATABASES;')
