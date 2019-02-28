@@ -2,7 +2,8 @@ import os
 import base64
 import secrets
 from influxdb import InfluxDBClient
-import influxdb
+import os
+import base64
 from pshconfig import Config
 import traceback, sys
 
@@ -18,17 +19,23 @@ def test_output():
 
     try:
 
+        user = 'deploy_user'
+        password = base64.b64encode(os.urandom(4))
+
         client = InfluxDBClient(host=credentials['host'], port=credentials['port'])
+        client.query('CREATE USER {0} WITH PASSWORD {1} WITH ALL PRIVILEGES'.format(user, password))
+
+        client = InfluxDBClient(host=credentials['ip'], port=credentials['port'], username=user, password=password)
+
+        dbname = 'deploys'
+        client.create_database(dbname)
+
 
         # client.query('SHOW DATABASES;')
 
-        user = 'deploy_user2'
-        password = 'password'
-        dbname = 'deploydb'
-
         # client.switch_user('root', 'root')
         #
-        client.create_user(username=user, password=password)
+        # client.create_user(username=user, password=password)
         #
         # client = InfluxDBClient(host=credentials['ip'], port=credentials['port'], username=user,
         #                         password=password, database='deploys')
