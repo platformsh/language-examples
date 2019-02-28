@@ -2,6 +2,7 @@ import os
 import flask
 import gevent.pywsgi
 import html
+from xml.sax.saxutils import escape
 
 import examples
 
@@ -102,14 +103,14 @@ def create_list():
     for service in services:
         name = names[service]
         source = html.escape(file_get_contents(service))
-        output = getattr(getattr(examples, service), 'test_output')()
+        output = escape(getattr(getattr(examples, service), 'test_output')())
 
         first = '''
                 <details>
                 <summary>{0} Sample Code</summary>
                 <section>
                 <h3>Source</h3>
-                <pre class="prettyprint"> <code class="language-py">{1}</code></pre>
+                <pre class="prettyprint"><code class="language-py">{1}</code></pre>
                 </section>
                 <section>
                 <h3>Output</h3>
