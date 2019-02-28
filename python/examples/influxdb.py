@@ -48,10 +48,10 @@ def test_output():
 
 
 
-        # client = InfluxDBClient(host=credentials['ip'], port=credentials['port'], username=user, password=password)
-        #
-        # dbname = 'deploys'
-        # client.create_database(dbname)
+        client = InfluxDBClient(host=credentials['ip'], port=credentials['port'], username=user, password=password)
+
+        dbname = 'deploys'
+        client.create_database(dbname)
 
 
         # client.query('SHOW DATABASES;')
@@ -122,8 +122,8 @@ def test_output():
         #
         #     table += "</tbody>\n</table>\n"
         #
-        # # Drop the database.
-        # client.drop_database(database)
+        # Drop the database.
+        client.drop_database(dbname)
         #
         #
         # return table
