@@ -34,11 +34,11 @@ def test_output():
         user = 'deploy_user'
         password = 'password'
 
-        url_string = "curl - XPOST http://{0}:{1}/query".format(credentials['host'], credentials['port'])
+        url_string = "curl - XPOST http://{0}:{1}/query".format(credentials['hostname'], credentials['port'])
         data_string = "urlencode q=CREATE USER {0} WITH PASSWORD '{1}".format(user, password)
 
-        # client.request(url_string, data=data_string)
-        r = requests.post(url_string, data=data_string)
+        client.request(url_string, data=data_string)
+        # r = requests.post(url_string, data=data_string)
 
 
 
