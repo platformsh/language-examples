@@ -1,5 +1,5 @@
 const redis = require('redis');
-const config = require("platformsh").config();
+const config = require("platformsh-config").config();
 const { promisify } = require('util');
 
 exports.run = async function() {

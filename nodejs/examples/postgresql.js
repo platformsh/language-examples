@@ -1,5 +1,5 @@
 const pg = require('pg');
-const config = require("platformsh").config();
+const config = require("platformsh-config").config();
 
 exports.run = async function() {
 

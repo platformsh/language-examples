@@ -1,6 +1,6 @@
 const express = require('express');
 const parseUrl = require('parse_url');
-const platformsh = require('platformsh');
+const platformsh = require('platformsh-config');
 
 let config = platformsh.config();
 

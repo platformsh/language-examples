@@ -16,7 +16,7 @@
     "mysql2": "^1.6.5",
     "parse_url": "^0.1.1",
     "pg": "^7.8.1",
-    "platformsh": "https://github.com/platformsh/platformsh-nodejs-helper.git#v2",
+    "platformsh-config": "https://github.com/platformsh/config-reader-nodejs.git",
     "redis": "^2.8.0",
     "solr-node": "^1.1.3"
   }

@@ -1,16 +1,9 @@
 const solr = require('solr-node');
-const config = require("platformsh").config();
+const config = require("platformsh-config").config();
 
 exports.run = async function() {
 
-    const credentials = config.credentials('solr');
-
-    let client = new solr({
-        host: credentials.host,
-        port: credentials.port,
-        core: credentials.path.split('/').slice(-1)[0],
-        protocol: 'http'
-    });
+    let client = new solr(config.formattedCredentials('solr', 'solr-node'));
 
     let output = '';
 
