@@ -20,20 +20,22 @@ def test_output():
 
         client = InfluxDBClient(host=credentials['host'], port=credentials['port'])
 
+        client.query('SHOW DATABASES;')
+
         user = 'deploy_user2'
         password = 'password'
         dbname = 'deploydb'
 
-        client.switch_user('root', 'root')
-
-        client.create_user(username=user, password=password)
+        # client.switch_user('root', 'root')
+        #
+        # client.create_user(username=user, password=password)
         #
         # client = InfluxDBClient(host=credentials['ip'], port=credentials['port'], username=user,
         #                         password=password, database='deploys')
 
-        client.grant_admin_privileges(username=user)
-
-        client.create_database(dbname)
+        # client.grant_admin_privileges(username=user)
+        #
+        # client.create_database(dbname)
         # client.create_retention_policy(name='test', duration='3d', replication='3', default=True)
         # client.switch_database('deploys')
         #
