@@ -18,7 +18,7 @@ def test_output():
 
     try:
 
-        client = InfluxDBClient(host=credentials['host'], port=credentials['port'])
+        client = InfluxDBClient(host=credentials['hostname'], port=credentials['port'])
 
         user = 'deploy_user'
         password = 'password'
@@ -33,7 +33,7 @@ def test_output():
 
         # client.grant_admin_privileges(username=user)
 
-        # client.create_database('deploys')
+        client.create_database('deploys')
         # client.create_retention_policy(name='test', duration='3d', replication='3', default=True)
         # client.switch_database('deploys')
         #
