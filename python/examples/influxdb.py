@@ -40,6 +40,8 @@ def test_output():
         # client.request(url_string, data=data_string)
         r = requests.post(url_string, data=data_string)
 
+
+
         # client.query("CREATE USER {0} WITH PASSWORD '{1}' WITH ALL PRIVILEGES".format(user, password))
 
 
