@@ -4,6 +4,7 @@ import secrets
 from influxdb import InfluxDBClient
 import os
 import base64
+import requests
 from pshconfig import Config
 import traceback, sys
 
@@ -22,7 +23,23 @@ def test_output():
         user = 'deploy_user'
         password = 'password'
 
+        url_string = "curl - XPOST http://{0}:{1}/query".format(credentials['host'], credentials['port'])
+        data_string = "urlencode q=CREATE USER {0} WITH PASSWORD '{1}".format(user, password)
+
+        # "curl - XPOST http://localhost:8086/query - -data - urlencode q=CREATE USER {0} WITH PASSWORD '{1}' " \
+        #     "WITH ALL PRIVILEGES".format(user, password)
+
         client = InfluxDBClient(host=credentials['host'], port=credentials['port'])
+
+        user = 'deploy_user'
+        password = 'password'
+
+        url_string = "curl - XPOST http://{0}:{1}/query".format(credentials['host'], credentials['port'])
+        data_string = "urlencode q=CREATE USER {0} WITH PASSWORD '{1}".format(user, password)
+
+        client.request(url_string, data=data_string)
+        # r = requests.post(url_string, data=data_string)
+
         # client.query("CREATE USER {0} WITH PASSWORD '{1}' WITH ALL PRIVILEGES".format(user, password))
 
 
