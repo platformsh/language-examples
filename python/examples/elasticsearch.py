@@ -1,7 +1,6 @@
 import elasticsearch
 from pshconfig import Config
 import traceback, sys
-import html
 
 
 def test_output():
@@ -53,13 +52,13 @@ def test_output():
             }
         })
 
-        table = html.escape('''
+        table = '''
                 <table>\n
                 <thead>\n
                 <tr><th>ID</th><th>Name</th></tr>\n
                 </thead>\n
                 <tbody>\n
-                ''')
+                '''
 
         if result['hits']['hits']:
             for record in result['hits']['hits']:

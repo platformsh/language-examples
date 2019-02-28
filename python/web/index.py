@@ -1,6 +1,7 @@
 import os
 import flask
 import gevent.pywsgi
+import html
 
 import examples
 
@@ -102,7 +103,7 @@ def create_list():
         source = file_get_contents(service)
         output = getattr(getattr(examples, service), 'test_output')()
 
-        first = '''
+        first = html.escape('''
                 <details>
                 <summary>{0} Sample Code</summary>
                 <section>
@@ -113,7 +114,7 @@ def create_list():
                 <h3>Output</h3>
                 {2}
                 </section>
-                </details>'''.format(name, source, output)
+                </details>'''.format(name, source, output))
 
 
 # Take out after source
