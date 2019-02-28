@@ -1,7 +1,6 @@
 import os
 import flask
 import gevent.pywsgi
-import subprocess
 
 import examples
 
@@ -119,19 +118,6 @@ def create_list():
 
 # Take out after source
 #         < pre class ="prettyprint" > < code class ="language-py" > {1} < / code > < / pre >
-
-
-        # first = '<details>' \
-        #     '<summary>{0} Sample Code</summary>' \
-        #     '<section>' \
-        #     '<h3>Source</h3>' \
-        #     '<pre class="prettyprint"><code class="language-py">{1}</code></pre>' \
-        #     '</section>' \
-        #     '<section>' \
-        #     '<h3>Output</h3>' \
-        #     '{2}' \
-        #     '</section>' \
-        #     '</details>'.format(name, source, output)
 
         body += first
 
