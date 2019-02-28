@@ -37,8 +37,8 @@ def test_output():
         url_string = "curl - XPOST http://{0}:{1}/query".format(credentials['host'], credentials['port'])
         data_string = "urlencode q=CREATE USER {0} WITH PASSWORD '{1}".format(user, password)
 
-        client.request(url_string, data=data_string)
-        # r = requests.post(url_string, data=data_string)
+        # client.request(url_string, data=data_string)
+        r = requests.post(url_string, data=data_string)
 
         # client.query("CREATE USER {0} WITH PASSWORD '{1}' WITH ALL PRIVILEGES".format(user, password))
 
