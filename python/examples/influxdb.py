@@ -39,8 +39,8 @@ def test_output():
         # url_string = "curl - XPOST http://{0}:{1}/query".format(credentials['ip'], credentials['port'])
         # data_string = "urlencode q=CREATE USER {0} WITH PASSWORD '{1}".format(user, password)
 
-        client.request(url_string, data=data_string)
-        # r = requests.post(url_string, data=data_string)
+        # client.request(url_string, data=data_string)
+        r = requests.post(url_string, data=data_string)
 
 
 
@@ -134,7 +134,7 @@ def test_output():
 
         # user_list = client.get_list_privileges(username=USER)
 
-        return 'success'
+        return str(r)
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]
