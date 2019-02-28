@@ -6,8 +6,6 @@ import html
 
 def test_output():
 
-    s = html.escape("""& < " ' >""")
-
     # Create a new Config object to ease reading the Platform.sh environment variables.
     # You can alternatively use os.environ yourself.
     config = Config()
@@ -55,13 +53,13 @@ def test_output():
             }
         })
 
-        table = '''
+        table = html.escape('''
                 <table>\n
                 <thead>\n
                 <tr><th>ID</th><th>Name</th></tr>\n
                 </thead>\n
                 <tbody>\n
-                '''
+                ''')
 
         if result['hits']['hits']:
             for record in result['hits']['hits']:
