@@ -23,7 +23,7 @@ def test_output():
         password = 'password'
 
         client = InfluxDBClient(host=credentials['host'], port=credentials['port'])
-        client.query("CREATE USER {0} WITH PASSWORD '{1}' WITH ALL PRIVILEGES".format(user, password))
+        # client.query("CREATE USER {0} WITH PASSWORD '{1}' WITH ALL PRIVILEGES".format(user, password))
 
 
 
