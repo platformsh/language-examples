@@ -65,6 +65,7 @@ def create_list():
             <html>
             <head>
             <title>Platform.sh Python service examples</title>
+            <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
             <style type="text/css">
                 details {
                     margin-top: 1em;
@@ -108,7 +109,7 @@ def create_list():
                 <summary>{0} Sample Code</summary>
                 <section>
                 <h3>Source</h3>
-                <pre><code>{1}</code></pre>
+                <pre class="prettyprint"> <code class="language-py">{1}</code></pre>
                 </section>
                 <section>
                 <h3>Output</h3>
