@@ -100,10 +100,10 @@ def create_list():
     services = [service for service in dir(examples) if '_' not in service]
     for service in services:
         name = names[service]
-        source = file_get_contents(service)
+        source = html.escape(file_get_contents(service))
         output = getattr(getattr(examples, service), 'test_output')()
 
-        first = html.escape('''
+        first = '''
                 <details>
                 <summary>{0} Sample Code</summary>
                 <section>
@@ -114,7 +114,7 @@ def create_list():
                 <h3>Output</h3>
                 {2}
                 </section>
-                </details>'''.format(name, source, output))
+                </details>'''.format(name, source, output)
 
 
 # Take out after source
