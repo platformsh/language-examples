@@ -23,19 +23,21 @@ def test_output():
         user = 'deploy_user'
         password = 'password'
 
-        url_string = "curl - XPOST http://{0}:{1}/query".format(credentials['host'], credentials['port'])
-        data_string = "urlencode q=CREATE USER {0} WITH PASSWORD '{1}".format(user, password)
+        # ~  # curl -XPOST "http://localhost:8086/query" --data-urlencode "q=CREATE USER chronothan WITH PASSWORD 'supersecret' WITH ALL PRIVILEGES"
+        #
+        url_string = "http://{0}:{1}/query".format(credentials['host'], credentials['port'])
+        data_string = "q=CREATE USER {0} WITH PASSWORD '{1}' WITH ALL PRIVILEGES".format(user, password)
 
         # "curl - XPOST http://localhost:8086/query - -data - urlencode q=CREATE USER {0} WITH PASSWORD '{1}' " \
         #     "WITH ALL PRIVILEGES".format(user, password)
 
         client = InfluxDBClient(host=credentials['host'], port=credentials['port'])
 
-        user = 'deploy_user'
-        password = 'password'
-
-        url_string = "curl - XPOST http://{0}:{1}/query".format(credentials['hostname'], credentials['port'])
-        data_string = "urlencode q=CREATE USER {0} WITH PASSWORD '{1}".format(user, password)
+        # user = 'deploy_user'
+        # password = 'password'
+        #
+        # url_string = "curl - XPOST http://{0}:{1}/query".format(credentials['ip'], credentials['port'])
+        # data_string = "urlencode q=CREATE USER {0} WITH PASSWORD '{1}".format(user, password)
 
         # client.request(url_string, data=data_string)
         r = requests.post(url_string, data=data_string)
