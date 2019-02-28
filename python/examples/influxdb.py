@@ -20,7 +20,7 @@ def test_output():
     try:
 
         user = 'deploy_user'
-        password = base64.b64encode(os.urandom(4))
+        password = 'password'
 
         client = InfluxDBClient(host=credentials['host'], port=credentials['port'])
         client.query('CREATE USER {0} WITH PASSWORD {1} WITH ALL PRIVILEGES'.format(user, password))
