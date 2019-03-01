@@ -9,9 +9,3 @@ pip install platformshconfig
 ```
 
 Each example provides a starter kit for connecting to these services and working with the configuration library, which can be expanded to larger projects. You can find additional information about using [Python on Platform.sh](https://docs.platform.sh/languages/python.html) and the individual [Services](https://docs.platform.sh/configuration/services.html) in our [Public Documentation](https://docs.platform.sh/).
-
-## Python supported versions
-
-* 3.5
-* 3.6
-* 3.7
