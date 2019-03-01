@@ -36,11 +36,11 @@ def usage_example():
 
         names = ['Ada Lovelace', 'Alonzo Church', 'Barbara Liskov']
 
-        indices = {}
+        ids = {}
 
         for name in names:
             params['body']['name'] = name
-            indices[name] = client.index(index=params["index"], doc_type=params["type"], body=params['body'])
+            ids[name] = client.index(index=params["index"], doc_type=params["type"], body=params['body'])
 
         # Force just-added items to be indexed.
         client.indices.refresh(index=es_index)
@@ -71,18 +71,10 @@ def usage_example():
             "type": es_type,
         }
 
-        # NEED TO INCLUDE DELETE LOOP - this doesn't look right.
         for name in names:
-            client.delete(index=params['index'], doc_type=params['type'], id=indices[name]['_id'])
-        #     client.delete(index=params['index'], doc_type=params['type'], body=params['body'])
-
-        # r = db.index(index="reestr", doc_type="some_type", body=doc)
-        # # r = {u'_type': u'some_type', u'_id': u'AU36zuFq-fzpr_HkJSkT', u'created': True, u'_version': 1, u'_index': u'reestr'}
-        #
-        # db.delete(index="reestr", doc_type="some_type", id=r['_id'])
+            client.delete(index=params['index'], doc_type=params['type'], id=ids[name]['_id'])
 
         return table
-        # return str(indices['Ada Lovelace'])
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]
