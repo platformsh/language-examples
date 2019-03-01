@@ -52,13 +52,11 @@ def usage_example():
         cur.execute(sql)
         result = cur.fetchall()
 
-        table = '''
-                <table>\n
-                <thead>\n
-                <tr><th>Name</th><th>City</th></tr>\n
-                </thead>\n
-                <tbody>\n
-                '''
+        table = '''<table>
+<thead>
+<tr><th>Name</th><th>City</th></tr>
+</thead>
+<tbody>'''
 
         if result:
             for record in result:
