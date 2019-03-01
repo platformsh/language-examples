@@ -53,10 +53,10 @@ def usage_example():
         })
 
         table = '''<table>
-    <thead>
-    <tr><th>ID</th><th>Name</th></tr>
-    </thead>
-    <tbody>'''
+<thead>
+<tr><th>ID</th><th>Name</th></tr>
+</thead>
+<tbody>'''
 
         if result['hits']['hits']:
             for record in result['hits']['hits']:
