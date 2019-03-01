@@ -99,27 +99,27 @@ def create_list():
     body = ''
     services = [service for service in dir(examples) if '_' not in service]
     for service in services:
-        name = names[service]
-        source = html.escape(file_get_contents(service))
-        # output = getattr(getattr(examples, service), 'usage_example')()
+        if service is not 'influxdb':
+            name = names[service]
+            source = html.escape(file_get_contents(service))
+            # output = getattr(getattr(examples, service), 'usage_example')()
 
-        # source = ''
-        output = ''
+            output = ''
 
-        first = '''
-                <details>
-                <summary>{0} Sample Code</summary>
-                <section>
-                <h3>Source</h3>
-                <pre class="prettyprint"><code class="language-py">{1}</code></pre>
-                </section>
-                <section>
-                <h3>Output</h3>
-                {2}
-                </section>
-                </details>'''.format(name, source, output)
+            first = '''
+                    <details>
+                    <summary>{0} Sample Code</summary>
+                    <section>
+                    <h3>Source</h3>
+                    <pre class="prettyprint"><code class="language-py">{1}</code></pre>
+                    </section>
+                    <section>
+                    <h3>Output</h3>
+                    {2}
+                    </section>
+                    </details>'''.format(name, source, output)
 
-        body += first
+            body += first
 
     footer = '''
             <body>
