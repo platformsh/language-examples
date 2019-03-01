@@ -2,7 +2,7 @@ import os
 import flask
 import gevent.pywsgi
 import html
-from xml.sax.saxutils import escape
+# from xml.sax.saxutils import escape
 
 import examples
 
@@ -100,8 +100,11 @@ def create_list():
     services = [service for service in dir(examples) if '_' not in service]
     for service in services:
         name = names[service]
-        source = html.escape(file_get_contents(service))
-        output = escape(getattr(getattr(examples, service), 'usage_example')())
+        # source = html.escape(file_get_contents(service))
+        # output = getattr(getattr(examples, service), 'usage_example')()
+
+        source = []
+        output = []
 
         first = '''
                 <details>
@@ -118,8 +121,9 @@ def create_list():
 
         body += first
 
-    footer = '</body>' \
-             '</html>'
+    footer = '''
+            <body>
+            <html>'''
 
     return header + body + footer
 
