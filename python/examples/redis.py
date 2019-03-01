@@ -2,7 +2,7 @@ from redis import Redis
 from pshconfig import Config
 
 
-def test_output():
+def usage_example():
 
     # Create a new config object to ease reading the Platform.sh environment variables.
     # You can alternatively use os.environ yourself.

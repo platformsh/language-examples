@@ -40,7 +40,7 @@ def add_example_output_route(example):
 
     if hasattr(examples, example):
 
-        contents = getattr(getattr(examples, example), 'test_output')()
+        contents = getattr(getattr(examples, example), 'usage_example')()
 
         resp = flask.make_response(contents)
         resp.headers['Content-Type'] = 'text/plain'
@@ -103,7 +103,7 @@ def create_list():
     for service in services:
         name = names[service]
         source = html.escape(file_get_contents(service))
-        output = escape(getattr(getattr(examples, service), 'test_output')())
+        output = escape(getattr(getattr(examples, service), 'usage_example')())
 
         first = '''
                 <details>
