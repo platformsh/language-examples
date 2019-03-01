@@ -10,6 +10,7 @@
   "dependencies": {
     "elasticsearch": "^15.4.1",
     "express": "^4.16.4",
+    "influxdb-nodejs": "^2.11.0",
     "memcached": "^2.2.2",
     "mongodb": "^2.0.48",
     "mongoose": "^4.2.5",

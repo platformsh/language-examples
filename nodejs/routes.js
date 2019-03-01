@@ -4,10 +4,9 @@ const fs = require('fs');
 
 var data = {};
 
-// @todo Do this for all services.
-
 let services = {
     elasticsearch: 'Elasticsearch',
+    // influxdb: 'InfluxDB',
     memcached: 'MemcacheD',
     mongodb: 'MongoDB',
     mysql: 'MySQL',
