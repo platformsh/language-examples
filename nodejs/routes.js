@@ -117,15 +117,21 @@ router.get('/', index);
 
 router.get('/:service', (req, res) => {
 
+    const file = __dirname + '/examples/' + req.params.service + '.js';
+
     let options = {
-        root: __dirname + '/examples/',
         dotfiles: 'deny',
         headers: {
             'Content-Type': 'text/plain',
         }
     };
 
-    res.sendFile(`${req.params.service}.js`, options);
+    fs.access(file, fs.F_OK, (err) => {
+        if (err) {
+            res.end('Sorry, no sample code is available.')
+        }
+        res.sendFile(file, options);
+    });
 });
 
 router.get('/:service/output', async (req, res) => {
