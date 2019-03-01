@@ -95,8 +95,6 @@ def create_list():
               <body>
               <h1>Service examples for Python</h1>
             '''
-# Taken out after <title>Platform.sh
-#             <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 
     body = ''
     services = [service for service in dir(examples) if '_' not in service]
@@ -117,10 +115,6 @@ def create_list():
                 {2}
                 </section>
                 </details>'''.format(name, source, output)
-
-
-# Take out after source
-#         < pre class ="prettyprint" > < code class ="language-py" > {1} < / code > < / pre >
 
         body += first
 
