@@ -100,10 +100,10 @@ def create_list():
     services = [service for service in dir(examples) if '_' not in service]
     for service in services:
         name = names[service]
-        # source = html.escape(file_get_contents(service))
+        source = html.escape(file_get_contents(service))
         # output = getattr(getattr(examples, service), 'usage_example')()
 
-        source = ''
+        # source = ''
         output = ''
 
         first = '''
