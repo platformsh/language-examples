@@ -103,8 +103,8 @@ def create_list():
         # source = html.escape(file_get_contents(service))
         # output = getattr(getattr(examples, service), 'usage_example')()
 
-        source = []
-        output = []
+        source = ''
+        output = ''
 
         first = '''
                 <details>
