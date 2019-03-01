@@ -52,8 +52,7 @@ def usage_example():
             }
         })
 
-        table = '''
-        <table>
+        table = '''<table>
         <thead>
         <tr><th>ID</th><th>Name</th></tr>
         </thead>
