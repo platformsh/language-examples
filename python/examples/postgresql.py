@@ -3,7 +3,6 @@ from pshconfig import Config
 
 
 def usage_example():
-
     # Create a new Config object to ease reading the Platform.sh environment variables.
     # You can alternatively use os.environ yourself.
     config = Config()

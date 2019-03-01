@@ -102,9 +102,7 @@ def create_list():
         if service is not 'influxdb':
             name = names[service]
             source = html.escape(file_get_contents(service))
-            # output = getattr(getattr(examples, service), 'usage_example')()
-
-            output = ''
+            output = getattr(getattr(examples, service), 'usage_example')()
 
             first = '''
                     <details>
