@@ -15,6 +15,7 @@ def usage_example():
     try:
         # Connect to the database using PDO. If using some other abstraction layer you would inject the values
         # from `database` into whatever your abstraction layer asks for.
+
         conn = pymysql.connect(host=credentials['host'],
                                port=credentials['port'],
                                database=credentials['path'],
