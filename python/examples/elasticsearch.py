@@ -72,8 +72,8 @@ def usage_example():
         }
 
         # NEED TO INCLUDE DELETE LOOP - this doesn't look right.
-        # for name in names:
-        #     client.delete(index=params['index'], doc_type=params['type'], id=indices[name])
+        for name in names:
+            client.delete(index=params['index'], doc_type=params['type'], id=indices[name]['_id'])
         #     client.delete(index=params['index'], doc_type=params['type'], body=params['body'])
 
         # r = db.index(index="reestr", doc_type="some_type", body=doc)
@@ -81,8 +81,8 @@ def usage_example():
         #
         # db.delete(index="reestr", doc_type="some_type", id=r['_id'])
 
-        # return table
-        return str(indices['Ada Lovelace'])
+        return table
+        # return str(indices['Ada Lovelace'])
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]
