@@ -53,11 +53,11 @@ def usage_example():
         })
 
         table = '''
-                <table>
-                <thead>
-                <tr><th>ID</th><th>Name</th></tr>
-                </thead>
-                <tbody>
+        <table>
+        <thead>
+        <tr><th>ID</th><th>Name</th></tr>
+        </thead>
+        <tbody>
                 '''
 
         if result['hits']['hits']:
