@@ -13,7 +13,3 @@ Each example provides a starter kit for connecting to these services and working
 * 3.5
 * 3.6
 * 3.7
-
-## Using as a reference
-
-You can also use this repository as a reference for your own projects, and borrow whatever code is needed. The most important parts are the `.platform.app.yaml` file and the `.platform` directory.
