@@ -32,7 +32,7 @@ function escapeHtml(s) {
 async function runData(key) {
     let value = undefined;
     try{
-        const method = data[key].run;
+        const method = data[key].usageExample;
         value = await method();
     } catch (err) {
         console.error(err);

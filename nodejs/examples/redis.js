@@ -2,7 +2,7 @@ const redis = require('redis');
 const config = require("platformsh-config").config();
 const { promisify } = require('util');
 
-exports.run = async function() {
+exports.usageExample = async function() {
 
     const credentials = config.credentials('redis');
 

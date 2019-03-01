@@ -1,7 +1,7 @@
 const solr = require('solr-node');
 const config = require("platformsh-config").config();
 
-exports.run = async function() {
+exports.usageExample = async function() {
 
     let client = new solr(config.formattedCredentials('solr', 'solr-node'));
 

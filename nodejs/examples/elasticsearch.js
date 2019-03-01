@@ -1,7 +1,7 @@
 const elasticsearch = require('elasticsearch');
 const config = require("platformsh-config").config();
 
-exports.run = async function() {
+exports.usageExample = async function() {
 
     const credentials = config.credentials('elasticsearch');
 
