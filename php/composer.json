@@ -1,11 +1,11 @@
 {
-    "name": "platformsh/starter",
-    "description": "A basic starter kit for any PHP application.",
+    "name": "platformsh/example",
+    "description": "Basic examples of running PHP on Platform.sh.",
     "license": "MIT",
     "type" : "project",
     "require": {
         "php": ">7.2",
-        "platformsh/config-reader": "dev-revisions",
+        "platformsh/config-reader": "^2.0",
         "solarium/solarium": "^4.2",
         "monolog/monolog": "^1.24",
         "elasticsearch/elasticsearch": "^6.0",
