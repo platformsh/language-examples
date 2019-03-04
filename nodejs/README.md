@@ -1,19 +1,11 @@
-# Node.js template for Platform.sh
+# Node.js examples for Platform.sh
 
-This project provides a starter kit for Node.js projects hosted on Platform.sh. It is primarily an example, although could be used as the starting point for a real project.
+This project is a showcase for working with services supported by Platform.sh. Each example connects to a different service using the Platform.sh Node.js configuration library, [`platformsh-config`](https://github.com/platformsh/config-reader-nodejs).  It is compatible with Node.js version 10 and later.
 
-## Starting a new project
+You can install the configuration library using:
 
-To start a new project based on this template, follow these 3 simple steps:
+```bash
+npm install platformsh-config
+```
 
-1. Clone this repository locally.  You may optionally remove the `origin` remote or remove the `.git` directory and re-init the project if you want a clean history.
- 
-2. Create a new project through the Platform.sh user interface and select "Import an existing project" when prompted.
-
-3. Run the provided Git commands to add a Platform.sh remote and push the code to the Platform.sh repository.
-
-That's it!  You now have a working "hello world" level project you can build on.
-
-## Using as a reference
-
-You can also use this repository as a reference for your own projects, and borrow whatever code is needed. The most important parts are the `.platform.app.yaml` file and the `.platform` directory.
+Each example provides a starter kit for connecting to these services and working with the configuration library, which can be expanded to larger projects. You can find additional information about using [Node.js on Platform.sh](https://docs.platform.sh/languages/nodejs.html) and the individual [Services](https://docs.platform.sh/configuration/services.html) in our [Public Documentation](https://docs.platform.sh/).

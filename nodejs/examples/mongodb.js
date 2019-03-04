@@ -1,17 +1,11 @@
-const config = require("platformsh").config();
+const mongodb = require('mongodb');
+const config = require("platformsh-config").config();
 
-exports.relationship = () => {
-    const credentials = config.relationships.mongodb[0];
+exports.usageExample = async function() {
+    const credentials = config.credentials('mongodb');
+    const MongoClient = mongodb.MongoClient;
 
-    return JSON.stringify(credentials, null, 2);
-};
-
-exports.run = async function() {
-    const credentials = config.relationships.mongodb[0];
-    const MongoClient = require('mongodb').MongoClient;
-    const connectionString = `mongodb://${credentials["username"]}:${credentials["password"]}@${credentials["host"]}:${credentials["port"]}/${credentials["path"]}`;
-
-    var client = await MongoClient.connect(connectionString);
+    var client = await MongoClient.connect(config.formattedCredentials('mongodb', 'mongodb'));
 
     let db = client.db(credentials["path"]);
 

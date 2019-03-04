@@ -1,92 +1,43 @@
-const http = require('http');
-const config = require("platformsh").config();
-const fs = require('fs');
+const express = require('express');
+const parseUrl = require('parse_url');
+const platformsh = require('platformsh-config');
 
-var data = {};
+let config = platformsh.config();
 
-// @todo Do this for all services.
-data.MongoDB = require('./examples/MongoDB.js');
-data.MongoDB.source = fs.readFileSync('./examples/MongoDB.js');
+if (process.env.NODE_ENV === 'test') {
 
-// Call all of the run() methods of all services, and store their output once.
-const runData = async function(key) {
-  let value = undefined;
-  try{
-    const method = data[key].run;
-    value = await method();
-  } catch (err) {
-    console.error(err);
-  }
-  if (value) {
-    data[key].output = value;
-  }
-};
-// array of Promise<void>
-const promises = Object.keys(data).map(runData);
-
-var server = http.createServer(async function (request, response) {
-  try {
-    await Promise.all(promises);
-  }
-  catch (error) {
-    console.error(error);
-  }
-
-  response.writeHead(200, {"Content-Type": "text/html"});
-
-  response.write(`<html>
-<head>
-    <title>Platform.sh Node.js service examples</title>
-    <style type="text/css">
-        details {
-            margin-top: 1em;
-            border: 1px solid #aaa;
-            border-radius: 4px;
-            padding: 0.5em;
-            wdith: 90%;
+    config = {
+        applicationName: 'test',
+        port: 8080,
+        getRoute: (id) => {
+            return {url: 'http://localhost/nodejs'}
         }
+    };
+}
+else {
+}
 
-        summary {
-            font-weight: bold;
-            margin: -.5em -.5em 0;
-            padding: .5em;
-        }
+var app = express();
 
-        details[open] {
-            padding: .5em;
-        }
+// Set up a base path for routes based on the Route definition.
+const platformRoute = config.getRoute('nodejs');
+const basePath = '/' + (parseUrl(platformRoute['url'])[5] || '');
+app.use(basePath, require('./routes'));
 
-        details[open] summary {
-            border-bottom: 1px solid #aaa;
-            margin-bottom: .5em;
-        }
+app.use(function(req, res, next){
+    res.status(404);
 
-        table, table td, table th {
-            border: 1px solid black;
-        }
-    </style>
-</head>
-<body>
-<h1>Service examples for Node.js</h1>
-`);
+    // Respond with JSON.
+    if (req.accepts('json')) {
+        res.send({ error: 'Sorry, no sample code is available.' });
+        return;
+    }
 
-  Object.keys(data).forEach ((key) => {
-     let name = key;
-    response.write(`<details>
-      <summary>${name} Sample Code</summary>
-      <section>
-      <h3>Source</h3>
-      <pre>${data[key].source}</pre>
-      </section>
-      <section>
-      <h3>Output</h3>
-      ${data[key].output}
-      </section>
-      </details>
-      `);
-  });
-
-  response.end(`</body></html>`);
+    // Default to plain-text.
+    res.type('txt').send('Sorry, no sample code is available.');
 });
 
-server.listen(config.port);
+// Start the server.
+app.listen(config.port, function() {
+    console.log(`Listening on port ${config.port}`)
+});

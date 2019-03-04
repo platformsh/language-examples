@@ -1,10 +1,6 @@
 name: nodejs
 type: nodejs:10
 
-dependencies:
-  nodejs:
-    pm2: "^2.5.0"
-
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
@@ -22,7 +18,7 @@ relationships:
 
 web:
   commands:
-    start: "PM2_HOME=$PLATFORM_APP_DIR/run pm2 start index.js --no-daemon"
+    start: "nodejs index.js"
     #in this setup you will find your application stdout and stderr in /app/run/logs
   locations:
     "/public":
@@ -40,8 +36,3 @@ mounts:
   "/run": "shared:files/run"
 
 disk: 512
-
-hooks:
-    build: |
-        set -e
-        npm install
