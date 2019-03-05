@@ -49,7 +49,7 @@ Deleting one document. Status (00 is success): {0}
 
         tree = ElementTree.fromstring(str(result0))
 
-        return str(tree)
+        return dir(tree)
 
     except Exception as e:
         return e
