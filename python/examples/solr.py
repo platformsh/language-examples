@@ -55,7 +55,7 @@ def usage_example():
 
         # return type(result0), str(result0), type(query.hits), str(query.hits), type(result1), str(result1)
         # return '{0}, {1}, {2}'.format(result0.getStatus(), str(query.hits), result1.getStatus())
-        return dir(tree)
+        return dir(tree), result0
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]
