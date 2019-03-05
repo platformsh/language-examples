@@ -33,14 +33,14 @@ def usage_example():
 
         # Select one document
         query = client.search('*:*')
-        message += '\nSelecting documents (1 expected): {0}'.format(query.hits)
+        message += '\nSelecting documents (1 expected): {0}'.format(str(query.hits))
 
         # Delete one document
         result1 = client.delete(doc_1['id'])
         client.commit()
         message += '\nDeleting one document. Status (00 is success): {0}'.format(result1)
 
-        return '{0}, {1}, {2}'.format(type(result0), type(result1), type(query.hits))
+        return '{0}, {1}, {2}'.format(result0, result1, str(query.hits))
 
     except Exception as e:
         return e
