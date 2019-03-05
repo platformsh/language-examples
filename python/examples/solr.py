@@ -32,7 +32,7 @@ def usage_example():
 
         result0 = client.add([doc_1])
         client.commit()
-        message += 'Adding one document. Status (01 is success): {0}'.format(et.fromstring(result0)[0][0].text)
+        message += 'Adding one document. Status (0 is success): {0}'.format(et.fromstring(result0)[0][0].text)
 
         # Select one document
         query = client.search('*:*')
@@ -41,20 +41,8 @@ def usage_example():
         # Delete one document
         result1 = client.delete(doc_1['id'])
         client.commit()
-        message += '\nDeleting one document. Status (00 is success): {0}'.format(et.fromstring(result1)[0][0].text)
+        message += '\nDeleting one document. Status (0 is success): {0}'.format(et.fromstring(result1)[0][0].text)
 
-#         message = '''
-# Adding one document. Status (01 is success): {0}
-# Selecting documents (1 expected): {0}
-# Deleting one document. Status (00 is success): {0}
-#         '''.format(result0.getStatus(), str(query.hits), str(result1))
-#
-#         tree = ElementTree.fromstring(result0)
-        # response = tree.find("response")
-        # status = response.find("status")
-
-        # return type(result0), str(result0), type(query.hits), str(query.hits), type(result1), str(result1)
-        # return '{0}, {1}, {2}'.format(result0.getStatus(), str(query.hits), result1.getStatus())
         return message
 
     except Exception as e:
