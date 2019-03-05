@@ -22,15 +22,6 @@ def usage_example():
             formatted
         )
 
-        # server  = '{0}://{1}:{2}@{3}:{4}/{5}'.format(
-        #     credentials['scheme'],
-        #     credentials['username'],
-        #     credentials['password'],
-        #     credentials['host'],
-        #     credentials['port'],
-        #     credentials['path']
-        # )
-
         client = MongoClient(server)
 
         collection = client.main.starwars
