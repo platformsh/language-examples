@@ -2,6 +2,8 @@
 import pysolr
 from xml.etree import ElementTree
 from pshconfig import Config
+import traceback
+import sys
 
 
 def usage_example():
@@ -49,9 +51,9 @@ Deleting one document. Status (00 is success): {0}
 
         tree = ElementTree.fromstring(str(result0))
         response = tree.find("response")
-        status = response.find("status")
+        # status = response.find("status")
 
-        return str(status)
+        return str(response)
 
     except Exception as e:
-        return e
+        return traceback.format_exc(), sys.exc_info()[0]
