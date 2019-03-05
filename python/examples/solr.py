@@ -1,6 +1,6 @@
 
 import pysolr
-from xml.sax.saxutils import escape
+from xml.etree import ElementTree
 from pshconfig import Config
 
 
@@ -47,7 +47,9 @@ Selecting documents (1 expected): {0}
 Deleting one document. Status (00 is success): {0}
         '''.format(str(result0), str(query.hits), str(result1))
 
-        return message
+        tree = ElementTree.fromstring(str(result0))
+
+        return str(tree)
 
     except Exception as e:
         return e
