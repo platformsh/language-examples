@@ -14,7 +14,7 @@ def usage_example():
     credentials = config.credentials('solr')
 
     try:
-        message = ''
+        # message = ''
         url = "http://{0}:{1}/{2}".format(credentials['ip'],
                                           credentials['port'],
                                           credentials['path'])
@@ -30,16 +30,22 @@ def usage_example():
 
         result0 = client.add([doc_1])
         client.commit()
-        message += 'Adding one document. Status (01 is success): {0}'.format(str(result0))
+        # message += 'Adding one document. Status (01 is success): {0}'.format(str(result0))
 
         # Select one document
         query = client.search('*:*')
-        message += '\nSelecting documents (1 expected): {0}'.format(str(query.hits))
+        # message += '\nSelecting documents (1 expected): {0}'.format(str(query.hits))
 
         # Delete one document
         result1 = client.delete(doc_1['id'])
         client.commit()
-        message += '\nDeleting one document. Status (00 is success): {0}'.format(str(result1))
+        # message += '\nDeleting one document. Status (00 is success): {0}'.format(str(result1))
+
+        message = '''
+Adding one document. Status (01 is success): {0}
+Selecting documents (1 expected): {0}
+Deleting one document. Status (00 is success): {0}
+        '''.format(str(result0), str(query.hits), str(result1))
 
         return message
 
