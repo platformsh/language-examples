@@ -36,12 +36,12 @@ def usage_example():
 
         # Select one document
         query = client.search('*:*')
-        message += '\nSelecting documents (1 expected): {0}\n'.format(query.hits)
+        message += 'Selecting documents (1 expected): {0}'.format(query.hits)
 
         # Delete one document
         result1 = client.delete(doc_1['id'])
         client.commit()
-        message += '\nDeleting one document. Status (00 is success): {0}\n'.format(str(result1))
+        message += 'Deleting one document. Status (00 is success): {0}'.format(str(result1))
 
         return message
 
