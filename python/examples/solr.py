@@ -14,15 +14,24 @@ def usage_example():
     credentials = config.credentials('solr')
 
     try:
-        message = ''
-        url = "http://{0}:{1}/{2}".format(credentials['ip'],
-                                          credentials['port'],
-                                          credentials['path'])
+        formatted_url = config.formatted_credentials('solr', 'pysolr')
+
+        # server = '{0}://{1}:{2}@{3}'.format(
+        #     credentials['scheme'],
+        #     credentials['username'],
+        #     credentials['password'],
+        #     formatted
+        # )
+        #
+        # url = "http://{0}:{1}/{2}".format(credentials['ip'],
+        #                                   credentials['port'],
+        #                                   credentials['path'])
 
         # Create a new Solr Client using config variables
-        client = pysolr.Solr(url)
+        client = pysolr.Solr(formatted_url)
 
         # Add a document
+        message = ''
         doc_1 = {
             "id": 123,
             "name": "Valentina Tereshkova"

@@ -13,14 +13,23 @@ def usage_example():
     credentials = config.credentials('mongodb')
 
     try:
-        server  = '{0}://{1}:{2}@{3}:{4}/{5}'.format(
+        formatted = config.formatted_credentials('mongodb', 'pymongo')
+
+        server = '{0}://{1}:{2}@{3}'.format(
             credentials['scheme'],
             credentials['username'],
             credentials['password'],
-            credentials['host'],
-            credentials['port'],
-            credentials['path']
+            formatted
         )
+
+        # server  = '{0}://{1}:{2}@{3}:{4}/{5}'.format(
+        #     credentials['scheme'],
+        #     credentials['username'],
+        #     credentials['password'],
+        #     credentials['host'],
+        #     credentials['port'],
+        #     credentials['path']
+        # )
 
         client = MongoClient(server)
 
