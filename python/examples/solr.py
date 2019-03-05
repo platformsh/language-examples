@@ -48,8 +48,10 @@ Deleting one document. Status (00 is success): {0}
         '''.format(str(result0), str(query.hits), str(result1))
 
         tree = ElementTree.fromstring(str(result0))
+        response = tree.find("response")
+        status = response.find("status")
 
-        return dir(tree)
+        return str(status)
 
     except Exception as e:
         return e
