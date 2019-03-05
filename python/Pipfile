@@ -4,7 +4,7 @@ name = "pypi"
 verify_ssl = true
 
 [packages]
-pshconfig = {editable = true,git = "https://github.com/platformsh/platformsh-config-reader-python3.git"}
+platformshconfig = {editable = true,git = "https://github.com/platformsh/config-reader-python3.git"}
 redis = "*"
 pymysql = "*"
 flask = "*"

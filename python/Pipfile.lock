@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0d3b4cf5adfe5c050556f166596c1efae2eae4995f0614e32977a02187b19d1d"
+            "sha256": "2a40628be5e16207b1b1703d771e3fec58d2c4d544ff4053cded3fc56c53f552"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -186,10 +186,10 @@
             "index": "pypi",
             "version": "==0.13.0"
         },
-        "pshconfig": {
+        "platformshconfig": {
             "editable": true,
-            "git": "https://github.com/platformsh/platformsh-config-reader-python3.git",
-            "ref": "552f54f308f6b223200f5ea9840fc2b5d5b95afb"
+            "git": "https://github.com/platformsh/config-reader-python3.git",
+            "ref": "e6cbfc52c1200e5f190b27cf44fefebcd0654a51"
         },
         "psycopg2": {
             "hashes": [

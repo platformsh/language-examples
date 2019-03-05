@@ -5,7 +5,7 @@ from influxdb import InfluxDBClient
 import os
 import base64
 import requests
-from pshconfig import Config
+from platformshconfig import Config
 import traceback, sys
 
 

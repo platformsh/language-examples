@@ -1,7 +1,5 @@
 import elasticsearch
-from pshconfig import Config
-import traceback, sys
-
+from platformshconfig import Config
 
 def usage_example():
 

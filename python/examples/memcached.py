@@ -1,6 +1,6 @@
 
 import pymemcache
-from pshconfig import Config
+from platformshconfig import Config
 
 
 def usage_example():

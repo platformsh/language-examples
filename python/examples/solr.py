@@ -1,7 +1,7 @@
 
 import pysolr
 from xml.etree import ElementTree as et
-from pshconfig import Config
+from platformshconfig import Config
 
 
 def usage_example():
