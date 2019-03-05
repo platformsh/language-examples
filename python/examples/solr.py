@@ -30,7 +30,7 @@ def usage_example():
 
         result0 = client.add([doc_1])
         client.commit()
-        message += 'Adding one document. Status (01 is success): {0}'.format(result0)
+        message += 'Adding one document. Status (01 is success): {0}'.format(str(result0))
 
         # Select one document
         query = client.search('*:*')
@@ -39,9 +39,9 @@ def usage_example():
         # Delete one document
         result1 = client.delete(doc_1['id'])
         client.commit()
-        message += '\nDeleting one document. Status (00 is success): {0}'.format(result1)
+        message += '\nDeleting one document. Status (00 is success): {0}'.format(str(result1))
 
-        return '{0}, {1}, {2}'.format(str(result0), str(result1), str(query.hits))
+        return message
 
     except Exception as e:
         return e
