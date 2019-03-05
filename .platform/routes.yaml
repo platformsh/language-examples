@@ -21,3 +21,8 @@
     id: nodejs
     type: upstream
     upstream: "nodejs:http"
+
+"https://{default}/python":
+    id: python
+    type: upstream
+    upstream: "python:http"

@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+name = "pypi"
+verify_ssl = true
+
+[packages]
+platformshconfig = '*'
+redis = "*"
+pymysql = "*"
+flask = "*"
+gevent = "*"
+elasticsearch = "*"
+pymongo = "*"
+influxdb = "*"
+pymemcache = "*"
+pysolr = "*"
+pika = "*"
+psycopg2 ='*'
+solrpy = '*'
+examples = {path = "."}
+
+[requires]
+python_version = "3.7"
+
+[dev-packages]
