@@ -30,16 +30,16 @@ def usage_example():
 
         result0 = client.add([doc_1])
         client.commit()
-        message += 'Adding one document. Status (0 is success): {0}'.format(et.fromstring(result0)[0][0].text)
+        message += 'Adding one document. Status (0 is success): {0} <br />'.format(et.fromstring(result0)[0][0].text)
 
         # Select one document
         query = client.search('*:*')
-        message += '\nSelecting documents (1 expected): {0}'.format(str(query.hits))
+        message += 'Selecting documents (1 expected): {0} <br />'.format(str(query.hits))
 
         # Delete one document
         result1 = client.delete(doc_1['id'])
         client.commit()
-        message += '\nDeleting one document. Status (0 is success): {0}'.format(et.fromstring(result1)[0][0].text)
+        message += 'Deleting one document. Status (0 is success): {0}'.format(et.fromstring(result1)[0][0].text)
 
         return message
 
