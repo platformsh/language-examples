@@ -2,8 +2,6 @@
 import pysolr
 from xml.etree import ElementTree as et
 from pshconfig import Config
-import traceback
-import sys
 
 
 def usage_example():
@@ -46,4 +44,4 @@ def usage_example():
         return message
 
     except Exception as e:
-        return traceback.format_exc(), sys.exc_info()[0]
+        return e
