@@ -1,9 +1,6 @@
 
 import pysolr
-import solr
-import urllib
 from pshconfig import Config
-import traceback, sys
 
 
 def usage_example():
@@ -32,7 +29,7 @@ def usage_example():
 
         result0 = client.add([doc_1])
         client.commit()
-        message += 'Adding one document. Status (01 is success): {0}'.format(str(result0))
+        message += 'Adding one document. Status (01 is success): {0}'.format(result0.decode("utf-8"))
 
         # Select one document
         query = client.search('*:*')
@@ -46,4 +43,4 @@ def usage_example():
         return message
 
     except Exception as e:
-        return traceback.format_exc(), sys.exc_info()[0]
+        return e
