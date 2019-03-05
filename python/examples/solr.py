@@ -43,11 +43,11 @@ def usage_example():
         client.commit()
         # message += '\nDeleting one document. Status (00 is success): {0}'.format(str(result1))
 
-        message = '''
-Adding one document. Status (01 is success): {0}
-Selecting documents (1 expected): {0}
-Deleting one document. Status (00 is success): {0}
-        '''.format(result0.getStatus(), str(query.hits), str(result1))
+#         message = '''
+# Adding one document. Status (01 is success): {0}
+# Selecting documents (1 expected): {0}
+# Deleting one document. Status (00 is success): {0}
+#         '''.format(result0.getStatus(), str(query.hits), str(result1))
 
         tree = ElementTree.fromstring(result0)
         # response = tree.find("response")
