@@ -53,7 +53,7 @@ Deleting one document. Status (00 is success): {0}
         response = tree.find("response")
         # status = response.find("status")
 
-        return type(result0), result0, type(query.hits), query.hits, type(result1), result1
+        return type(result0), str(result0), type(query.hits), str(query.hits), type(result1), str(result1)
 
     except Exception as e:
         return traceback.format_exc(), sys.exc_info()[0]
