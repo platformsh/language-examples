@@ -40,7 +40,7 @@ def usage_example():
         client.commit()
         message += '\nDeleting one document. Status (00 is success): {0}'.format(result1)
 
-        return message
+        return '{0}, {1}, {2}'.format(type(result0), type(result1), type(query.hits))
 
     except Exception as e:
         return e
