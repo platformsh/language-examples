@@ -53,6 +53,7 @@ def create_list():
     names = {
         "elasticsearch": "Elasticsearch",
         "influxdb": "InfluxDB",
+        "kafka": "Kafka",
         "memcached": "Memcached",
         "mongodb": "MongoDB",
         "mysql": "MySQL",
@@ -97,7 +98,7 @@ def create_list():
             '''
 
     body = ''
-    services = [service for service in dir(examples) if '_' not in service]
+    services = [service for service in dir(examples) if service in names.keys()]
     for service in services:
         if service is not 'influxdb':
             name = names[service]
