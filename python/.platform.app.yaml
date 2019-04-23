@@ -36,6 +36,7 @@ relationships:
     rabbitmq: 'rabbitmq:rabbitmq'
     influxdb: 'influxdb:influxdb'
     memcached: 'memcached:memcached'
+    kafka: 'kafka:kafka'
 
 # The configuration of app when it is exposed to the web.
 web:
