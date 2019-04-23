@@ -19,6 +19,8 @@ psycopg2 ='*'
 solrpy = '*'
 examples = {path = "."}
 kafka-python = "*"
+upgrade = "*"
+setuptools = "*"
 
 [requires]
 python_version = "3.7"
