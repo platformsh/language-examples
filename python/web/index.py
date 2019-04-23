@@ -52,7 +52,7 @@ def add_example_output_route(example):
 def create_list():
     names = {
         "elasticsearch": "Elasticsearch",
-        "influxdb": "InfluxDB",
+        # "influxdb": "InfluxDB",
         "kafka": "Kafka",
         "memcached": "Memcached",
         "mongodb": "MongoDB",
@@ -100,12 +100,11 @@ def create_list():
     body = ''
     services = [service for service in dir(examples) if service in names.keys()]
     for service in services:
-        if service is not 'influxdb':
-            name = names[service]
-            source = html.escape(file_get_contents(service))
-            output = getattr(getattr(examples, service), 'usage_example')()
+        name = names[service]
+        source = html.escape(file_get_contents(service))
+        output = getattr(getattr(examples, service), 'usage_example')()
 
-            first = '''
+        body += '''
                     <details>
                     <summary>{0} Sample Code</summary>
                     <section>
@@ -117,8 +116,6 @@ def create_list():
                     {2}
                     </section>
                     </details>'''.format(name, source, output)
-
-            body += first
 
     footer = '''
             <body>
