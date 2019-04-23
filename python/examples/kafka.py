@@ -35,9 +35,12 @@ def usage_example():
             value_deserializer=lambda x: loads(x.decode('utf-8')))
 
         output = ''
-        for message in consumer:
-            print(dir(message))
-            #output += message.value.number
+        message = consumer.next()
+        print(dir(message))
+
+        # for message in consumer:
+        #     print(dir(message))
+        #     #output += message.value.number
 
         return output
 
