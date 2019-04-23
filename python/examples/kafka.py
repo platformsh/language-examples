@@ -36,8 +36,8 @@ def usage_example():
 
         output = ''
         for message in consumer:
-            print(message)
-            output += message.value.number
+            output += "{}\n".format(message)
+            #output += message.value.number
 
         return output
 
