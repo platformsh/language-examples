@@ -36,7 +36,7 @@ def usage_example():
 
         output = ''
         for message in consumer:
-            output += dir(message)
+            print(dir(message))
             #output += message.value.number
 
         return output
