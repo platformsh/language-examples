@@ -98,7 +98,7 @@ def create_list():
             '''
 
     body = ''
-    services = [service for service in dir(examples) if '_' not in service]
+    services = [service for service in dir(examples) if service in names.keys()]
     for service in services:
         name = names[service]
         source = html.escape(file_get_contents(service))
