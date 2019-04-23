@@ -10,7 +10,8 @@ influxdb:
     size: S
 kafka:
     type: kafka:2.1
-    disk: 256
+    disk: 512
+    size: S
 memcached:
     type: memcached:1.4
     size: S
