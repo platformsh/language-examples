@@ -1,8 +1,7 @@
 
 from json import dumps
 from json import loads
-from kafka import KafkaConsumer
-from kafka import KafkaProducer
+from kafka import KafkaConsumer, KafkaProducer
 from platformshconfig import Config
 
 
