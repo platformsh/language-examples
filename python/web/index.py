@@ -53,6 +53,7 @@ def create_list():
     names = {
         "elasticsearch": "Elasticsearch",
         "influxdb": "InfluxDB",
+        "kafka": "Kafka",
         "memcached": "Memcached",
         "mongodb": "MongoDB",
         "mysql": "MySQL",
