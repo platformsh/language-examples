@@ -29,10 +29,11 @@ def usage_example():
         consumer.subscribe(['numtest'])
         
         output = ''
-        # message = next(consumer)
+        message = next(consumer)
+        output += loads(message.value.decode('UTF-8'))["number"]
 
-        for message in consumer:
-            output += loads(message.value.decode('UTF-8'))["number"]
+        # for message in consumer:
+        #     output += loads(message.value.decode('UTF-8'))["number"]
 
         return output
     
