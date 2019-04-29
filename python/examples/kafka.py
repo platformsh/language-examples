@@ -15,16 +15,19 @@ def usage_example():
         kafka_server = '{}:{}'.format(credentials['host'], credentials['port'])
         
         # Producer
-        producer = KafkaProducer(bootstrap_servers=[kafka_server],
-        value_serializer=lambda x: dumps(x).encode('utf-8'))
+        producer = KafkaProducer(
+            bootstrap_servers=[kafka_server],
+            value_serializer=lambda x: dumps(x).encode('utf-8')
+        )
         for e in range(10):
             data = {'number' : e}
             producer.send('numtest', value=data)
         
         # Consumer
         consumer = KafkaConsumer(
-        bootstrap_servers=[kafka_server], 
-        auto_offset_reset='earliest')
+            bootstrap_servers=[kafka_server],
+            auto_offset_reset='earliest'
+        )
         
         consumer.subscribe(['numtest'])
         
