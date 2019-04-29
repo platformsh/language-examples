@@ -14,15 +14,16 @@ hooks:
         curl -sS https://platform.sh/cli/installer | php
 
 relationships:
+    elasticsearch: 'elasticsearch:elasticsearch'
+    influxdb: 'influxdb:influxdb'
+    kafka: 'kafka:kafka'
+    memcached: 'memcached:memcached'
+    mongodb: 'mongodb:mongodb'
     mysql: 'mysql:mysql'
     postgresql: 'postgresql:postgresql'
-    solr: 'solr:solr'
-    redis: 'redis:redis'
-    elasticsearch: 'elasticsearch:elasticsearch'
-    mongodb: 'mongodb:mongodb'
     rabbitmq: 'rabbitmq:rabbitmq'
-    influxdb: 'influxdb:influxdb'
-    memcached: 'memcached:memcached'
+    redis: 'redis:redis'
+    solr: 'solr:solr'
 
 # The size of the persistent disk of the application (in MB).
 disk: 128
