@@ -20,17 +20,16 @@ exports.usageExample = async function() {
 
         // Enqueue a few items.
         [...Array(5).keys()].forEach((i) => {
-            var message = Buffer.from(JSON.stringify({
+            console.log('Enqueuing item: ' + i);
+            let message = Buffer.from(JSON.stringify({
                 'number': i
             }));
-            stream.write(message);
+            let success = stream.write(message);
+            console.log('Write response: ' + success);
         });
     })();
 
-    var output = '';
-
-    // Set up the Consumer.
-    await (() => {
+    let output = new Promise((resolve, reject) => {
         const consumer = new Kafka.KafkaConsumer({
             'group.id': 'kafka',
             'metadata.broker.list': `${credentials.host}:${credentials.port}`
@@ -38,23 +37,55 @@ exports.usageExample = async function() {
 
         consumer.connect();
 
+        console.log('Consumer connected');
+
+        let timer;
+
         consumer.on('ready', function() {
-            consumer.subscribe(['node-tes']);
-            consumer.consume();
+            console.log('Ready fired');
+            consumer.subscribe(['node-test']);
+
+            // Read one message every 500 milliseconds
+            /*
+            timer = setInterval(function() {
+                consumer.consume(1);
+            }, 500);
+            */
+
+            consumer.consume(1, (err, message) => {
+                console.log('consume callback fired');
+                console.log(err);
+                console.log(message);
+            });
+
+
         });
 
+        consumer.on('subscribed', (data) => {
+            console.log('Subscribed fired');
+            console.log(data);
+        });
 
-        consumer.on('data', function(data) {
-            var message = JSON.parse(data.value.toString());
-            output += number + ", ";
+        console.log('ready listener added');
+
+        let output = '';
+
+        consumer.on('data', (data) => {
+            console.log('Data fired');
+            console.log(data.value.toString());
+            let message = JSON.parse(data.value.toString());
+            output += message.number + ", ";
             // A production consumer would not self-terminate like this,
             // but it's just for demonstration purposes.
-            if (number >= 5) {
+            if (message.number >= 5) {
                 consumer.disconnect();
+                clearInterval(timer);
+                resolve(output);
             }
         });
-    })();
 
+        console.log('data listener added');
+    });
 
     return output;
 };
