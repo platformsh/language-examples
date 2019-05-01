@@ -7,6 +7,9 @@ exports.usageExample = async function() {
 
     const credentials = config.credentials('kafka');
 
+    console.log("Credentials are:");
+    console.log(credentials);
+
     const kafka = new Kafka({
         clientId: 'my-app',
         brokers: [`${credentials.host}:${credentials.port}`]
