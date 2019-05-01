@@ -5,16 +5,18 @@ const config = require("platformsh-config").config();
 
 exports.usageExample = async function() {
 
+    const credentials = config.credentials('kafka');
+
     const kafka = new Kafka({
         clientId: 'my-app',
-        brokers: [`${config.host}:${config.port}`]
+        brokers: [`${credentials.host}:${credentials.port}`]
     });
 
     // Set up the Producer.
     const producer = kafka.producer();
     await producer.connect();
     await producer.send({
-        topic: 'test-topic',
+        topic: 'kafka-node',
         messages: [
             { value: 'Hello KafkaJS user!' },
         ],
@@ -23,7 +25,7 @@ exports.usageExample = async function() {
     // Set up the Consumer.
     const consumer = kafka.consumer({ groupId: 'test-group' });
     await consumer.connect();
-    await consumer.subscribe({ topic: 'test-topic', fromBeginning: true });
+    await consumer.subscribe({ topic: 'kafka-node', fromBeginning: true });
 
     await consumer.run({
         eachMessage: async ({ topic, partition, message }) => {
