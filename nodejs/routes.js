@@ -8,6 +8,7 @@ let services = {
     elasticsearch: 'Elasticsearch',
     // influxdb: 'InfluxDB',
     memcached: 'MemcacheD',
+    kafka: 'Kafka',
     mongodb: 'MongoDB',
     mysql: 'MySQL',
     postgresql: 'PostgreSQL',
