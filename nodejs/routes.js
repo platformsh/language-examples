@@ -13,6 +13,7 @@ let services = {
     postgresql: 'PostgreSQL',
     redis: 'Redis',
     solr: 'Solr',
+    oraclemysql: 'Oracle MySQL',
 };
 
 Object.keys(services).forEach((key) => {
