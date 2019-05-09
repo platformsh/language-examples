@@ -19,7 +19,7 @@ relationships:
     kafka: 'kafka:kafka'
     memcached: 'memcached:memcached'
     mongodb: 'mongodb:mongodb'
-    mysql: 'mysql:mysql'
+    database: 'mysql:mysql'
     postgresql: 'postgresql:postgresql'
     rabbitmq: 'rabbitmq:rabbitmq'
     redis: 'redis:redis'
