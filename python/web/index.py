@@ -61,6 +61,7 @@ def create_list():
         "rabbitmq": "RabbitMQ",
         "redis": "Redis",
         "solr": "Solr",
+        "oraclemysql": "Oracle MySQL"
     }
 
     header = '''

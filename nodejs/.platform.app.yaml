@@ -15,6 +15,7 @@ relationships:
   rabbitmq: 'rabbitmq:rabbitmq'
   influxdb: 'influxdb:influxdb'
   memcached: 'memcached:memcached'
+  mysql: 'oracledb:mysql'
 
 web:
   commands:

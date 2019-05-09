@@ -24,6 +24,7 @@ relationships:
     rabbitmq: 'rabbitmq:rabbitmq'
     redis: 'redis:redis'
     solr: 'solr:solr'
+    oracle-mysql: 'oracledb:mysql'
 
 # The size of the persistent disk of the application (in MB).
 disk: 128
