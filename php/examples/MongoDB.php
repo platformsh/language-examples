@@ -38,6 +38,7 @@ try {
         '_id' => $id,
     ]);
 
+    // Clean up after ourselves.
     $this->collection->drop();
 
     printf("Found %s (%s)<br />\n", $document->name, $document->occupation);

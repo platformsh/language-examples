@@ -37,6 +37,7 @@ def usage_example():
             {"_id": post_id}
         )
 
+        # Clean up after ourselves.
         collection.drop()
 
         return 'Found {0} ({1})<br />'.format(document['name'], document['occupation'])
