@@ -40,7 +40,6 @@ relationships:
     rabbitmq: 'rabbitmq:rabbitmq'
     influxdb: 'influxdb:influxdb'
     memcached: 'memcached:memcached'
-    mysql: 'oracledb:mysql'
 
 # The size of the persistent disk of the application (in MB).
 disk: 128

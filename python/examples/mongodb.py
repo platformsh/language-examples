@@ -38,7 +38,7 @@ def usage_example():
         )
 
         # Clean up after ourselves.
-        # collection.drop()
+        collection.drop()
 
         return 'Found {0} ({1})<br />'.format(document['name'], document['occupation'])
 

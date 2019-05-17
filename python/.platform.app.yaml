@@ -37,7 +37,6 @@ relationships:
     influxdb: 'influxdb:influxdb'
     memcached: 'memcached:memcached'
     kafka: 'kafka:kafka'
-    mysql: 'oracledb:mysql'
 
 # The configuration of app when it is exposed to the web.
 web:

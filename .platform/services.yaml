@@ -38,7 +38,4 @@ solr:
     type: solr:7.6
     disk: 256
     size: S
-oracledb:
-    type: oracle-mysql:5.7
-    disk: 256
-    size: S
+
