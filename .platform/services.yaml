@@ -18,7 +18,7 @@ memcached:
 mongodb:
     type: mongodb:3.6
     disk: 1024
-    size: S
+    size: M
 mysql:
     type: mysql:10.2
     disk: 256
