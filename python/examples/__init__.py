@@ -9,4 +9,4 @@ from . import postgresql
 from . import rabbitmq
 from . import redis
 from . import solr
-from . import oraclemysql
+# from . import oraclemysql
