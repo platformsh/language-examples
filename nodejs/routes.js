@@ -10,7 +10,7 @@ let services = {
     memcached: 'MemcacheD',
     mongodb: 'MongoDB',
     mysql: 'MySQL',
-    oraclemysql: 'Oracle MySQL',
+//    oraclemysql: 'Oracle MySQL',
     postgresql: 'PostgreSQL',
     redis: 'Redis',
     solr: 'Solr',
