@@ -42,13 +42,15 @@ declare(strict_types=1);
 
 <?php
 
-
 $files = glob("../examples/*.php");
 foreach ($files as $filename) {
     $name = pathinfo($filename)['filename'];
     $source = highlight_file($filename, true);
-    $output = capture_output(function() use ($filename) {
-        include $filename;
+    lock_exclusive($filename, function() use ($filename) {
+        $output = capture_output(function() use ($filename) {
+            include $filename;
+        });
+        return $output;
     });
 
     print <<<END

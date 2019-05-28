@@ -15,6 +15,27 @@ function capture_output(callable $callable) {
     return $contents;
 }
 
+
+/**
+ * Makes a callable routine exclusively locked, aka "synchronized".
+ *
+ * @param string $lockname
+ *   The name of the lock. Will be used as a filename.
+ * @param callable $callable
+ *   The routine to make synchronous.
+ * @return mixed
+ */
+function lock_exclusive(string $lockname, callable $callable) {
+    $fp = fopen(sys_get_temp_dir() . '/php-locks/' . $lockname, 'r');
+    flock($fp, LOCK_EX);
+    try {
+        return $callable();
+    }
+    finally {
+        flock($fp, LOCK_UN);
+    }
+}
+
 function handleRequest(string $path) : void
 {
     try {
