@@ -92,8 +92,12 @@ class NanoRouter
 
 function buildRouter() : NanoRouter
 {
-    $platformRoute = (new Config())->getRoute('php');
-    $basePath = trim(parse_url($platformRoute['url'], PHP_URL_PATH), '/');
+    $basePath = '/';
+    $config = new Config();
+    if ($config->isValidPlatform()) {
+        $platformRoute = (new Config())->getRoute('php');
+        $basePath = trim(parse_url($platformRoute['url'], PHP_URL_PATH), '/');
+    }
 
     $router = new NanoRouter($basePath);
 
