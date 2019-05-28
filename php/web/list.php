@@ -46,11 +46,10 @@ $files = glob("../examples/*.php");
 foreach ($files as $filename) {
     $name = pathinfo($filename)['filename'];
     $source = highlight_file($filename, true);
-    lock_exclusive($filename, function() use ($filename) {
-        $output = capture_output(function() use ($filename) {
+    $output = lock_exclusive($name, function() use ($filename) {
+        return capture_output(function() use ($filename) {
             include $filename;
         });
-        return $output;
     });
 
     print <<<END
