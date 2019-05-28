@@ -44,6 +44,12 @@ relationships:
 # The size of the persistent disk of the application (in MB).
 disk: 128
 
+mounts:
+    'locks':
+        source: local
+        source_path: locks
+
+
 # The configuration of app when it is exposed to the web.
 web:
     locations:
