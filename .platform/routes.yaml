@@ -26,3 +26,8 @@
     id: python
     type: upstream
     upstream: "python:http"
+
+"https://{default}/java":
+    id: java
+    type: upstream
+    upstream: "java:http"
