@@ -39,7 +39,5 @@ final class SampleCode {
             LOGGER.log(Level.SEVERE, "an error happened when executing the demo code", exp);
             return false;
         }
-
-
     }
 }
