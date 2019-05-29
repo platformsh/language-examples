@@ -1,8 +1,5 @@
 package sh.platform.languages.compiler;
 
-import java.io.IOException;
-
-
 /**
  * Eclipse JNoSQL tries to optimize access at Getter, Setter,
  * and Constructors to write/read fields at Class. This Exception launch when there is an issue when trying to compile.

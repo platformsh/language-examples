@@ -1,7 +1,7 @@
 package sh.platform.languages.compiler;
 
-import java.net.URI;
 import javax.tools.SimpleJavaFileObject;
+import java.net.URI;
 
 final class JavaFileObject extends SimpleJavaFileObject {
 

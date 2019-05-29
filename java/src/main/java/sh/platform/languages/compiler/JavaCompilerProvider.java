@@ -12,7 +12,6 @@ public class JavaCompilerProvider implements Function<JavaSource, Object> {
     public Object apply(JavaSource source) {
 
         try {
-
             return facade.apply(source).getDeclaredConstructors()[0].newInstance();
         } catch (Exception exp) {
             throw new RuntimeException(exp);

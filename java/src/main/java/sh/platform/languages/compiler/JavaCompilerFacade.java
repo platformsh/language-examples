@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.security.PrivilegedAction;
 import java.util.Collections;
 import java.util.Optional;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -22,8 +21,6 @@ import static java.security.AccessController.doPrivileged;
  * Class that converts a {@link JavaSource} to a compiled class
  */
 final class JavaCompilerFacade {
-
-    private static final Logger LOGGER = Logger.getLogger(JavaCompilerFacade.class.getName());
 
     private static final Pattern BREAK_LINE = Pattern.compile("\n");
     private final JavaCompilerClassLoader classLoader;
@@ -80,5 +77,4 @@ final class JavaCompilerFacade {
         throw new CompilerAccessException("The generated class (" + source.getSimpleName() + ") failed to compile.\n"
                 + compilationMessages);
     }
-
 }

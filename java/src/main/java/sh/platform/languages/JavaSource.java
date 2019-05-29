@@ -22,5 +22,4 @@ public class JavaSource {
     public String getJavaSource() {
         return source;
     }
-
 }
