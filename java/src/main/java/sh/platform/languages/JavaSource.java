@@ -1,6 +1,5 @@
 package sh.platform.languages;
 
-
 public class JavaSource {
 
     private final String source;
@@ -11,7 +10,6 @@ public class JavaSource {
         this.source = source;
         this.name = name.split("\\.")[0];
     }
-
 
     public String getSimpleName() {
         return name;
@@ -24,6 +22,5 @@ public class JavaSource {
     public String getJavaSource() {
         return source;
     }
-
 
 }
