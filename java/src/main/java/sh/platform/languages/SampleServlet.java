@@ -12,10 +12,10 @@ public class SampleServlet extends HttpServlet {
     private static final long serialVersionUID = -3462096228274971485L;
 
     @Override
-    protected void doGet(HttpServletRequest reqest, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        final String pathInfo = ofNullable(reqest.getPathInfo()).orElse("");
+        final String pathInfo = ofNullable(request.getPathInfo()).orElse("");
         switch (pathInfo) {
             case "/":
                 response.setContentType("application/json");

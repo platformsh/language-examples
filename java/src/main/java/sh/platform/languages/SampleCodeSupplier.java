@@ -32,7 +32,7 @@ public class SampleCodeSupplier implements Supplier<Map<SamplesAvailable, Sample
                 throw new LanguageException("Error when load sample code", e);
             }
         }
-        LOGGER.info("Done the compilation process");
+        LOGGER.info("Compilation process complete.");
 
     }
 
