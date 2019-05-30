@@ -49,6 +49,7 @@ public class SampleServlet extends HttpServlet {
                 return;
             case "/redis/output":
                 executeCode(response, SampleCodeType.REDIS);
+                return;
             default:
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 response.setContentType("text/plain");
