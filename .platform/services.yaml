@@ -38,4 +38,3 @@ solr:
     type: solr:7.6
     disk: 256
     size: S
-
