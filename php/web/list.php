@@ -33,7 +33,6 @@ declare(strict_types=1);
         table, table td, table th {
             border: 1px solid black;
         }
-
     </style>
 </head>
 <body>
