@@ -16,9 +16,11 @@ public class MongoDBSample implements Supplier<String> {
     @Override
     public String get() {
         StringBuilder logger = new StringBuilder();
+
         // Create a new config object to ease reading the Platform.sh environment variables.
         // You can alternatively use getenv() yourself.
         Config config = new Config();
+
         // The 'database' relationship is generally the name of primary database of an application.
         // It could be anything, though, as in the case here here where it's called "mongodb".
         MongoDB database = config.getCredential("mongodb", MongoDB::new);

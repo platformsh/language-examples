@@ -15,9 +15,11 @@ public class MySQLSample implements Supplier<String> {
     @Override
     public String get() {
         StringBuilder logger = new StringBuilder();
+
         // Create a new config object to ease reading the Platform.sh environment variables.
         // You can alternatively use getenv() yourself.
         Config config = new Config();
+
         // The 'database' relationship is generally the name of primary SQL database of an application.
         // That's not required, but much of our default automation code assumes it.
         MySQL database = config.getCredential("database", MySQL::new);
@@ -34,6 +36,7 @@ public class MySQLSample implements Supplier<String> {
 
             final Statement statement = connection.createStatement();
             statement.execute(sql);
+
             // Insert data.
             sql = "INSERT INTO JAVA_PEOPLE (name, city) VALUES" +
                     "('Neil Armstrong', 'Moon')," +
@@ -41,6 +44,7 @@ public class MySQLSample implements Supplier<String> {
                     "('Sally Ride', 'La Jolla')";
 
             statement.execute(sql);
+
             // Show table.
             sql = "SELECT * FROM JAVA_PEOPLE";
             final ResultSet resultSet = statement.executeQuery(sql);
