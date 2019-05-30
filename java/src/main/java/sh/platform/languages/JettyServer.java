@@ -30,7 +30,6 @@ class JettyServer {
 
     void start() throws Exception {
 
-
         int maxThreads = getProperty(MAX_THREADS, DEFAULT_MAX_THREADS);
         int minThreads = getProperty(MIN_THREADS, DEFAULT_MIN_THREADS);
         int idleTimeout = getProperty(IDLE, DEFAULT_IDLE);
