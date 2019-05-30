@@ -20,22 +20,22 @@ public enum SampleCodeType {
     REDIS(new RedisSample(), "Redis");
 
     private final Supplier<String> demoClass;
-    private final String name;
+    private final String label;
     private static final String JSON;
     private static final Map<SampleCodeType, SampleCode> SAMPLES;
 
     static {
         Map<String, String> options = new HashMap<>();
         for (SampleCodeType value : values()) {
-            options.put(value.name.toLowerCase(Locale.US), value.name);
+            options.put(value.label.toLowerCase(Locale.US), value.label);
         }
         JSON = new Gson().toJson(options);
         SAMPLES = new SampleCodeSupplier().get();
     }
 
-    SampleCodeType(Supplier<String> demoClass, String name) {
+    SampleCodeType(Supplier<String> demoClass, String label) {
         this.demoClass = demoClass;
-        this.name = name;
+        this.label = label;
     }
 
 
@@ -61,7 +61,7 @@ public enum SampleCodeType {
 
     public static Optional<SampleCodeType> parse(String sample) {
         for (SampleCodeType value : values()) {
-            if (value.name.equals(sample)) {
+            if (value.name().equals(sample)) {
                 return Optional.of(value);
             }
         }
