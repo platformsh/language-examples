@@ -1,7 +1,5 @@
 package sh.platform.languages;
 
-import sh.platform.languages.compiler.JavaCompilerProvider;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,22 +15,20 @@ public class SampleCodeSupplier implements Supplier<Map<SamplesAvailable, Sample
 
     private static final Logger LOGGER = Logger.getLogger(SampleCodeSupplier.class.getName());
 
-    private final JavaCompilerProvider compiler = new JavaCompilerProvider();
 
     private final Map<SamplesAvailable, SampleCode> cached = new EnumMap<>(SamplesAvailable.class);
 
     {
-        LOGGER.info("Starting the compilation process");
+        LOGGER.info("Starting the loading SamplesAvailable process");
         for (SamplesAvailable available : SamplesAvailable.values()) {
             final String source = convert(available.getFile());
-            final Object instance = compiler.apply(new JavaSource(source, available.getFile()));
             try {
-                cached.put(available, new SampleCode(source, instance));
+                cached.put(available, new SampleCode(source, available.getDemoClass()));
             } catch (NoSuchMethodException e) {
                 throw new LanguageException("Error when load sample code", e);
             }
         }
-        LOGGER.info("Compilation process complete.");
+        LOGGER.info("Loading process complete.");
 
     }
 

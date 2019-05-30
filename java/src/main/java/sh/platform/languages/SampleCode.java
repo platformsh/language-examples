@@ -10,7 +10,6 @@ import java.util.logging.Logger;
  * The Sample code class will execute the public <b>static void main method</b> on each demo compiled class.
  */
 final class SampleCode {
-
     private static final Logger LOGGER = Logger.getLogger(SampleCode.class.getName());
 
     private static final Class[] ARG = new Class[]{String[].class};
@@ -18,23 +17,17 @@ final class SampleCode {
 
     private final String source;
 
-    private final Object instance;
-
     private final Method mainMethod;
 
-    SampleCode(String source, Object instance) throws NoSuchMethodException {
+    SampleCode(String source, Class<?> demoClass) throws NoSuchMethodException {
         this.source = source;
-        this.instance = instance;
-        this.mainMethod = instance.getClass().getDeclaredMethod("main", ARG);
+        this.mainMethod = demoClass.getDeclaredMethod("main", ARG);
     }
 
     public String getSource() {
         return source;
     }
 
-    public Object getInstance() {
-        return instance;
-    }
 
     /**
      * Executes the public static void main method if it runs with success it will return true otherwise false.

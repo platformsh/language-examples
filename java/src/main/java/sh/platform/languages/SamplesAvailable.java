@@ -1,18 +1,23 @@
 package sh.platform.languages;
 
 import com.google.gson.Gson;
+import sh.platform.languages.sample.MongoDBSample;
+import sh.platform.languages.sample.MySQLSample;
+import sh.platform.languages.sample.PostgreSQLSample;
+import sh.platform.languages.sample.RedisSample;
 
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
 public enum SamplesAvailable {
-    MONGODB("MongoDBSample.java", "MongoDB"),
-    MYSQL("MySQLSample.java", "MySQL"),
-    POSTGRESQL("PostgreSQLSample.java", "PostgreSQL"),
-    REDIS("RedisSample.java", "Redis");
 
-    private final String file;
+    MONGODB(MongoDBSample.class, "MongoDB"),
+    MYSQL(MySQLSample.class, "MySQL"),
+    POSTGRESQL(PostgreSQLSample.class, "PostgreSQL"),
+    REDIS(RedisSample.class, "Redis");
+
+    private final Class<?> demoClass;
     private final String name;
     private static final String JSON;
     private static final Map<SamplesAvailable, SampleCode> SAMPLES;
@@ -26,14 +31,18 @@ public enum SamplesAvailable {
         SAMPLES = new SampleCodeSupplier().get();
     }
 
-    SamplesAvailable(String file, String name) {
-        this.file = file;
+    SamplesAvailable(Class<?> demoClass, String name) {
+        this.demoClass = demoClass;
         this.name = name;
     }
 
 
     public String getFile() {
-        return file;
+        return demoClass.getSimpleName() + ".java";
+    }
+
+    public Class<?> getDemoClass() {
+        return demoClass;
     }
 
     public static String getOptions() {

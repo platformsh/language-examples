@@ -1,4 +1,4 @@
-package sh.platform.languages;
+package sh.platform.languages.sample;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -7,11 +7,13 @@ import org.bson.Document;
 import sh.platform.config.Config;
 import sh.platform.config.MongoDB;
 
+import java.util.function.Consumer;
+
 import static com.mongodb.client.model.Filters.eq;
 
-public class MongoDBSample {
+public class MongoDBSample implements Consumer<Void> {
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         Config config = new Config();
         MongoDB database = config.getCredential("mongodb", MongoDB::new);
         MongoClient mongoClient = database.get();
@@ -25,5 +27,10 @@ public class MongoDBSample {
         System.out.println(myDoc.toJson());
         collection.deleteOne(eq("_id", doc.get("_id")));
 
+    }
+
+    @Override
+    public void accept(Void aVoid) {
+        MongoDBSample.main(new String[0]);
     }
 }

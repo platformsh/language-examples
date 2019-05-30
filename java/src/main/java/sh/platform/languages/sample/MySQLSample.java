@@ -1,4 +1,4 @@
-package sh.platform.languages;
+package sh.platform.languages.sample;
 
 import sh.platform.config.Config;
 import sh.platform.config.MySQL;
