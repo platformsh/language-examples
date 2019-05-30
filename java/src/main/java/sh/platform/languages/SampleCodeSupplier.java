@@ -32,7 +32,7 @@ public class SampleCodeSupplier implements Supplier<Map<SampleCodeType, SampleCo
         try (BufferedReader br = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8))) {
             return br.lines().collect(Collectors.joining(System.lineSeparator()));
         } catch (IOException e) {
-            throw new LanguageException("An error when load files", e);
+            throw new LanguageException("An error occurred when loading file", e);
         }
     }
 
