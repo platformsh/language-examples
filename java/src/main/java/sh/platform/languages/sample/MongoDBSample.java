@@ -14,7 +14,12 @@ import static com.mongodb.client.model.Filters.eq;
 public class MongoDBSample implements Consumer<Void> {
 
     public static void main(String[] args) {
+
+        // Create a new config object to ease reading the Platform.sh environment variables.
+        // You can alternatively use getenv() yourself.
         Config config = new Config();
+        // The 'database' relationship is generally the name of primary database of an application.
+        // It could be anything, though, as in the case here here where it's called "mongodb".
         MongoDB database = config.getCredential("mongodb", MongoDB::new);
         MongoClient mongoClient = database.get();
         final MongoDatabase mongoDatabase = mongoClient.getDatabase(database.getDatabase());

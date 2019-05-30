@@ -12,11 +12,18 @@ import java.sql.Statement;
 public class MySQLSample {
 
     public static void main(String[] args) throws SQLException {
+        // Create a new config object to ease reading the Platform.sh environment variables.
+        // You can alternatively use getenv() yourself.
         Config config = new Config();
+        // The 'database' relationship is generally the name of primary SQL database of an application.
+        // That's not required, but much of our default automation code assumes it.
         MySQL database = config.getCredential("database", MySQL::new);
         DataSource dataSource = database.get();
 
+        // Connect to the database
         try (Connection connection = dataSource.getConnection()) {
+
+            // Creating a table.
             String sql = "CREATE TABLE JAVA_PEOPLE (" +
                     " id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY," +
                     "name VARCHAR(30) NOT NULL," +

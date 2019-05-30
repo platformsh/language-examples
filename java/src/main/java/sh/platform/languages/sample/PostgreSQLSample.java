@@ -13,11 +13,17 @@ import java.sql.Statement;
 public class PostgreSQLSample {
 
     public static void main(String[] args) throws SQLException {
+        // Create a new config object to ease reading the Platform.sh environment variables.
+        // You can alternatively use getenv() yourself.
         Config config = new Config();
+        // The 'database' relationship is generally the name of primary SQL database of an application.
+        // It could be anything, though, as in the case here here where it's called "postgresql".
         PostgreSQL database = config.getCredential("postgresql", PostgreSQL::new);
         DataSource dataSource = database.get();
 
+        // Connect to the database
         try (Connection connection = dataSource.getConnection()) {
+            // Creating a table.
             String sql = "CREATE TABLE JAVA_FRAMEWORKS (" +
                     " id SERIAL PRIMARY KEY," +
                     "name VARCHAR(30) NOT NULL)";
