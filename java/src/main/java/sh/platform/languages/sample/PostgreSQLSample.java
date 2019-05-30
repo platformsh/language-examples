@@ -9,10 +9,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.function.Supplier;
 
-public class PostgreSQLSample {
+public class PostgreSQLSample implements Supplier<String> {
 
-    public static void main(String[] args) throws SQLException {
+    @Override
+    public String get() {
+        StringBuilder logger = new StringBuilder();
         // Create a new config object to ease reading the Platform.sh environment variables.
         // You can alternatively use getenv() yourself.
         Config config = new Config();
@@ -43,9 +46,13 @@ public class PostgreSQLSample {
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
-                System.out.println(String.format("the id %d the name %s ", id, name));
+                logger.append(String.format("the JAVA_FRAMEWORKS id %d the name %s ", id, name));
+                logger.append('\n');
             }
             statement.execute("DROP TABLE JAVA_FRAMEWORKS");
+            return logger.toString();
+        } catch (SQLException exp) {
+            throw new RuntimeException("An error when execute PostgreSQL: " + exp.getMessage());
         }
     }
 }

@@ -11,22 +11,17 @@ import java.util.function.Supplier;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-public class SampleCodeSupplier implements Supplier<Map<SamplesAvailable, SampleCode>> {
+public class SampleCodeSupplier implements Supplier<Map<SampleCodeType, SampleCode>> {
 
     private static final Logger LOGGER = Logger.getLogger(SampleCodeSupplier.class.getName());
 
-
-    private final Map<SamplesAvailable, SampleCode> cached = new EnumMap<>(SamplesAvailable.class);
+    private final Map<SampleCodeType, SampleCode> cached = new EnumMap<>(SampleCodeType.class);
 
     {
-        LOGGER.info("Starting the loading SamplesAvailable process");
-        for (SamplesAvailable available : SamplesAvailable.values()) {
+        LOGGER.info("Starting the loading SampleCodeType process");
+        for (SampleCodeType available : SampleCodeType.values()) {
             final String source = convert(available.getFile());
-            try {
-                cached.put(available, new SampleCode(source, available.getDemoClass()));
-            } catch (NoSuchMethodException e) {
-                throw new LanguageException("Error when load sample code", e);
-            }
+            cached.put(available, new SampleCode(source, available.getDemoClass()));
         }
         LOGGER.info("Loading process complete.");
 
@@ -42,7 +37,7 @@ public class SampleCodeSupplier implements Supplier<Map<SamplesAvailable, Sample
     }
 
     @Override
-    public Map<SamplesAvailable, SampleCode> get() {
+    public Map<SampleCodeType, SampleCode> get() {
         return cached;
     }
 }

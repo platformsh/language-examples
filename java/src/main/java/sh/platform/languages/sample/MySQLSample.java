@@ -8,10 +8,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.function.Supplier;
 
-public class MySQLSample {
+public class MySQLSample implements Supplier<String> {
 
-    public static void main(String[] args) throws SQLException {
+    @Override
+    public String get() {
+        StringBuilder logger = new StringBuilder();
         // Create a new config object to ease reading the Platform.sh environment variables.
         // You can alternatively use getenv() yourself.
         Config config = new Config();
@@ -45,9 +48,13 @@ public class MySQLSample {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String city = resultSet.getString("city");
-                System.out.println(String.format("the id %d the name %s and city %s", id, name, city));
+                logger.append(String.format("the JAVA_PEOPLE id %d the name %s and city %s", id, name, city));
+                logger.append('\n');
             }
             statement.execute("DROP TABLE JAVA_PEOPLE");
+            return logger.toString();
+        } catch (SQLException exp) {
+            throw new RuntimeException("An error when execute MySQL: " + exp.getMessage());
         }
     }
 }

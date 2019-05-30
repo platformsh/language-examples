@@ -6,10 +6,13 @@ import sh.platform.config.Config;
 import sh.platform.config.Redis;
 
 import java.util.Set;
+import java.util.function.Supplier;
 
-public class RedisSample {
+public class RedisSample implements Supplier<String> {
 
-    public static void main(String[] args) {
+    @Override
+    public String get() {
+        StringBuilder logger = new StringBuilder();
         // Create a new config object to ease reading the Platform.sh environment variables.
         // You can alternatively use getenv() yourself.
         Config config = new Config();
@@ -25,7 +28,9 @@ public class RedisSample {
         jedis.sadd("cities", "São Paulo");
         // Read it back.
         Set<String> cities = jedis.smembers("cities");
-        System.out.println("cities: " + cities);
+        logger.append("cities: " + cities);
         jedis.del("cities");
+        return logger.toString();
     }
 }
+

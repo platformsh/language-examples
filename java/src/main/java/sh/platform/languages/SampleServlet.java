@@ -3,7 +3,11 @@ package sh.platform.languages;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 
 import static java.util.Optional.ofNullable;
 
@@ -15,43 +19,61 @@ public class SampleServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        final String pathInfo = ofNullable(request.getPathInfo()).orElse("");
+        final String pathInfo = ofNullable(request.getPathInfo()).orElse("/");
         switch (pathInfo) {
             case "/":
                 response.setContentType("application/json");
                 response.setStatus(HttpServletResponse.SC_OK);
-                response.getWriter().println(SamplesAvailable.getOptions());
+                response.getWriter().println(SampleCodeType.getOptions());
                 return;
             case "/postgresql":
-                showSampleCode(response, SamplesAvailable.POSTGRESQL);
+                showSampleCode(response, SampleCodeType.POSTGRESQL);
                 return;
             case "/mysql":
-                showSampleCode(response, SamplesAvailable.MYSQL);
+                showSampleCode(response, SampleCodeType.MYSQL);
                 return;
             case "/mongodb":
-                showSampleCode(response, SamplesAvailable.MONGODB);
+                showSampleCode(response, SampleCodeType.MONGODB);
                 return;
             case "/redis":
-                showSampleCode(response, SamplesAvailable.REDIS);
+                showSampleCode(response, SampleCodeType.REDIS);
                 return;
+            case "/postgresql/output":
+                executeCode(response, SampleCodeType.POSTGRESQL);
+                return;
+            case "/mysql/output":
+                executeCode(response, SampleCodeType.MYSQL);
+                return;
+            case "/mongodb/output":
+                executeCode(response, SampleCodeType.MONGODB);
+                return;
+            case "/redis/output":
+                executeCode(response, SampleCodeType.REDIS);
             default:
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 response.setContentType("text/plain");
                 response.getWriter().println("Sorry, no sample code is available.");
         }
+    }
+
+    private void showSampleCode(HttpServletResponse response, SampleCodeType key) throws IOException {
+        final SampleCode sampleCode = SampleCodeType.getSample(key);
+        response.setStatus(HttpServletResponse.SC_OK);
+        response.setContentType("text/plain");
+        response.getWriter().println(sampleCode.getSource());
 
     }
 
-    private void showSampleCode(HttpServletResponse response, SamplesAvailable key) throws IOException {
-        final SampleCode sampleCode = SamplesAvailable.getSample(key);
-        if (sampleCode.executeWithSuccess()) {
+    private void executeCode(HttpServletResponse response, SampleCodeType key) throws IOException {
+        final SampleCode sampleCode = SampleCodeType.getSample(key);
+        response.setContentType("text/plain");
+        try {
+            String message = sampleCode.execute();
             response.setStatus(HttpServletResponse.SC_OK);
-            response.setContentType("text/plain");
-            response.getWriter().println(sampleCode.getSource());
-        } else {
+            response.getWriter().println(message);
+        } catch (Exception exp) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.setContentType("text/plain");
-            response.getWriter().println("There is an error when execute this service");
+            response.getWriter().println(exp.getMessage());
         }
     }
 }

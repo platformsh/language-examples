@@ -37,7 +37,7 @@ class JettyServer {
         LOGGER.info(format("Starting the Jetty server with  %d max threads, %d min threads, %d idle, %d port",
                 maxThreads, minThreads, idleTimeout, port));
 
-        LOGGER.info("Available services: " + SamplesAvailable.getOptions());
+        LOGGER.info("Available services: " + SampleCodeType.getOptions());
 
         QueuedThreadPool threadPool = new QueuedThreadPool(maxThreads, minThreads, idleTimeout);
 
