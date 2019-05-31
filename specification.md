@@ -3,7 +3,7 @@
 * Every language is its own container, named for the language.  It should run the most recent version of the language possible.
 * Each container container should connect to every service possible.
 * Every container should respond to requests at `/foo` with the source code example to connect to the `foo` service.
-* Every container should respond to requests at `/foo/output` with the output of the source code example.  That is, all source code examples should be "live".
+* Every container should respond to requests at `/foo/output` with the output of the source code example. That is, all source code examples should be "live".
 * The example source and output should be "bare", not full HTML pages, as they are intended to be embedded into other resources.
 * The example source should be reasonably documented, as it will be shown to users.
 * Every container should respond to requests at `/` with a collapsible collection of all services and the output of them. (See PHP as the reference implementation.)
