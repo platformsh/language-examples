@@ -23,18 +23,19 @@ function capture_output(callable $callable) {
  *   The name of the lock. Will be used as a filename.
  * @param callable $callable
  *   The routine to make synchronous.
+ * @throws RuntimeException
+ *   If the lock failed for some reason.
  * @return mixed
  */
 function lock_exclusive(string $lockname, callable $callable) {
-    $lockFile = __DIR__ . '/../locks/' . $lockname;
+    // Hash the filename to ensure it cannot contain weird path-manipulating characters.
+    $lockFile = __DIR__ . '/../locks/' . md5($lockname);
     $fp = fopen($lockFile, 'w');
     if ($fp === false) {
-        fwrite(STDERR, sprintf("Failed to open lock file: %s", escapeshellarg($lockname)));
-        return null;
+        throw new RuntimeException(sprintf("Failed to open lock file: %s", escapeshellarg($lockname)));
     }
     if (!flock($fp, LOCK_EX)) {
-        fwrite(STDERR, sprintf("Failed to acquire lock: %s", escapeshellarg($lockname)));
-        return null;
+        throw new RuntimeException(sprintf("Failed to acquire lock: %s", escapeshellarg($lockname)));
     }
     try {
         return $callable();
@@ -42,7 +43,6 @@ function lock_exclusive(string $lockname, callable $callable) {
     finally {
         flock($fp, LOCK_UN);
         fclose($fp);
-        unlink($lockFile);
     }
 }
 
