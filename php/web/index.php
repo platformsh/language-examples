@@ -125,9 +125,12 @@ function buildRouter() : NanoRouter
             return file_get_contents($filename);
         });
         $router->addRoute($path . '/output', function() use ($filename) {
+            $name = pathinfo($filename)['filename'];
             header('Content-Type: text/plain', true);
-            return capture_output(function() use ($filename) {
-                include $filename;
+            return lock_exclusive($name, function() use ($filename) {
+                return capture_output(function() use ($filename) {
+                    include $filename;
+                });
             });
         });
     }
