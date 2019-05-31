@@ -26,13 +26,14 @@ function capture_output(callable $callable) {
  * @return mixed
  */
 function lock_exclusive(string $lockname, callable $callable) {
-    $fp = fopen('../locks/' . $lockname, 'w');
-    if (!$fp) {
-        fwrite(fopen('php://stderr', 'a'), sprintf("Failed to open lock file: %s", escapeshellarg($lockname)));
+    $lockFile = __DIR__ . '/../locks/' . $lockname;
+    $fp = fopen($lockFile, 'w');
+    if ($fp === false) {
+        fwrite(STDERR, sprintf("Failed to open lock file: %s", escapeshellarg($lockname)));
         return null;
     }
     if (!flock($fp, LOCK_EX)) {
-        fwrite(fopen('php://stderr', 'a'), sprintf("Failed to acquire lock: %s", escapeshellarg($lockname)));
+        fwrite(STDERR, sprintf("Failed to acquire lock: %s", escapeshellarg($lockname)));
         return null;
     }
     try {
@@ -40,6 +41,8 @@ function lock_exclusive(string $lockname, callable $callable) {
     }
     finally {
         flock($fp, LOCK_UN);
+        fclose($fp);
+        unlink($lockFile);
     }
 }
 
