@@ -1,10 +1,13 @@
 package sh.platform.languages;
 
 import com.google.gson.Gson;
+import sh.platform.languages.sample.ElasticsearchSample;
+import sh.platform.languages.sample.MemcachedSample;
 import sh.platform.languages.sample.MongoDBSample;
 import sh.platform.languages.sample.MySQLSample;
 import sh.platform.languages.sample.PostgreSQLSample;
 import sh.platform.languages.sample.RedisSample;
+import sh.platform.languages.sample.SolrSample;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -17,7 +20,10 @@ public enum SampleCodeType {
     MONGODB(new MongoDBSample(), "MongoDB"),
     MYSQL(new MySQLSample(), "MySQL"),
     POSTGRESQL(new PostgreSQLSample(), "PostgreSQL"),
-    REDIS(new RedisSample(), "Redis");
+    REDIS(new RedisSample(), "Redis"),
+    MEMCACHED(new MemcachedSample(), "Memcached"),
+    ELASTICSEARCH(new ElasticsearchSample(), "Elasticsearch"),
+    SORL(new SolrSample(), "Sorl");
 
     private final Supplier<String> demoClass;
     private final String label;
