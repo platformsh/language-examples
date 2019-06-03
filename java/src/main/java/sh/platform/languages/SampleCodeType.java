@@ -23,7 +23,7 @@ public enum SampleCodeType {
     REDIS(new RedisSample(), "Redis"),
     MEMCACHED(new MemcachedSample(), "Memcached"),
     ELASTICSEARCH(new ElasticsearchSample(), "Elasticsearch"),
-    SORL(new SolrSample(), "Sorl");
+    SOLR(new SolrSample(), "Solr");
 
     private final Supplier<String> demoClass;
     private final String label;
