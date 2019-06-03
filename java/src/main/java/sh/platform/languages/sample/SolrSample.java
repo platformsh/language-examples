@@ -25,11 +25,11 @@ public class SolrSample implements Supplier<String> {
         // You can alternatively use getenv() yourself.
         Config config = new Config();
 
-        Solr sorl = config.getCredential("solr", Solr::new);
+        Solr solr = config.getCredential("solr", Solr::new);
 
         try {
 
-            final HttpSolrClient solrClient = sorl.get();
+            final HttpSolrClient solrClient = solr.get();
             solrClient.setParser(new XMLResponseParser());
 
             // Add a document
@@ -52,13 +52,11 @@ public class SolrSample implements Supplier<String> {
 
             // Delete one document
             solrClient.deleteById(id);
-            solrClient.commit();
 
-            query.set("q", "city:London");
-            queryResponse = solrClient.query(query);
-            logger.append(String.format("Deleting one document. Status (0 is success):  %s \n", results.getNumFound()));
+            logger.append(String.format("Deleting one document. Status (0 is success):  %s \n",
+                    solrClient.commit().getStatus()));
         } catch (SolrServerException | IOException exp) {
-            throw new RuntimeException("An error when execute Sorl: " + exp.getMessage());
+            throw new RuntimeException("An error when execute Solr: " + exp.getMessage());
         }
 
         return logger.toString();
