@@ -48,7 +48,7 @@ public class SolrSample implements Supplier<String> {
             QueryResponse queryResponse = solrClient.query(query);
 
             SolrDocumentList results = queryResponse.getResults();
-            logger.append(String.format("Selecting documents (1 expected):  %s \n", results.getNumFound()));
+            logger.append(String.format("Selecting documents (1 expected):  %s \n", results.getNumFound())).append('\n');
 
             // Delete one document
             solrClient.deleteById(id);
@@ -56,7 +56,7 @@ public class SolrSample implements Supplier<String> {
 
             query.set("q", "city:London");
             queryResponse = solrClient.query(query);
-            String.format("Deleting one document. Status (0 is success):  %s \n", results.getNumFound());
+            logger.append(String.format("Deleting one document. Status (0 is success):  %s \n", results.getNumFound()));
         } catch (SolrServerException | IOException exp) {
             throw new RuntimeException("An error when execute Sorl: " + exp.getMessage());
         }
