@@ -48,7 +48,7 @@ public class SolrSample implements Supplier<String> {
             QueryResponse queryResponse = solrClient.query(query);
 
             SolrDocumentList results = queryResponse.getResults();
-            logger.append(String.format("Selecting documents (1 expected):  %s \n", results.getNumFound())).append('\n');
+            logger.append(String.format("Selecting documents (1 expected):  %d \n", results.getNumFound()));
 
             // Delete one document
             solrClient.deleteById(id);
