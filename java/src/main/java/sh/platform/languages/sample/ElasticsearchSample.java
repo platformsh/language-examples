@@ -48,7 +48,7 @@ public class ElasticsearchSample implements Supplier<String> {
                 Map<String, Object> jsonMap = new HashMap<>();
                 jsonMap.put("name", animal);
                 jsonMap.put("age", current().nextInt(1, 10));
-                jsonMap.put("is cute?", current().nextBoolean());
+                jsonMap.put("is_cute", current().nextBoolean());
 
                 IndexRequest indexRequest = new IndexRequest(index, type)
                         .id(animal).source(jsonMap);
