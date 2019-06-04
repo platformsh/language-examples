@@ -33,7 +33,6 @@ declare(strict_types=1);
         table, table td, table th {
             border: 1px solid black;
         }
-
     </style>
 </head>
 <body>
@@ -42,16 +41,18 @@ declare(strict_types=1);
 
 <?php
 
-
 $files = glob("../examples/*.php");
 foreach ($files as $filename) {
-    $name = pathinfo($filename)['filename'];
-    $source = highlight_file($filename, true);
-    $output = capture_output(function() use ($filename) {
-        include $filename;
-    });
+    try {
+        $name = pathinfo($filename)['filename'];
+        $source = highlight_file($filename, true);
+        $output = lock_exclusive($name, function() use ($filename) {
+            return capture_output(function() use ($filename) {
+                include $filename;
+            });
+        });
 
-    print <<<END
+        print <<<END
 <details>
 <summary>{$name} Sample Code</summary>    
 <section>
@@ -64,6 +65,10 @@ foreach ($files as $filename) {
 </section>
 </details>
 END;
+    }
+    catch (Exception $e) {
+        printf('%s example failed: %s', $name, $e->getMessage());
+    }
 }
 ?>
 

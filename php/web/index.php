@@ -15,6 +15,36 @@ function capture_output(callable $callable) {
     return $contents;
 }
 
+/**
+ * Makes a callable routine exclusively locked, aka "synchronized".
+ *
+ * @param string $lockname
+ *   The name of the lock. Will be used as a filename.
+ * @param callable $callable
+ *   The routine to make synchronous.
+ * @throws RuntimeException
+ *   If the lock failed for some reason.
+ * @return mixed
+ */
+function lock_exclusive(string $lockname, callable $callable) {
+    // Hash the filename to ensure it cannot contain weird path-manipulating characters.
+    $lockFile = __DIR__ . '/../locks/' . md5($lockname);
+    $fp = fopen($lockFile, 'w');
+    if ($fp === false) {
+        throw new RuntimeException(sprintf("Failed to open lock file: %s", escapeshellarg($lockname)));
+    }
+    if (!flock($fp, LOCK_EX)) {
+        throw new RuntimeException(sprintf("Failed to acquire lock: %s", escapeshellarg($lockname)));
+    }
+    try {
+        return $callable();
+    }
+    finally {
+        flock($fp, LOCK_UN);
+        fclose($fp);
+    }
+}
+
 function handleRequest(string $path) : void
 {
     try {
@@ -69,8 +99,12 @@ class NanoRouter
 
 function buildRouter() : NanoRouter
 {
-    $platformRoute = (new Config())->getRoute('php');
-    $basePath = trim(parse_url($platformRoute['url'], PHP_URL_PATH), '/');
+    $basePath = '/';
+    $config = new Config();
+    if ($config->isValidPlatform()) {
+        $platformRoute = (new Config())->getRoute('php');
+        $basePath = trim(parse_url($platformRoute['url'], PHP_URL_PATH), '/');
+    }
 
     $router = new NanoRouter($basePath);
 
@@ -93,9 +127,12 @@ function buildRouter() : NanoRouter
             return file_get_contents($filename);
         });
         $router->addRoute($path . '/output', function() use ($filename) {
+            $name = pathinfo($filename)['filename'];
             header('Content-Type: text/plain', true);
-            return capture_output(function() use ($filename) {
-                include $filename;
+            return lock_exclusive($name, function() use ($filename) {
+                return capture_output(function() use ($filename) {
+                    include $filename;
+                });
             });
         });
     }
