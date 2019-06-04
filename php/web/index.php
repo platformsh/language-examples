@@ -15,7 +15,6 @@ function capture_output(callable $callable) {
     return $contents;
 }
 
-
 /**
  * Makes a callable routine exclusively locked, aka "synchronized".
  *
