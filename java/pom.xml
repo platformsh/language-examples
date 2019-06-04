@@ -14,7 +14,6 @@
         <version>2.1.5.RELEASE</version>
     </parent>
 
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-javadoc-plugin.vesion>3.0.1</maven-javadoc-plugin.vesion>
