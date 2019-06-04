@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -51,9 +53,13 @@ public class SampleResource {
                 headers.setContentType(MediaType.TEXT_PLAIN);
                 return new ResponseEntity<>(message, headers, HttpStatus.OK);
             } catch (Exception exp) {
+                StringWriter sw = new StringWriter();
+                PrintWriter pw = new PrintWriter(sw);
+                exp.printStackTrace(pw);
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.TEXT_PLAIN);
-                return new ResponseEntity<>(exp.getMessage(), headers, HttpStatus.INTERNAL_SERVER_ERROR);
+                final String message = sw.toString();
+                return new ResponseEntity<>(message, headers, HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
         return notFound();

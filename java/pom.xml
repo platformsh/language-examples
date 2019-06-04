@@ -14,7 +14,6 @@
         <version>2.1.5.RELEASE</version>
     </parent>
 
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-javadoc-plugin.vesion>3.0.1</maven-javadoc-plugin.vesion>
@@ -27,6 +26,7 @@
         <mongo.version>3.8.2</mongo.version>
         <mysql.version>8.0.16</mysql.version>
         <postgresql.version>42.2.5</postgresql.version>
+        <elasticsearch.version>6.7.1</elasticsearch.version>
     </properties>
 
     <dependencies>
@@ -59,7 +59,21 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>${elasticsearch.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.spy</groupId>
+            <artifactId>spymemcached</artifactId>
+            <version>2.12.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-solrj</artifactId>
+            <version>8.1.1</version>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
