@@ -49,16 +49,16 @@ public enum SampleCodeType {
         return demoClass.getClass().getSimpleName() + ".java";
     }
 
+    public String getLabel() {
+        return label;
+    }
+
     public Supplier<String> getDemoClass() {
         return demoClass;
     }
 
     public static String getOptions() {
         return JSON;
-    }
-
-    public static Map<SampleCodeType, SampleCode> getSamples() {
-        return SAMPLES;
     }
 
     public static SampleCode getSample(SampleCodeType key) {
