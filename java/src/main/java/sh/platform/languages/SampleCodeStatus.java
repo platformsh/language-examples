@@ -3,13 +3,11 @@ package sh.platform.languages;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-final class SampleCodeStatus {
+final class SampleCodeStatus implements Comparable<SampleCodeStatus> {
 
     private final String name;
 
     private final String source;
-
-    private final String htmlSource;
 
     private final String output;
 
@@ -18,7 +16,6 @@ final class SampleCodeStatus {
     private SampleCodeStatus(SampleCode sampleCode, String output, boolean success) {
         this.name = sampleCode.getLabel();
         this.source = sampleCode.getSource();
-        this.htmlSource = sampleCode.getHtmlSource();
         this.output = output;
         this.success = success;
     }
@@ -39,10 +36,6 @@ final class SampleCodeStatus {
         return source;
     }
 
-    public String getHtmlSource() {
-        return htmlSource;
-    }
-
     public static SampleCodeStatus of(SampleCodeType type) {
         final SampleCode sampleCode = SampleCodeType.getSample(type);
         try {
@@ -56,5 +49,8 @@ final class SampleCodeStatus {
         }
     }
 
-
+    @Override
+    public int compareTo(SampleCodeStatus other) {
+        return name.compareTo(other.name);
+    }
 }

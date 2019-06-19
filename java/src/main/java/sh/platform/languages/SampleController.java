@@ -16,6 +16,7 @@ public class SampleController {
     public String getStatus(Model model) {
         List<SampleCodeStatus> codes = Stream.of(SampleCodeType.values())
                 .map(SampleCodeStatus::of)
+                .sorted()
                 .collect(toList());
         model.addAttribute("codes", codes);
         return "index";
