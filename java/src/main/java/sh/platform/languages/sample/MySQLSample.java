@@ -58,7 +58,7 @@ public class MySQLSample implements Supplier<String> {
             statement.execute("DROP TABLE JAVA_PEOPLE");
             return logger.toString();
         } catch (SQLException exp) {
-            throw new RuntimeException("An error when execute MySQL: " + exp.getMessage());
+            throw new RuntimeException("An error when execute MySQL", exp);
         }
     }
 }

@@ -56,7 +56,7 @@ public class SolrSample implements Supplier<String> {
             logger.append(String.format("Deleting one document. Status (0 is success):  %s \n",
                     solrClient.commit().getStatus()));
         } catch (SolrServerException | IOException exp) {
-            throw new RuntimeException("An error when execute Solr: " + exp.getMessage());
+            throw new RuntimeException("An error when execute Solr ", exp);
         }
 
         return logger.toString();

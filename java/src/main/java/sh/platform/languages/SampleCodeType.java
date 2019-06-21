@@ -2,10 +2,13 @@ package sh.platform.languages;
 
 import com.google.gson.Gson;
 import sh.platform.languages.sample.ElasticsearchSample;
+import sh.platform.languages.sample.InfluxdbSample;
+import sh.platform.languages.sample.KafkaSample;
 import sh.platform.languages.sample.MemcachedSample;
 import sh.platform.languages.sample.MongoDBSample;
 import sh.platform.languages.sample.MySQLSample;
 import sh.platform.languages.sample.PostgreSQLSample;
+import sh.platform.languages.sample.RabbitMQSample;
 import sh.platform.languages.sample.RedisSample;
 import sh.platform.languages.sample.SolrSample;
 
@@ -23,7 +26,10 @@ public enum SampleCodeType {
     REDIS(new RedisSample(), "Redis"),
     MEMCACHED(new MemcachedSample(), "Memcached"),
     ELASTICSEARCH(new ElasticsearchSample(), "Elasticsearch"),
-    SOLR(new SolrSample(), "Solr");
+    INFLUX_DB(new InfluxdbSample(), "InfluxDB"),
+    RABBITMQS(new RabbitMQSample(), "RabbitMQ"),
+    SOLR(new SolrSample(), "Solr"),
+    KAFKA(new KafkaSample(), "Kafka");
 
     private final Supplier<String> demoClass;
     private final String label;
@@ -43,7 +49,6 @@ public enum SampleCodeType {
         this.demoClass = demoClass;
         this.label = label;
     }
-
 
     public String getFile() {
         return demoClass.getClass().getSimpleName() + ".java";
