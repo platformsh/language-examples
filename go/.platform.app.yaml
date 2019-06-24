@@ -21,7 +21,15 @@ hooks:
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
-    database: "mysqldb:mysql"
+    database: 'mysql:mysql'
+    postgresql: 'postgresql:postgresql'
+    solr: 'solr:solr'
+    redis: 'redis:redis'
+    elasticsearch: 'elasticsearch:elasticsearch'
+    mongodb: 'mongodb:mongodb'
+    rabbitmq: 'rabbitmq:rabbitmq'
+    influxdb: 'influxdb:influxdb'
+    memcached: 'memcached:memcached'
 
 # The configuration of app when it is exposed to the web.
 web:
