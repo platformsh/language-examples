@@ -26,12 +26,13 @@ public class KafkaSample implements Supplier<String> {
         Config config = new Config();
 
         try {
-            //Get the credentials to connect to the Kafka service.
+            // Get the credentials to connect to the Kafka service.
             final Kafka kafka = config.getCredential("kafka", Kafka::new);
             Map<String, Object> configProducer = new HashMap<>();
             configProducer.putIfAbsent(ProducerConfig.CLIENT_ID_CONFIG, "animals");
             final Producer<Long, String> producer = kafka.getProducer(configProducer);
 
+            // Sending data into the stream.
             RecordMetadata metadata = producer.send(new ProducerRecord<>("animals", "lion")).get();
             logger.append("Record sent with to partition ").append(metadata.partition())
                     .append(" with offset ").append(metadata.offset()).append('\n');
@@ -44,7 +45,7 @@ public class KafkaSample implements Supplier<String> {
             logger.append("Record sent with to partition ").append(metadata.partition())
                     .append(" with offset ").append(metadata.offset()).append('\n');
 
-            //Consumer
+            // Consumer, read data from the stream.
             final HashMap<String, Object> configConsumer = new HashMap<>();
             configConsumer.put(ConsumerConfig.GROUP_ID_CONFIG, "consumerGroup1");
             configConsumer.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
@@ -52,7 +53,7 @@ public class KafkaSample implements Supplier<String> {
             Consumer<Long, String> consumer = kafka.getConsumer(configConsumer, "animals");
             ConsumerRecords<Long, String> consumerRecords = consumer.poll(Duration.ofSeconds(3));
 
-            //print each record.
+            // Print each record.
             consumerRecords.forEach(record -> {
                 logger.append("Record: Key " + record.key());
                 logger.append(" value " + record.value());
@@ -60,7 +61,7 @@ public class KafkaSample implements Supplier<String> {
                 logger.append(" offset " + record.offset()).append('\n');
             });
 
-            // commits the offset of record to broker.
+            // Commits the offset of record to broker.
             consumer.commitSync();
 
             return logger.toString();

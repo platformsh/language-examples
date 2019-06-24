@@ -24,7 +24,8 @@ public class InfluxdbSample implements Supplier<String> {
             Config config = new Config();
 
             final InfluxDB credential = config.getCredential("influxdb", InfluxDB::new);
-            //Get the credentials to connect to the InfluxDB service.
+
+            // Get the credentials to connect to the InfluxDB service.
             org.influxdb.InfluxDB influxDB = credential.get();
             Pong response = influxDB.ping();
             logger.append(String.format("Response time: %s and version %s", response.getResponseTime(),
@@ -37,7 +38,8 @@ public class InfluxdbSample implements Supplier<String> {
             influxDB.query(new Query("CREATE DATABASE server"));
 
             influxDB.setDatabase("server");
-            // Write data
+
+            // Write data.
             Point point = Point.measurement("memory")
                     .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
                     .addField("name", "server1")
@@ -48,7 +50,7 @@ public class InfluxdbSample implements Supplier<String> {
 
             influxDB.write(point);
 
-            //read data
+            // Read data.
             QueryResult result = influxDB.query(new Query("select * from memory LIMIT 5", "server"));
             final List<List<QueryResult.Series>> collect = result.getResults().stream()
                     .map(QueryResult.Result::getSeries)

@@ -22,27 +22,29 @@ public class RabbitMQSample implements Supplier<String> {
         // You can alternatively use getenv() yourself.
         Config config = new Config();
         try {
-            //Get the credentials to connect to the RabbitMQ service.
+            // Get the credentials to connect to the RabbitMQ service.
             final RabbitMQ credential = config.getCredential("rabbitmq", RabbitMQ::new);
             final ConnectionFactory connectionFactory = credential.get();
 
-            //Connect to the RabbitMQ server
+            // Connect to the RabbitMQ server.
             final Connection connection = connectionFactory.createConnection();
             connection.start();
             final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             Queue queue = session.createQueue("cloud");
             MessageConsumer consumer = session.createConsumer(queue);
+
+            // Sending a message into the queue.
             TextMessage textMessage = session.createTextMessage("Platform.sh");
             textMessage.setJMSReplyTo(queue);
             MessageProducer producer = session.createProducer(queue);
             producer.send(textMessage);
 
-            //Receive the message
+            // Receive the message.
             TextMessage replyMsg = (TextMessage) consumer.receive(100);
 
             logger.append("Message: ").append(replyMsg.getText());
 
-            //close connections
+            // close connections.
             producer.close();
             consumer.close();
             session.close();
