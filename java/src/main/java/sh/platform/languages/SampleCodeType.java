@@ -26,8 +26,8 @@ public enum SampleCodeType {
     REDIS(new RedisSample(), "Redis"),
     MEMCACHED(new MemcachedSample(), "Memcached"),
     ELASTICSEARCH(new ElasticsearchSample(), "Elasticsearch"),
-    INFLUX_DB(new InfluxdbSample(), "InfluxDB"),
-    RABBITMQS(new RabbitMQSample(), "RabbitMQ"),
+    INFLUXDB(new InfluxdbSample(), "InfluxDB"),
+    RABBITMQ(new RabbitMQSample(), "RabbitMQ"),
     SOLR(new SolrSample(), "Solr"),
     KAFKA(new KafkaSample(), "Kafka");
 
