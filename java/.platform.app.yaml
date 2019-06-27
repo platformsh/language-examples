@@ -14,6 +14,9 @@ relationships:
   elasticsearch: 'elasticsearch:elasticsearch'
   memcached: 'memcached:memcached'
   solr: 'solr:solr'
+  rabbitmq: 'rabbitmq:rabbitmq'
+  influxdb: 'influxdb:influxdb'
+  kafka: 'kafka:kafka'
 
 web:
   commands:
