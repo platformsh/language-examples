@@ -10,6 +10,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"sync"
 )
 
 type exampleDef struct {
@@ -96,9 +97,15 @@ func main() {
 	definitions := exampleDefinitions()
 
 	// Precompute the Output for each service, since it's not going to change.
+	var wg sync.WaitGroup
 	for idx, _ := range definitions {
-		definitions[idx].Output = definitions[idx].callback()
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			definitions[idx].Output = definitions[idx].callback()
+		}()
 	}
+	wg.Wait()
 
 	// Compile the page template once, ahead of time.
 	pageTpl, err := template.New("service").Parse(pageTemplate)
