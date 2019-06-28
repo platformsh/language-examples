@@ -8,7 +8,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"sync"
 )
 
 const (
@@ -36,33 +35,26 @@ func main() {
 	if err != nil {
 		log.Fatal("Writing header failed: ", err)
 	}
-	var wg sync.WaitGroup
 	for _, file := range fs {
 		if strings.HasSuffix(file.Name(), ".go") {
-			wg.Add(1)
-			file := file
-			go func() {
-				defer wg.Done()
-				_, err := out.Write([]byte(strings.TrimSuffix(file.Name(), ".go") + " = `"))
-				if err != nil {
-					log.Fatal("Writing line prefix failed: ", err)
-				}
-				inputFileStream, err := os.Open(filepath.Join(sourceDirectory, file.Name()))
-				if err != nil {
-					log.Fatal("Opening inputFileStream failed: ", err)
-				}
-				defer inputFileStream.Close()
-				_, err = io.Copy(outFilterBacktick, inputFileStream)
-				if err != nil {
-					log.Fatal("Writing inputFileStream content failed: ", err)
-				}
-				_, err = out.Write([]byte("`\n"))
-				if err != nil {
-					log.Fatal("Writing header failed", err)
-				}
-			}()
+			_, err := out.Write([]byte(strings.TrimSuffix(file.Name(), ".go") + " = `"))
+			if err != nil {
+				log.Fatal("Writing line prefix failed: ", err)
+			}
+			inputFileStream, err := os.Open(filepath.Join(sourceDirectory, file.Name()))
+			if err != nil {
+				log.Fatal("Opening inputFileStream failed: ", err)
+			}
+			_, err = io.Copy(outFilterBacktick, inputFileStream)
+			if err != nil {
+				log.Fatal("Writing inputFileStream content failed: ", err)
+			}
+			_, err = out.Write([]byte("`\n"))
+			if err != nil {
+				log.Fatal("Writing header failed", err)
+			}
+			_ = inputFileStream.Close()
 		}
 	}
-	wg.Wait()
 	_, _ = outFilterBacktick.Write([]byte(")\n"))
 }
