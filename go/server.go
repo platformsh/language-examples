@@ -93,11 +93,11 @@ func debug(v interface{}) {
 func main() {
 	r := gin.Default()
 
-	ex := exampleDefinitions()
+	definitions := exampleDefinitions()
 
 	// Precompute the Output for each service, since it's not going to change.
-	for idx, _ := range ex {
-		ex[idx].Output = ex[idx].callback()
+	for idx, _ := range definitions {
+		definitions[idx].Output = definitions[idx].callback()
 	}
 
 	// Compile the page template once, ahead of time.
@@ -106,23 +106,26 @@ func main() {
 		log.Fatal("Error parsing page template", err)
 	}
 
+	// One route to show the example source.
 	r.GET("/:service", func(c *gin.Context) {
 		service := c.Param("service")
-		c.String(http.StatusOK, ex[service].Source)
+		c.String(http.StatusOK, definitions[service].Source)
 	})
 
-	r.GET("/:service/Output", func(c *gin.Context) {
+	// One route to show the service output.
+	r.GET("/:service/output", func(c *gin.Context) {
 		service := c.Param("service")
-		c.String(http.StatusOK, ex[service].Output)
+		c.String(http.StatusOK, definitions[service].Output)
 	})
 
+	// And one route to bring them all and in a single page bind them.
 	r.GET("/", func(c *gin.Context) {
 		c.Status(http.StatusOK)
 		c.Header("Content-Type", "text/html")
 
 		page := struct {
 			DefList exampleList
-		}{DefList: ex}
+		}{DefList: definitions}
 
 		err = pageTpl.Execute(c.Writer, page)
 		if err != nil {
