@@ -12,6 +12,7 @@ type: golang:1.12
 # The hooks executed at various points in the lifecycle of the application.
 hooks:
     build: |
+        go generate
         # Modify this line if you want to build differently or use an alternate name for your executable.
         go build -o bin/app
 

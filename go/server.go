@@ -1,3 +1,5 @@
+//go:generate go run generators/include-source.go
+
 package main
 
 import (
@@ -12,8 +14,7 @@ func setupRouter() *gin.Engine {
 
 	r := gin.Default()
 
-	// Hello World
-	r.GET("/mysql", func(c *gin.Context) {
+	r.GET("/mysql/output", func(c *gin.Context) {
 		out := mysql.MySQL()
 		c.String(http.StatusOK, out)
 	})
