@@ -17,15 +17,11 @@ func MySQL() string {
 
 	// Accessing the database relationship Credentials struct
 	credentials, err := config.Credentials("database")
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Using the sqldsn formatted credentials package
 	formatted, err := sqldsn.FormattedCredentials(credentials)
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	db, err := sql.Open("mysql", formatted)
 	checkErr(err)
@@ -57,7 +53,6 @@ func MySQL() string {
 	id, err := res.LastInsertId()
 	checkErr(err)
 
-	fmt.Println(id)
 	// update
 	stmt, err = db.Prepare("update userinfo set username=? where uid=?")
 	checkErr(err)
@@ -67,8 +62,6 @@ func MySQL() string {
 
 	affect, err := res.RowsAffected()
 	checkErr(err)
-
-	fmt.Println(affect)
 
 	// query
 	rows, err := db.Query("SELECT * FROM userinfo")
@@ -93,7 +86,7 @@ func MySQL() string {
 	affect, err = res.RowsAffected()
 	checkErr(err)
 
-	status := fmt.Sprintf(`Hello, World! - A simple Gin web framework template for Platform.sh
+	output := fmt.Sprintf(`Hello, World! - A simple Gin web framework template for Platform.sh
 
 MySQL Tests:
 
@@ -107,7 +100,7 @@ MySQL Tests:
 
 		`, uid, username, department, created, affect)
 
-	return status
+	return output
 }
 
 // checkErr is a simple wrapper for panicking on error.
