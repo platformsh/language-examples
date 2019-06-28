@@ -37,23 +37,24 @@ func main() {
 		log.Fatal("Writing header failed: ", err)
 	}
 	var wg sync.WaitGroup
-	for _, f := range fs {
-		if strings.HasSuffix(f.Name(), ".go") {
+	for _, file := range fs {
+		if strings.HasSuffix(file.Name(), ".go") {
 			wg.Add(1)
+			file := file
 			go func() {
 				defer wg.Done()
-				_, err := out.Write([]byte(strings.TrimSuffix(f.Name(), ".go") + " = `"))
+				_, err := out.Write([]byte(strings.TrimSuffix(file.Name(), ".go") + " = `"))
 				if err != nil {
 					log.Fatal("Writing line prefix failed: ", err)
 				}
-				file, err := os.Open(filepath.Join(sourceDirectory, f.Name()))
+				inputFileStream, err := os.Open(filepath.Join(sourceDirectory, file.Name()))
 				if err != nil {
-					log.Fatal("Opening file failed: ", err)
+					log.Fatal("Opening inputFileStream failed: ", err)
 				}
-				defer file.Close()
-				_, err = io.Copy(outFilterBacktick, file)
+				defer inputFileStream.Close()
+				_, err = io.Copy(outFilterBacktick, inputFileStream)
 				if err != nil {
-					log.Fatal("Writing file content failed: ", err)
+					log.Fatal("Writing inputFileStream content failed: ", err)
 				}
 				_, err = out.Write([]byte("`\n"))
 				if err != nil {
