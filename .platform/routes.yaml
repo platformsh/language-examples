@@ -31,3 +31,8 @@
     id: java
     type: upstream
     upstream: "java:http"
+
+"https://{default}/golang":
+    id: golang
+    type: upstream
+    upstream: "golang:http"
