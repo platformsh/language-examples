@@ -8,7 +8,7 @@ import (
 	sqldsn "github.com/platformsh/config-reader-go/v2/sqldsn"
 )
 
-func MySQL() string {
+func UsageExampleMySQL() string {
 
 	config, err := psh.NewRuntimeConfig()
 	if err != nil {
