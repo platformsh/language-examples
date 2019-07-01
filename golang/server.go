@@ -10,7 +10,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"sync"
+    "net/url"
+    "sync"
 )
 
 type exampleDef struct {
@@ -102,51 +103,75 @@ func debug(v interface{}) {
 	fmt.Printf("%+v\n", v)
 }
 
+func basePath() string {
+    basePath := ""
+    route, ok := Config.PshConfig.Route("golang")
+    if ok {
+        v, err := url.Parse(route.Url)
+        if err != nil {
+            log.Fatal("Error parsing URL for base path: ", err)
+        }
+        basePath = v.EscapedPath()
+    }
+
+    return basePath
+}
+
+func defineRoutes(basePath string, definitions exampleList) *gin.Engine {
+    r := gin.Default()
+
+    group := r.Group(basePath)
+
+    log.Printf("BasePath is: %s\n", basePath)
+
+    // Compile the page template once, ahead of time.
+    pageTpl, err := template.New("service").Parse(pageTemplate)
+    if err != nil {
+        log.Fatal("Error parsing page template", err)
+    }
+
+    // One route to show the example source.
+    group.GET("/:service", func(c *gin.Context) {
+        service := c.Param("service")
+        log.Print("Service is: %s", service)
+        c.String(http.StatusOK, definitions[service].Source)
+    })
+
+    // One route to show the service output.
+    group.GET("/:service/output", func(c *gin.Context) {
+        service := c.Param("service")
+        c.String(http.StatusOK, definitions[service].Output)
+    })
+
+    // One route to bring them all and in a single page bind them.
+    group.GET("/", func(c *gin.Context) {
+        c.Status(http.StatusOK)
+        c.Header("Content-Type", "text/html")
+
+        page := struct {
+            DefList exampleList
+        }{DefList: definitions}
+
+        err = pageTpl.Execute(c.Writer, page)
+        if err != nil {
+            log.Fatal("Failed rendering template: ", err)
+        }
+    })
+
+    return r
+}
+
 func main() {
-	r := gin.Default()
+	//r := gin.Default()
 
 	definitions := exampleDefinitions()
 
-	// Compile the page template once, ahead of time.
-	pageTpl, err := template.New("service").Parse(pageTemplate)
-	if err != nil {
-		log.Fatal("Error parsing page template", err)
-	}
+	basePath := basePath()
 
-	// One route to show the example source.
-	r.GET("/:service", func(c *gin.Context) {
-		service := c.Param("service")
-		log.Print("Service is: %s", service)
-		def := definitions[service]
-		debug(def)
-		source := def.Source
-		debug(source)
-		c.String(http.StatusOK, definitions[service].Source)
-	})
-
-	// One route to show the service output.
-	r.GET("/:service/output", func(c *gin.Context) {
-		service := c.Param("service")
-		c.String(http.StatusOK, definitions[service].Output)
-	})
-
-	// One route to bring them all and in a single page bind them.
-	r.GET("/", func(c *gin.Context) {
-		c.Status(http.StatusOK)
-		c.Header("Content-Type", "text/html")
-
-		page := struct {
-			DefList exampleList
-		}{DefList: definitions}
-
-		err = pageTpl.Execute(c.Writer, page)
-		if err != nil {
-			log.Fatal("Failed rendering template: ", err)
-		}
-	})
+    r := defineRoutes(basePath, definitions)
 
 	// Listen and Server in the port defined by Platform.sh.
-	err = r.Run(":" + Config.PshConfig.Port())
+	err := r.Run(":" + Config.PshConfig.Port())
 	if err != nil {
 		log.Fatal(err)
 	}
