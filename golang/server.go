@@ -110,6 +110,7 @@ func basePath() string {
     debug(ok)
     if ok {
         v, err := url.Parse(route.Url)
+        debug(v)
         if err != nil {
             log.Fatal("Error parsing URL for base path: ", err)
         }
