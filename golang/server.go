@@ -106,26 +106,21 @@ func debug(v interface{}) {
 func basePath() string {
     basePath := ""
     route, ok := Config.PshConfig.Route("golang")
-    debug(route)
-    debug(ok)
     if ok {
-        v, err := url.Parse(route.Url)
-        debug(v)
+        parsedUrl, err := url.Parse(route.Url)
         if err != nil {
             log.Fatal("Error parsing URL for base path: ", err)
         }
-        basePath = v.EscapedPath()
+        basePath = parsedUrl.EscapedPath()
     }
 
     return basePath
 }
 
 func defineRoutes(basePath string, definitions exampleList) *gin.Engine {
-    r := gin.Default()
+    engine := gin.Default()
 
-    group := r.Group(basePath)
-
-    log.Printf("BasePath is: %s\n", basePath)
+    group := engine.Group(basePath)
 
     // Compile the page template once, ahead of time.
     pageTpl, err := template.New("service").Parse(pageTemplate)
@@ -160,20 +155,17 @@ func defineRoutes(basePath string, definitions exampleList) *gin.Engine {
         }
     })
 
-    return r
+    return engine
 }
 
 func main() {
-	//r := gin.Default()
-
 	definitions := exampleDefinitions()
-
 	basePath := basePath()
 
-    r := defineRoutes(basePath, definitions)
+    ginInstance := defineRoutes(basePath, definitions)
 
 	// Listen and Server in the port defined by Platform.sh.
-	err := r.Run(":" + Config.PshConfig.Port())
+	err := ginInstance.Run(":" + Config.PshConfig.Port())
 	if err != nil {
 		log.Fatal(err)
 	}
