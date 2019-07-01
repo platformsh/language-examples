@@ -2,7 +2,6 @@ package sh.platform.languages;
 
 import com.google.gson.Gson;
 import sh.platform.languages.sample.ElasticsearchSample;
-import sh.platform.languages.sample.InfluxdbSample;
 import sh.platform.languages.sample.KafkaSample;
 import sh.platform.languages.sample.MemcachedSample;
 import sh.platform.languages.sample.MongoDBSample;
@@ -26,7 +25,6 @@ public enum SampleCodeType {
     REDIS(new RedisSample(), "Redis"),
     MEMCACHED(new MemcachedSample(), "Memcached"),
     ELASTICSEARCH(new ElasticsearchSample(), "Elasticsearch"),
-    INFLUXDB(new InfluxdbSample(), "InfluxDB"),
     RABBITMQ(new RabbitMQSample(), "RabbitMQ"),
     SOLR(new SolrSample(), "Solr"),
     KAFKA(new KafkaSample(), "Kafka");
