@@ -116,6 +116,11 @@ func main() {
 	// One route to show the example source.
 	r.GET("/:service", func(c *gin.Context) {
 		service := c.Param("service")
+		log.Print("Service is: %s", service)
+		def := definitions[service]
+		debug(def)
+		source := def.Source
+		debug(source)
 		c.String(http.StatusOK, definitions[service].Source)
 	})
 
