@@ -106,6 +106,8 @@ func debug(v interface{}) {
 func basePath() string {
     basePath := ""
     route, ok := Config.PshConfig.Route("golang")
+    debug(route)
+    debug(ok)
     if ok {
         v, err := url.Parse(route.Url)
         if err != nil {
