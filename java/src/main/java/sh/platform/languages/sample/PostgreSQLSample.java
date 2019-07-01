@@ -57,7 +57,7 @@ public class PostgreSQLSample implements Supplier<String> {
             statement.execute("DROP TABLE JAVA_FRAMEWORKS");
             return logger.toString();
         } catch (SQLException exp) {
-            throw new RuntimeException("An error when execute PostgreSQL: " + exp.getMessage());
+            throw new RuntimeException("An error when execute PostgreSQL", exp);
         }
     }
 }
