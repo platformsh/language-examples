@@ -4,7 +4,7 @@ import (
   psh "github.com/platformsh/config-reader-go/v2"
 )
 
-func UsageExamplePostgreSQL() string {
+func UsageExampleSolr() string {
 
   // Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
 	// You can alternatively use os.Getenv() yourself.
@@ -13,9 +13,8 @@ func UsageExamplePostgreSQL() string {
     panic(err)
   }
 
-  // The 'database' relationship is generally the name of the primary SQL database of an application.
-  // It could be anything, though, as in the case here where it's called "postgresql".
-  credentials, err := config.Credentials("postgresql")
+  // Get the credentials to connect to the Solr service.
+  credentials, err := config.Credentials("solr")
   checkErr(err)
 
 

@@ -10,12 +10,15 @@ import (
 
 func UsageExampleMySQL() string {
 
+	// Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
+	// You can alternatively use os.Getenv() yourself.
 	config, err := psh.NewRuntimeConfig()
 	if err != nil {
 		panic(err)
 	}
 
-	// Accessing the database relationship Credentials struct
+	// The 'database' relationship is generally the name of the primary SQL database of an application.
+	// That's not required, but much of our default automation code assumes it.
 	credentials, err := config.Credentials("database")
 	checkErr(err)
 
