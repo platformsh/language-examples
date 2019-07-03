@@ -2,11 +2,11 @@ package examples
 
 import (
   "fmt"
-  // "context"
-  // "time"
+  "context"
+  "time"
   psh "github.com/platformsh/config-reader-go/v2"
-  // "github.com/mongodb/mongo-go-driver/mongo"
-  // "go.mongodb.org/mongo-driver/mongo/options"
+  "go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func UsageExampleMongoDB() string {
@@ -22,14 +22,14 @@ func UsageExampleMongoDB() string {
   credentials, err := config.Credentials("mongodb")
   checkErr(err)
 
-  mongoString := fmt.Sprintf(credentials.Scheme + "%s://%s:%s@%s:%d/%s",
+  mongoString := fmt.Sprintf("%s://%s:%s@%s:%d/%s",
   credentials.Scheme, credentials.Username, credentials.Password, credentials.Host, credentials.Port, credentials.Path)
 
-  // ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-  // client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoString))
-  // checkErr(err)
-  //
-  // fmt.Println(client)
+  ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+  client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoString))
+  checkErr(err)
 
-  return mongoString
+  fmt.Println(client)
+
+  return "Successfully connected!"
 }
