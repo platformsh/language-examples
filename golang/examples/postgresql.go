@@ -38,6 +38,26 @@ func UsageExamplePostgreSQL() string {
   }
   defer db.Close()
 
+  // Creating a table
+  sqlString := `
+CREATE TABLE People (
+id SERIAL PRIMARY KEY,
+name VARCHAR(30) NOT NULL,
+city VARCHAR(30) NOT NULL)`
 
+  _, err = db.Exec(sqlString)
+  if err != nil {
+    panic(err)
+  }
+
+  // Insert data.
+  sqlStatment := `
+INSERT INTO People (name, city) VALUES
+('Neil Armstrong', 'Moon'),
+('Buzz Aldrin', 'Glen Ridge'),
+('Sally Ride', 'La Jolla');`
+
+  _, err = db.Exec(sqlStatment)
+  
   return "Successfully connected!"
 }
