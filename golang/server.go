@@ -85,6 +85,7 @@ func exampleDefinitions() exampleList {
 	exList["mysql"] = &exampleDef{Name: "MySQL", callback: examples.UsageExampleMySQL, Source: mysql}
 	exList["postgresql"] = &exampleDef{Name: "PostgreSQL", callback: examples.UsageExamplePostgreSQL, Source: postgresql}
 	exList["solr"] = &exampleDef{Name: "Solr", callback: examples.UsageExampleSolr, Source: solr}
+	exList["mongodb"] = &exampleDef{Name: "MongoDB", callback: examples.UsageExampleMongoDB, Source: mongodb}
 
 	// Precompute the Output for each service, since it's not going to change.
 	var wg sync.WaitGroup
