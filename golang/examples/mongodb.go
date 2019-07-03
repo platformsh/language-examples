@@ -28,7 +28,7 @@ func UsageExampleMongoDB() string {
   credentials, err := config.Credentials("mongodb")
   checkErr(err)
 
-  formatted, err := FormattedCredentialsPostgreSQL(credentials)
+  formatted, err := FormattedCredentialsMongoDB(credentials)
   if err != nil {
     panic(err)
   }
