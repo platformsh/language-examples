@@ -32,7 +32,7 @@ func UsageExamplePostgreSQL() string {
     panic(err)
   }
 
-  db, err := sql.Open("postgres", psqlInfo)
+  db, err := sql.Open("postgres", formatted)
   if err != nil {
     panic(err)
   }
