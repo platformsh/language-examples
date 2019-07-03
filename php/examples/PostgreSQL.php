@@ -22,6 +22,8 @@ try {
         // So we don't have to mess around with cursors and unbuffered queries by default.
     ]);
 
+    $conn->query("DROP TABLE IF EXISTS People");
+
     // Creating a table.
     $sql = "CREATE TABLE IF NOT EXISTS People (
       id SERIAL PRIMARY KEY,

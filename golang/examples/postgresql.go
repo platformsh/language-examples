@@ -39,25 +39,55 @@ func UsageExamplePostgreSQL() string {
   defer db.Close()
 
   // Creating a table
-  sqlString := `
+  sqlCreate := `
 CREATE TABLE IF NOT EXISTS People (
 id SERIAL PRIMARY KEY,
 name VARCHAR(30) NOT NULL,
 city VARCHAR(30) NOT NULL)`
 
-  _, err = db.Exec(sqlString)
+  _, err = db.Exec(sqlCreate)
   if err != nil {
     panic(err)
   }
 
   // Insert data.
-  sqlStatment := `
+  sqlInsert := `
 INSERT INTO People (name, city) VALUES
 ('Neil Armstrong', 'Moon'),
 ('Buzz Aldrin', 'Glen Ridge'),
 ('Sally Ride', 'La Jolla');`
 
-  _, err = db.Exec(sqlStatment)
+  _, err = db.Exec(sqlInsert)
+  if err != nil {
+    panic(err)
+  }
 
-  return "Successfully connected!"
+  table := `<table>
+<thead>
+<tr><th>Name</th><th>City</th></tr>
+</thead>
+<tbody>`
+
+  var id int
+  var name string
+  var city string
+
+  rows, err := db.Query("SELECT * FROM People")
+  if err != nil {
+    panic(err)
+  } else {
+    for rows.Next() {
+      err = rows.Scan(&id, &name, &city)
+      checkErr(err)
+      table += fmt.Sprintf("<tr><td>%s</td><td>%s</td><tr>\n", name, city)
+    }
+    table += "</tbody>\n</table>\n"
+  }
+
+  _, err = db.Exec("DROP TABLE People")
+  if err != nil {
+    panic(err)
+  }
+
+  return err.Error()
 }

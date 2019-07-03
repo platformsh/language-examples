@@ -39,5 +39,5 @@ func UsageExampleMongoDB() string {
 
   fmt.Println(client)
 
-  return "Successfully connected!"
+  return err.Error()
 }
