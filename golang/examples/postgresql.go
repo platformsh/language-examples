@@ -1,6 +1,7 @@
 package examples
 
 import (
+  "fmt"
   "database/sql"
   _ "github.com/lib/pq"
   psh "github.com/platformsh/config-reader-go/v2"
