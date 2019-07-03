@@ -7,6 +7,12 @@ import (
   psh "github.com/platformsh/config-reader-go/v2"
 )
 
+func FormattedCredentialsPostgreSQL(creds psh.Credential) (string, error) {
+  formatted := fmt.Sprintf("host=%s port=%d user=%s " + "password=%s dbname=%s sslmode=disable",
+    creds.Host, creds.Port, creds.Username, creds.Password, creds.Path)
+  return formatted, nil
+}
+
 func UsageExamplePostgreSQL() string {
 
   // Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
@@ -21,7 +27,10 @@ func UsageExamplePostgreSQL() string {
   credentials, err := config.Credentials("postgresql")
   checkErr(err)
 
-  psqlInfo := fmt.Sprintf("host=%s port=%d user=%s " + "password=%s dbname=%s sslmode=disable", credentials.Host, credentials.Port, credentials.Username, credentials.Password, credentials.Path)
+  formatted, err := FormattedCredentialsPostgreSQL(credentials)
+  if err != nil {
+    panic(err)
+  }
 
   db, err := sql.Open("postgres", psqlInfo)
   if err != nil {
