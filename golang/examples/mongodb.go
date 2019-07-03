@@ -9,6 +9,12 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+func FormattedCredentialsMongoDB(creds psh.Credential) (string, error) {
+  formatted := fmt.Sprintf("%s://%s:%s@%s:%d/%s",
+    creds.Scheme, creds.Username, creds.Password, creds.Host, creds.Port, creds.Path)
+  return formatted, nil
+}
+
 func UsageExampleMongoDB() string {
 
   // Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
@@ -22,11 +28,13 @@ func UsageExampleMongoDB() string {
   credentials, err := config.Credentials("mongodb")
   checkErr(err)
 
-  mongoString := fmt.Sprintf("%s://%s:%s@%s:%d/%s",
-  credentials.Scheme, credentials.Username, credentials.Password, credentials.Host, credentials.Port, credentials.Path)
+  formatted, err := FormattedCredentialsPostgreSQL(credentials)
+  if err != nil {
+    panic(err)
+  }
 
   ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-  client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoString))
+  client, err := mongo.Connect(ctx, options.Client().ApplyURI(formatted))
   checkErr(err)
 
   fmt.Println(client)
