@@ -1,6 +1,8 @@
 package examples
 
 import (
+  "database/sql"
+  _ "github.com/lib/pq"
   psh "github.com/platformsh/config-reader-go/v2"
 )
 
@@ -18,6 +20,14 @@ func UsageExamplePostgreSQL() string {
   credentials, err := config.Credentials("postgresql")
   checkErr(err)
 
+  psqlInfo := fmt.Sprintf("host=%s port=%d user=%s " + "password=%s dbname=%s sslmode=disable", credentials.Host, credentials.Port, credentials.Username, credentials.Password, credentials.Path)
 
-  return credentials.Host
+  db, err := sql.Open("postgres", psqlInfo)
+  if err != nil {
+    panic(err)
+  }
+  defer db.Close()
+
+
+  return "Successfully connected!"
 }
