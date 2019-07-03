@@ -28,7 +28,7 @@ def usage_example():
 
         # Creating a table.
         sql = '''
-                CREATE TABLE People (
+                CREATE TABLE IF NOT EXISTS People (
                 id SERIAL PRIMARY KEY,
                 name VARCHAR(30) NOT NULL,
                 city VARCHAR(30) NOT NULL

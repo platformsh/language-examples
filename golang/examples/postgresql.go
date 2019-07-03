@@ -40,7 +40,7 @@ func UsageExamplePostgreSQL() string {
 
   // Creating a table
   sqlString := `
-CREATE TABLE People (
+CREATE TABLE IF NOT EXISTS People (
 id SERIAL PRIMARY KEY,
 name VARCHAR(30) NOT NULL,
 city VARCHAR(30) NOT NULL)`
@@ -58,6 +58,6 @@ INSERT INTO People (name, city) VALUES
 ('Sally Ride', 'La Jolla');`
 
   _, err = db.Exec(sqlStatment)
-  
+
   return "Successfully connected!"
 }
