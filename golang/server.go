@@ -87,12 +87,22 @@ func exampleDefinitions() exampleList {
 	exList["solr"] = &exampleDef{Name: "Solr", callback: examples.UsageExampleSolr, Source: solr}
 
 	// Precompute the Output for each service, since it's not going to change.
+	// var wg sync.WaitGroup
+	// for idx, _ := range exList {
+	// 	wg.Add(1)
+	// 	go func() {
+	// 		defer wg.Done()
+	// 		exList[idx].Output = exList[idx].callback()
+	// 	}()
+	// }
+	// wg.Wait()
+	// Precompute the Output for each service, since it's not going to change.
 	var wg sync.WaitGroup
 	for idx, _ := range exList {
 		wg.Add(1)
-		go func() {
+		exList[idx].Output = func() string {
 			defer wg.Done()
-			exList[idx].Output = exList[idx].callback()
+			return exList[idx].callback()
 		}()
 	}
 	wg.Wait()
