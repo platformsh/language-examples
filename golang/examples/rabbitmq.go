@@ -76,19 +76,9 @@ func UsageExampleRabbitMQ() string {
   )
   checkErr(err)
 
-  outputMSG += "[*] Received a message:\n"
-
-  // forever := make(channel bool)
-
-  go func() {
-    for d := range msgs {
-      outputMSG += fmt.Sprintf("[x] %s\n", d.Body)
-    }
-  }()
-
-  outputMSG += "[*] Waiting for messages.\n"
-  // <-forever
-
+  for d := range msgs {
+    outputMSG += fmt.Sprintf("[x] Received message: '%s'\n", d.Body)
+  }
 
   return outputMSG
 }
