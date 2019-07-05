@@ -3,6 +3,7 @@ package examples
 import (
   "log"
   "fmt"
+  "sync"
   "github.com/streadway/amqp"
   psh "github.com/platformsh/config-reader-go/v2"
 )
@@ -83,16 +84,23 @@ func UsageExampleRabbitMQ() string {
 
   // forever := make(chan bool)
 
+  var received string
+  var wg sync.WaitGroup
+  wg.Add(1)
   go func() {
     for d := range msgs {
       log.Printf("Received a message: %s", d.Body)
-      outputMSG += fmt.Sprintf("[x] Received message: '%s'\n", d.Body)
-
+      received = fmt.Sprintf("[x] Received message: '%s'\n", d.Body)
+      wg.Done()
     }
   }()
 
+  wg.Wait()
+
   // log.Printf(" [*] Waiting for messages. To exit press CTRL+C")
   // <-forever
+
+  outputMSG += received
 
   return outputMSG
 }
