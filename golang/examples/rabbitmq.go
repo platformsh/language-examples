@@ -65,20 +65,20 @@ func UsageExampleRabbitMQ() string {
 
   outputMSG := fmt.Sprintf("[x] Sent '%s'\n", body)
 
-  msgs, err := channel.Consume(
-    q.Name,  // queue
-    "",      // consumer
-    true,    // auto-ack
-    false,   // exclusive
-    false,   // no-local
-    false,   // no-wait
-    nil,     // args
-  )
-  checkErr(err)
-
-  for d := range msgs {
-    outputMSG += fmt.Sprintf("[x] Received message: '%s'\n", d.Body)
-  }
+  // msgs, err := channel.Consume(
+  //   q.Name,  // queue
+  //   "",      // consumer
+  //   true,    // auto-ack
+  //   false,   // exclusive
+  //   false,   // no-local
+  //   false,   // no-wait
+  //   nil,     // args
+  // )
+  // checkErr(err)
+  //
+  // for d := range msgs {
+  //   outputMSG += fmt.Sprintf("[x] Received message: '%s'\n", d.Body)
+  // }
 
   return outputMSG
 }
