@@ -1,14 +1,15 @@
 package examples
 
 import (
+  "fmt"
   psh "github.com/platformsh/config-reader-go/v2"
+  "github.com/bradfitz/gomemcache/memcache"
 )
 
-// func FormattedCredentialsRabbitMQ(creds psh.Credential) (string, error) {
-//   formatted := fmt.Sprintf("%s://%s:%s@%s:%d/%s",
-//     creds.Scheme, creds.Username, creds.Password, creds.Host, creds.Port, creds.Path)
-//   return formatted, nil
-// }
+func FormattedCredentialsMemcached(creds psh.Credential) (string, error) {
+  formatted := fmt.Sprintf("%s:%d", creds.Host, creds.Port)
+  return formatted, nil
+}
 
 func UsageExampleMemcached() string {
 
@@ -23,5 +24,19 @@ func UsageExampleMemcached() string {
   credentials, err := config.Credentials("memcached")
   checkErr(err)
 
-  return credentials.Host
+  // formatted := fmt.Sprintf("%s:%d", credentials.Host, credentials.Port)
+
+  formatted, err := FormattedCredentialsMemcached(credentials)
+  checkErr(err)
+
+  mc := memcache.New(formatted)
+
+  key := "Deploy_day"
+  value := "Friday"
+
+  err = mc.Set(&memcache.Item{Key: key, Value: []byte(value)})
+
+  test, err := mc.Get("Deploy_day")
+
+  return fmt.Sprintf("Found value <strong>%s</strong> for key <strong%sstrong>.", test.Value, key)
 }
