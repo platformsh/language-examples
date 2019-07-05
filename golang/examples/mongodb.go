@@ -33,9 +33,9 @@ func UsageExampleMongoDB() string {
     panic(err)
   }
 
-  // ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-  // client, err := mongo.Connect(ctx, options.Client().ApplyURI(formatted))
-  // checkErr(err)
+  ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+  client, err := mongo.Connect(ctx, options.Client().ApplyURI(formatted))
+  checkErr(err)
   //
   // fmt.Println(client)
 
