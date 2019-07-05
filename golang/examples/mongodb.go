@@ -64,18 +64,5 @@ func UsageExampleMongoDB() string {
     occupation = document.Occupation
   }
 
-  // cursor.Next(context.Background())
-  //
-  // type document struct {
-  //   Name string
-  //   Occupation string
-  // }
-  //
-  // err = cursor.Decode(*document)
-  // if err != nil {
-  //   panic(err)
-  // }
-
-
   return fmt.Sprintf("Found %s (%s)", name, occupation)
 }
