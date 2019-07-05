@@ -38,8 +38,28 @@ func UsageExampleRabbitMQ() string {
   channel, err := connection.Channel()
   checkErr(err)
 
-  fmt.Println(channel)
+  q, err := channel.QueueDeclare(
+    "deploy_days", // name
+    false,         // durable
+    false,         // delete when unused
+    false,         // exclusive
+    false,         // no-wait
+    nil,           // arguments
+  )
 
+  body := "Friday"
+  msg := fmt.Sprintf("[x] Deploying on %s<br />\n", body)
 
-  return credentials.Host
+  err = channel.Publish(
+    "",      // exchange
+    q.Name,  // routing key
+    false,   // mandatory
+    false,   // immediate
+    amqp.Publishing{
+      ContentType: "text/plain",
+      Body: []byte(msg),
+    })
+  checkErr(err)
+
+  return fmt.Sprintf("[x] Sent %s", body)
 }
