@@ -7,7 +7,7 @@ import (
 )
 
 func FormattedCredentialsRabbitMQ(creds psh.Credential) (string, error) {
-  formatted := fmt.Sprintf("%s://%s:%s@%s:%s/", creds.Scheme, creds.Username,
+  formatted := fmt.Sprintf("%s://%s:%s@%s:%d/", creds.Scheme, creds.Username,
     creds.Password, creds.Host, creds.Port)
   return formatted, nil
 }
