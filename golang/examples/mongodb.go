@@ -48,24 +48,34 @@ func UsageExampleMongoDB() string {
     panic(err)
   }
 
-  cursor.Next(context.Background())
-  document := cursor.Current
+  var name string
+  var occupation string
 
-  // var result struct {
-  //   Value float64
+  for cursor.Next(context.Background()) {
+    document := struct{
+      Name string
+      Occupation string
+    }{}
+    err := cursor.Decode(&document)
+    if err != nil {
+      panic(err)
+    }
+    name = document.Name
+    occupation = document.Occupation
+  }
+
+  // cursor.Next(context.Background())
+  //
+  // type document struct {
+  //   Name string
+  //   Occupation string
   // }
-  // filter := bson.M{"_id": id}
-  // ctx, _ = context.WithTimeout(context.Background(), 5*time.Second)
-  // err = collection.FindOne(ctx, filter).Decode(&result)
+  //
+  // err = cursor.Decode(*document)
   // if err != nil {
-  //     panic(err)
+  //   panic(err)
   // }
 
-  // printf("Found %s (%s)<br />\n", $document->name, $document->occupation);
 
-
-  return fmt.Sprintf("Found %s (%s)", document[0], document[1])
-
-
-  return "Successfully connected!"
+  return fmt.Sprintf("Found %s (%s)", name, occupation)
 }
