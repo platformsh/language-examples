@@ -34,76 +34,129 @@ func UsageExampleMySQL() string {
 	db.Exec("SET NAMES=utf8")
 	db.Exec("SET sql_mode = 'ANSI,STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,ONLY_FULL_GROUP_BY'")
 
-	_, err = db.Exec("DROP TABLE IF EXISTS userinfo")
-	checkErr(err)
+	// Creating a table
+  sqlCreate := `
+CREATE TABLE IF NOT EXISTS People (
+id SERIAL PRIMARY KEY,
+name VARCHAR(30) NOT NULL,
+city VARCHAR(30) NOT NULL)`
 
-	_, err = db.Exec(`CREATE TABLE userinfo (
-				uid INT(10) NOT NULL AUTO_INCREMENT,
-				username VARCHAR(64) NULL DEFAULT NULL,
-				departname VARCHAR(128) NULL DEFAULT NULL,
-				created DATE NULL DEFAULT NULL,
-				PRIMARY KEY (uid)
-				) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;`)
-	checkErr(err)
+  _, err = db.Exec(sqlCreate)
+  if err != nil {
+    panic(err)
+  }
 
-	// insert
-	stmt, err := db.Prepare("INSERT userinfo SET username=?,departname=?,created=?")
-	checkErr(err)
+  // Insert data.
+  sqlInsert := `
+INSERT INTO People (name, city) VALUES
+('Neil Armstrong', 'Moon'),
+('Buzz Aldrin', 'Glen Ridge'),
+('Sally Ride', 'La Jolla');`
 
-	res, err := stmt.Exec("platform", "Deploy Friday", "2019-06-17")
-	checkErr(err)
+  _, err = db.Exec(sqlInsert)
+  if err != nil {
+    panic(err)
+  }
 
-	id, err := res.LastInsertId()
-	checkErr(err)
+  table := `<table>
+<thead>
+<tr><th>Name</th><th>City</th></tr>
+</thead>
+<tbody>`
 
-	// update
-	stmt, err = db.Prepare("update userinfo set username=? where uid=?")
-	checkErr(err)
+  var id int
+  var name string
+  var city string
 
-	res, err = stmt.Exec("goPlatformsh", id)
-	checkErr(err)
+  rows, err := db.Query("SELECT * FROM People")
+  if err != nil {
+    panic(err)
+  } else {
+    for rows.Next() {
+      err = rows.Scan(&id, &name, &city)
+      checkErr(err)
+      table += fmt.Sprintf("<tr><td>%s</td><td>%s</td><tr>\n", name, city)
+    }
+    table += "</tbody>\n</table>\n"
+  }
 
-	affect, err := res.RowsAffected()
-	checkErr(err)
+  _, err = db.Exec("DROP TABLE People")
+  if err != nil {
+    panic(err)
+  }
 
-	// query
-	rows, err := db.Query("SELECT * FROM userinfo")
-	checkErr(err)
-
-	var uid int
-	var username string
-	var department string
-	var created string
-	for rows.Next() {
-		err = rows.Scan(&uid, &username, &department, &created)
-		checkErr(err)
-	}
-
-	// delete
-	stmt, err = db.Prepare("delete from userinfo where uid=?")
-	checkErr(err)
-
-	res, err = stmt.Exec(id)
-	checkErr(err)
-
-	affect, err = res.RowsAffected()
-	checkErr(err)
-
-	output := fmt.Sprintf(`Hello, World! - A simple Gin web framework template for Platform.sh
-
-MySQL Tests:
-
-* Connect and add row:
-	 - Row ID (1): %d
-	 - Username (goPlatformsh): %s
-	 - Department (Deploy Friday): %s
-	 - Created (2019-06-17): %s
-* Delete row:
-	 - Status (1): %d
-
-		`, uid, username, department, created, affect)
-
-	return output
+  return table
+//
+// 	_, err = db.Exec("DROP TABLE IF EXISTS userinfo")
+// 	checkErr(err)
+//
+// 	_, err = db.Exec(`CREATE TABLE userinfo (
+// 				uid INT(10) NOT NULL AUTO_INCREMENT,
+// 				username VARCHAR(64) NULL DEFAULT NULL,
+// 				departname VARCHAR(128) NULL DEFAULT NULL,
+// 				created DATE NULL DEFAULT NULL,
+// 				PRIMARY KEY (uid)
+// 				) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;`)
+// 	checkErr(err)
+//
+// 	// insert
+// 	stmt, err := db.Prepare("INSERT userinfo SET username=?,departname=?,created=?")
+// 	checkErr(err)
+//
+// 	res, err := stmt.Exec("platform", "Deploy Friday", "2019-06-17")
+// 	checkErr(err)
+//
+// 	id, err := res.LastInsertId()
+// 	checkErr(err)
+//
+// 	// update
+// 	stmt, err = db.Prepare("update userinfo set username=? where uid=?")
+// 	checkErr(err)
+//
+// 	res, err = stmt.Exec("goPlatformsh", id)
+// 	checkErr(err)
+//
+// 	affect, err := res.RowsAffected()
+// 	checkErr(err)
+//
+// 	// query
+// 	rows, err := db.Query("SELECT * FROM userinfo")
+// 	checkErr(err)
+//
+// 	var uid int
+// 	var username string
+// 	var department string
+// 	var created string
+// 	for rows.Next() {
+// 		err = rows.Scan(&uid, &username, &department, &created)
+// 		checkErr(err)
+// 	}
+//
+// 	// delete
+// 	stmt, err = db.Prepare("delete from userinfo where uid=?")
+// 	checkErr(err)
+//
+// 	res, err = stmt.Exec(id)
+// 	checkErr(err)
+//
+// 	affect, err = res.RowsAffected()
+// 	checkErr(err)
+//
+// 	output := fmt.Sprintf(`Hello, World! - A simple Gin web framework template for Platform.sh
+//
+// MySQL Tests:
+//
+// * Connect and add row:
+// 	 - Row ID (1): %d
+// 	 - Username (goPlatformsh): %s
+// 	 - Department (Deploy Friday): %s
+// 	 - Created (2019-06-17): %s
+// * Delete row:
+// 	 - Status (1): %d
+//
+// 		`, uid, username, department, created, affect)
+//
+// 	return output
 }
 
 // checkErr is a simple wrapper for panicking on error.
