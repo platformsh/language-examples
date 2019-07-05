@@ -1,7 +1,6 @@
 package examples
 
 import (
-  "log"
   "fmt"
   "sync"
   "github.com/streadway/amqp"
@@ -83,7 +82,6 @@ func UsageExampleRabbitMQ() string {
   wg.Add(1)
   go func() {
     for d := range msgs {
-      log.Printf("Received a message: %s", d.Body)
       received = fmt.Sprintf("[x] Received message: '%s' \n", d.Body)
       wg.Done()
     }

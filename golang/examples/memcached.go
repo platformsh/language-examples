@@ -24,8 +24,6 @@ func UsageExampleMemcached() string {
   credentials, err := config.Credentials("memcached")
   checkErr(err)
 
-  // formatted := fmt.Sprintf("%s:%d", credentials.Host, credentials.Port)
-
   formatted, err := FormattedCredentialsMemcached(credentials)
   checkErr(err)
 
@@ -38,5 +36,5 @@ func UsageExampleMemcached() string {
 
   test, err := mc.Get("Deploy_day")
 
-  return fmt.Sprintf("Found value <strong>%s</strong> for key <strong%sstrong>.", test.Value, key)
+  return fmt.Sprintf("Found value <strong>%s</strong> for key <strong>%s</strong>.", test.Value, key)
 }
