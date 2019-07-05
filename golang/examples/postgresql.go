@@ -38,29 +38,29 @@ func UsageExamplePostgreSQL() string {
   }
   defer db.Close()
 
-  // Creating a table
-  sqlCreate := `
-CREATE TABLE IF NOT EXISTS People (
-id SERIAL PRIMARY KEY,
-name VARCHAR(30) NOT NULL,
-city VARCHAR(30) NOT NULL)`
-
-  _, err = db.Exec(sqlCreate)
-  if err != nil {
-    panic(err)
-  }
-
-  // Insert data.
-  sqlInsert := `
-INSERT INTO People (name, city) VALUES
-('Neil Armstrong', 'Moon'),
-('Buzz Aldrin', 'Glen Ridge'),
-('Sally Ride', 'La Jolla');`
-
-  _, err = db.Exec(sqlInsert)
-  if err != nil {
-    panic(err)
-  }
+//   // Creating a table
+//   sqlCreate := `
+// CREATE TABLE IF NOT EXISTS People (
+// id SERIAL PRIMARY KEY,
+// name VARCHAR(30) NOT NULL,
+// city VARCHAR(30) NOT NULL)`
+//
+//   _, err = db.Exec(sqlCreate)
+//   if err != nil {
+//     panic(err)
+//   }
+//
+//   // Insert data.
+//   sqlInsert := `
+// INSERT INTO People (name, city) VALUES
+// ('Neil Armstrong', 'Moon'),
+// ('Buzz Aldrin', 'Glen Ridge'),
+// ('Sally Ride', 'La Jolla');`
+//
+//   _, err = db.Exec(sqlInsert)
+//   if err != nil {
+//     panic(err)
+//   }
 
 //   table := `<table>
 // <thead>
