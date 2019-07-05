@@ -77,12 +77,6 @@ func UsageExampleRabbitMQ() string {
     nil,     // args
   )
   checkErr(err)
-  //
-  // for d := range msgs {
-  //   outputMSG += fmt.Sprintf("[x] Received message: '%s'\n", d.Body)
-  // }
-
-  // forever := make(chan bool)
 
   var received string
   var wg sync.WaitGroup
@@ -90,15 +84,12 @@ func UsageExampleRabbitMQ() string {
   go func() {
     for d := range msgs {
       log.Printf("Received a message: %s", d.Body)
-      received = fmt.Sprintf("[x] Received message: '%s'\n", d.Body)
+      received = fmt.Sprintf("[x] Received message: '%s' \n", d.Body)
       wg.Done()
     }
   }()
 
   wg.Wait()
-
-  // log.Printf(" [*] Waiting for messages. To exit press CTRL+C")
-  // <-forever
 
   outputMSG += received
 
