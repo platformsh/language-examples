@@ -6,6 +6,7 @@ import (
   "time"
   psh "github.com/platformsh/config-reader-go/v2"
   "go.mongodb.org/mongo-driver/mongo"
+  "go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
@@ -37,7 +38,14 @@ func UsageExampleMongoDB() string {
   client, err := mongo.Connect(ctx, options.Client().ApplyURI(formatted))
   checkErr(err)
 
+  collection := client.Database("main").Collection("starwars")
+
+  res, err := collection.InsertOne(ctx, bson.M{"name": "Rey", "occupation": "Jedi"})
+  id := res.InsertedID
+
+  // collection
+
   fmt.Println(client)
 
-  return "Successfully connected!"
+  return id.(string)
 }
