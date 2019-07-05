@@ -10,33 +10,33 @@ import (
 
 func UsageExampleMySQL() string {
 
-	// Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
-	// You can alternatively use os.Getenv() yourself.
-	config, err := psh.NewRuntimeConfig()
-	if err != nil {
-		panic(err)
-	}
+  // Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
+  // You can alternatively use os.Getenv() yourself.
+  config, err := psh.NewRuntimeConfig()
+  if err != nil {
+    panic(err)
+  }
 
-	// The 'database' relationship is generally the name of the primary SQL database of an application.
-	// That's not required, but much of our default automation code assumes it.
-	credentials, err := config.Credentials("database")
-	checkErr(err)
+  // The 'database' relationship is generally the name of the primary SQL database of an application.
+  // That's not required, but much of our default automation code assumes it.
+  credentials, err := config.Credentials("database")
+  checkErr(err)
 
-	// Using the sqldsn formatted credentials package
-	formatted, err := sqldsn.FormattedCredentials(credentials)
-	checkErr(err)
+  // Using the sqldsn formatted credentials package
+  formatted, err := sqldsn.FormattedCredentials(credentials)
+  checkErr(err)
 
-	db, err := sql.Open("mysql", formatted)
-	checkErr(err)
-	defer db.Close()
+  db, err := sql.Open("mysql", formatted)
+  checkErr(err)
+  defer db.Close()
 
-	// Force MySQL into modern mode.
-	db.Exec("SET NAMES=utf8")
-	db.Exec(`SET sql_mode = 'ANSI,STRICT_TRANS_TABLES,STRICT_ALL_TABLES,
-		NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,
-		NO_AUTO_CREATE_USER,ONLY_FULL_GROUP_BY'`)
+  // Force MySQL into modern mode.
+  db.Exec("SET NAMES=utf8")
+  db.Exec(`SET sql_mode = 'ANSI,STRICT_TRANS_TABLES,STRICT_ALL_TABLES,
+    NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,
+    NO_AUTO_CREATE_USER,ONLY_FULL_GROUP_BY'`)
 
-	// Creating a table
+  // Creating a table
   sqlCreate := `
 CREATE TABLE IF NOT EXISTS People (
 id SERIAL PRIMARY KEY,

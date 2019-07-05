@@ -7,7 +7,7 @@ import (
 func UsageExampleSolr() string {
 
   // Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
-	// You can alternatively use os.Getenv() yourself.
+  // You can alternatively use os.Getenv() yourself.
   config, err := psh.NewRuntimeConfig()
   if err != nil {
     panic(err)

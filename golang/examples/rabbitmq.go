@@ -27,8 +27,8 @@ func UsageExampleRabbitMQ() string {
 
 
   // Using the amqp formatted credentials package
-	formatted, err := FormattedCredentialsRabbitMQ(credentials)
-	checkErr(err)
+  formatted, err := FormattedCredentialsRabbitMQ(credentials)
+  checkErr(err)
 
   // Connect to the RabbitMQ server
   connection, err := amqp.Dial(formatted)
