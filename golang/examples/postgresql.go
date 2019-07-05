@@ -89,5 +89,5 @@ INSERT INTO People (name, city) VALUES
     panic(err)
   }
 
-  return "Successfully connected!"
+  return table
 }
