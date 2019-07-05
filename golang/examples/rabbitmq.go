@@ -33,10 +33,12 @@ func UsageExampleRabbitMQ() string {
   // Connect to the RabbitMQ server
   connection, err := amqp.Dial(formatted)
   checkErr(err)
+  defer connection.Close()
 
   // Make a channel
   channel, err := connection.Channel()
   checkErr(err)
+  defer channel.Close()
 
   q, err := channel.QueueDeclare(
     "deploy_days", // name
@@ -50,6 +52,8 @@ func UsageExampleRabbitMQ() string {
   body := "Friday"
   msg := fmt.Sprintf("[x] Deploying on %s<br />\n", body)
 
+  outputMSG := msg
+
   err = channel.Publish(
     "",      // exchange
     q.Name,  // routing key
@@ -61,5 +65,7 @@ func UsageExampleRabbitMQ() string {
     })
   checkErr(err)
 
-  return fmt.Sprintf("[x] Sent %s", body)
+  outputMSG += fmt.Sprintf("[x] Sent %s<br />\n", body)
+
+  return outputMSG
 }
