@@ -66,19 +66,19 @@ func UsageExampleRabbitMQ() string {
   outputMSG := fmt.Sprintf("[x] Sent '%s'\n", body)
 
   msgs, err := channel.Consume(
-    q.Name,
-    "",
-    true,
-    false,
-    false,
-    false,
-    nil,
+    q.Name,  // queue
+    "",      // consumer
+    true,    // auto-ack
+    false,   // exclusive
+    false,   // no-local
+    false,   // no-wait
+    nil,     // args
   )
   checkErr(err)
 
   outputMSG += "[*] Received a message:\n"
 
-  forever := make(chan bool)
+  // forever := make(channel bool)
 
   go func() {
     for d := range msgs {
@@ -87,7 +87,7 @@ func UsageExampleRabbitMQ() string {
   }()
 
   outputMSG += "[*] Waiting for messages.\n"
-  <-forever
+  // <-forever
 
 
   return outputMSG
