@@ -93,9 +93,10 @@ func exampleDefinitions() exampleList {
 	var wg sync.WaitGroup
 	for idx, _ := range exList {
 		wg.Add(1)
-		exList[idx].Output = func() string {
+		serviceID := idx
+		go func() {
 			defer wg.Done()
-			return exList[idx].callback()
+			exList[serviceID].Output = exList[serviceID].callback()
 		}()
 	}
 	wg.Wait()
