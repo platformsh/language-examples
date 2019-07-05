@@ -43,9 +43,7 @@ func UsageExampleMongoDB() string {
   res, err := collection.InsertOne(ctx, bson.M{"name": "Rey", "occupation": "Jedi"})
   id := res.InsertedID
 
-  // collection
+  fmt.Println(id)
 
-  fmt.Println(client)
-
-  return id.(string)
+  return "Successfully connected!"
 }
