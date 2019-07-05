@@ -62,27 +62,27 @@ INSERT INTO People (name, city) VALUES
     panic(err)
   }
 
-  table := `<table>
-<thead>
-<tr><th>Name</th><th>City</th></tr>
-</thead>
-<tbody>`
-
-  var id int
-  var name string
-  var city string
-
-  rows, err := db.Query("SELECT * FROM People")
-  if err != nil {
-    panic(err)
-  } else {
-    for rows.Next() {
-      err = rows.Scan(&id, &name, &city)
-      checkErr(err)
-      table += fmt.Sprintf("<tr><td>%s</td><td>%s</td><tr>\n", name, city)
-    }
-    table += "</tbody>\n</table>\n"
-  }
+//   table := `<table>
+// <thead>
+// <tr><th>Name</th><th>City</th></tr>
+// </thead>
+// <tbody>`
+//
+//   var id int
+//   var name string
+//   var city string
+//
+//   rows, err := db.Query("SELECT * FROM People")
+//   if err != nil {
+//     panic(err)
+//   } else {
+//     for rows.Next() {
+//       err = rows.Scan(&id, &name, &city)
+//       checkErr(err)
+//       table += fmt.Sprintf("<tr><td>%s</td><td>%s</td><tr>\n", name, city)
+//     }
+//     table += "</tbody>\n</table>\n"
+//   }
 
   _, err = db.Exec("DROP TABLE People")
   if err != nil {
