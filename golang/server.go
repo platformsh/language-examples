@@ -69,7 +69,7 @@ const pageTemplate = `<html>
 	</section>
 	<section>
 	<h3>Output</h3>
-	<pre>{{.Output}}</pre>
+	{{.Output}}
 	</section>
 </details>
 {{ end }}
