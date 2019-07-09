@@ -47,15 +47,15 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
+
+
+
+
   // Create a new Solr Interface using the formatted credentials.
   solrInt, err := solr.NewSolrInterface(formatted.Url, formatted.Collection)
   if err != nil {
     panic(err)
   }
-
-  // fmt.Println("---- Connection Status ----")
-  // fmt.Println(solrInt.StatusOK)
-
 
   // Add a document.
   docs := make([]solr.Document, 0, 1)
@@ -66,20 +66,15 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
-  // fmt.Println("---- Add Status ----")
-  fmt.Println(response)
-
-
-
   message := fmt.Sprintf("Adding one document - Success: %s\n", strconv.FormatBool(response.Success))
 
   // Commit the changes for search.
-  response2, err := solrInt.Commit()
+  _, err = solrInt.Commit()
   if err != nil {
     panic(err)
   }
 
-  fmt.Println(response2)
+
 
   // Select the document.
   query := solr.NewQuery()
@@ -89,47 +84,14 @@ func UsageExampleSolr() string {
   fmt.Println(r.Results.Docs)
 
 
+
   // Delete the document.
   res, err := solrInt.Delete(solr.M{"id": 123}, nil)
   if err != nil {
     panic(err)
   }
 
-  // fmt.Println("---- Delete Status ----")
-  // fmt.Println(res.Status)
-
   message += fmt.Sprintf("Deleting one document - Success: %s", strconv.FormatBool(res.Success))
-
-  //
-  // fmt.Println("--> Added document committed.")
-  // fmt.Println(response2)
-  //
-  //
-  // // Select one document.
-  // q := solr.NewQuery()
-  // fmt.Println("--> NewQuery.")
-  //
-  // q.AddParam("q", "*:*")
-  // fmt.Println("--> Param added.")
-  //
-  // s := solrInt.Search(q)
-  // fmt.Println("--> Search performed.")
-  //
-  // parser := new(solr.StandardResultParser)
-  // fmt.Println("--> Define a parser.")
-  //
-  // res, err := s.Result(parser)
-  // if err != nil {
-  //   panic(err)
-  // }
-  // fmt.Println("--> Results received.")
-  //
-  // numFound := res.Results.NumFound
-  //
-  // message2 := fmt.Sprintf("Selecting document (1 expected): %d", numFound)
-
-
-  // Delete one document.
 
   return message
 }
