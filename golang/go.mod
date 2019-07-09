@@ -11,6 +11,7 @@ require (
 	github.com/platformsh/config-reader-go/v2 v2.2.3-0.20190701182547-29b5e16cbfd1
 	github.com/streadway/amqp v0.0.0-20190404075320-75d898a42a94
 	github.com/tidwall/pretty v1.0.0 // indirect
+	github.com/vanng822/go-solr v0.0.0-20190123063049-e3dd1d051d54
 	github.com/xdg/scram v0.0.0-20180814205039-7eeb5667e42c // indirect
 	github.com/xdg/stringprep v1.0.0 // indirect
 	go.mongodb.org/mongo-driver v1.0.3
