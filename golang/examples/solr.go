@@ -64,6 +64,8 @@ func UsageExampleSolr() string {
 
   message := fmt.Sprintf("Adding one document - Success: %s", strconv.FormatBool(response.Success))
 
+  fmt.Println(message)
+
   // Commit the changes for search.
   response2, err := solrInt.Commit()
   if err != nil {
@@ -72,10 +74,21 @@ func UsageExampleSolr() string {
 
   fmt.Println(response2)
 
-
   // Select one document.
+  query := solr.NewQuery()
+  query.Q("*:*")
+  s := solrInt.Search(query)
+  res, err := s.Result(nil)
+  if err != nil {
+    panic(err)
+  }
+
+  numFound := res.Results.NumFound
+
+  message2 := fmt.Sprintf("Selecting document (1 expected): %d", numFound)
+
 
   // Delete one document.
 
-  return message
+  return message2
 }
