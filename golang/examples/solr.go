@@ -82,7 +82,8 @@ func UsageExampleSolr() string {
   // query := solr.NewQuery()
   // query.Q("*:*")
   // s := solrInt.Search(query)
-  res, err := s.Result(nil)
+  parser := new(solr.StandardResultParser)
+  res, err := s.Result(parser)
   if err != nil {
     panic(err)
   }
