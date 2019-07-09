@@ -78,6 +78,7 @@ func UsageExampleSolr() string {
   }
 
   message := fmt.Sprintf("Adding one document - Success: %s\n", strconv.FormatBool(response.Success))
+  message += strconv.Itoa(responseStatus.Status)
 
   // Commit the changes for search.
   _, err = solrInt.Commit()
