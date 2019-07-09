@@ -70,6 +70,8 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
+  fmt.Println(response2)
+
 
   // Select one document.
 
