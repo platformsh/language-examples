@@ -57,17 +57,6 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
-
-
-  ca, _ := solr.NewCoreAdmin(formatted.Url)
-  responseStatus, err := ca.Status(formatted.Collection)
-  if err != nil {
-    panic(err)
-  }
-
-  fmt.Println(responseStatus)
-
-
   // Add a document.
   docs := make([]solr.Document, 0, 1)
   docs = append(docs, solr.Document{"id": 123, "name": "Valentina Tereshkova"})
@@ -78,7 +67,7 @@ func UsageExampleSolr() string {
   }
 
   message := fmt.Sprintf("Adding one document - Success: %s\n", strconv.FormatBool(response.Success))
-  message += strconv.Itoa(responseStatus.Status)
+  // message += strconv.Itoa(responseStatus.Status)
 
   // Commit the changes for search.
   _, err = solrInt.Commit()
@@ -88,12 +77,28 @@ func UsageExampleSolr() string {
 
 
 
-  // Select the document.
+  // Check the core status and then select the document.
+  ca, _ := solr.NewCoreAdmin(formatted.Url)
   query := solr.NewQuery()
   query.Q("*:*")
-  s := solrInt.Search(query)
-  r, _ := s.Result(nil)
-  fmt.Println(r.Results.NumFound)
+
+  responseStatus, err := ca.Status(formatted.Collection)
+  if err != nil {
+    panic(err)
+  }
+
+  if responseStatus.Status != 1 {
+    s := solrInt.Search(query)
+    // r, _ := s.Result(nil)
+    // fmt.Println(r.Results.NumFound)
+    fmt.Println(s)
+  }
+
+  // fmt.Println(responseStatus)
+  //
+  // s := solrInt.Search(query)
+  // r, _ := s.Result(nil)
+  // fmt.Println(r.Results.NumFound)
 
 
 
