@@ -73,6 +73,8 @@ func UsageExampleSolr() string {
   }
 
   fmt.Println("--> Added document committed.")
+  fmt.Println(response2)
+
 
   // Select one document.
   q := solr.NewQuery()
