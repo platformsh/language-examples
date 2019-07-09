@@ -75,9 +75,13 @@ func UsageExampleSolr() string {
   fmt.Println(response2)
 
   // Select one document.
-  query := solr.NewQuery()
-  query.Q("*:*")
-  s := solrInt.Search(query)
+  q := solr.NewQuery()
+  q.AddParam("q", "*:*")
+  s := solrInt.Search(q)
+
+  // query := solr.NewQuery()
+  // query.Q("*:*")
+  // s := solrInt.Search(query)
   res, err := s.Result(nil)
   if err != nil {
     panic(err)
