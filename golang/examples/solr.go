@@ -53,6 +53,10 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
+  fmt.Println("---- Connection Status ----")
+  fmt.Println(solrInt.StatusOK)
+
+
   // Add a document.
   docs := make([]solr.Document, 0, 1)
   docs = append(docs, solr.Document{"id": 123, "name": "Valentina Tereshkova"})
@@ -62,8 +66,13 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
-  message := fmt.Sprintf("Adding one document - Success: %s", strconv.FormatBool(response.Success))
-  fmt.Println(message)
+  fmt.Println("---- Add Status ----")
+  fmt.Println(response.Status)
+
+
+
+  message := fmt.Sprintf("Adding one document - Success: %s\n", strconv.FormatBool(response.Success))
+
   // Commit the changes for search.
   response2, err := solrInt.Commit()
   if err != nil {
@@ -71,17 +80,21 @@ func UsageExampleSolr() string {
   }
 
   fmt.Println(response2)
+  fmt.Println("---- Commit Status ----")
+  fmt.Println(response2.Status)
 
   // Select the document.
 
   // Delete the document.
-  data := solr.M{"id": 123}
-  res, err := solrInt.Delete(data, nil)
+  res, err := solrInt.Delete(solr.M{"id": 123}, nil)
   if err != nil {
     panic(err)
   }
 
-  message3 := fmt.Sprintf("Deleting one document - Success: %s", strconv.FormatBool(res.Success))
+  fmt.Println("---- Delete Status ----")
+  fmt.Println(res.Status)
+
+  message += fmt.Sprintf("Deleting one document - Success: %s", strconv.FormatBool(res.Success))
 
   //
   // fmt.Println("--> Added document committed.")
@@ -114,5 +127,5 @@ func UsageExampleSolr() string {
 
   // Delete one document.
 
-  return message3
+  return message
 }
