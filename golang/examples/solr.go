@@ -15,8 +15,9 @@ func UsageExampleSolr() string {
 
   // Get the credentials to connect to the Solr service.
   credentials, err := config.Credentials("solr")
-  checkErr(err)
-
+  if err != nil {
+    panic(err)
+  }
 
   return credentials.Host
 }
