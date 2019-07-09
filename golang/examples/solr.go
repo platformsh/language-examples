@@ -2,6 +2,7 @@ package examples
 
 import (
   "fmt"
+  "strconv"
   "strings"
   psh "github.com/platformsh/config-reader-go/v2"
   "github.com/vanng822/go-solr/solr"
@@ -40,18 +41,39 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
-  // Retrieve Solr formatted credentials
+  // Retrieve Solr formatted credentials.
   formatted, err := FormattedCredentialsSolr(credentials)
   if err != nil {
     panic(err)
   }
 
-  si, err := solr.NewSolrInterface(formatted.Url, formatted.Collection)
+  // Create a new Solr Interface using the formatted credentials.
+  solrInt, err := solr.NewSolrInterface(formatted.Url, formatted.Collection)
   if err != nil {
     panic(err)
   }
 
-  fmt.Println(si)
+  // Add a document.
+  docs := make([]solr.Document, 0, 1)
+  docs = append(docs, solr.Document{"id": 123, "name": "Valentina Tereshkova"})
 
-  return credentials.Host
+  response, err := solrInt.Add(docs, 0, nil)
+  if err != nil {
+    panic(err)
+  }
+
+  message := fmt.Sprintf("Adding one document - Success: %s", strconv.FormatBool(response.Success))
+
+  // Commit the changes for search.
+  response2, err := solrInt.Commit()
+  if err != nil {
+    panic(err)
+  }
+
+
+  // Select one document.
+
+  // Delete one document.
+
+  return message
 }

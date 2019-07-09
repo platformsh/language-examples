@@ -24,16 +24,20 @@ func UsageExampleMemcached() string {
   credentials, err := config.Credentials("memcached")
   checkErr(err)
 
+  // Retrieve formatted credentials for gomemcache.
   formatted, err := FormattedCredentialsMemcached(credentials)
   checkErr(err)
 
+  // Connect to Memcached.
   mc := memcache.New(formatted)
 
+  // Set a value.
   key := "Deploy_day"
   value := "Friday"
 
   err = mc.Set(&memcache.Item{Key: key, Value: []byte(value)})
 
+  // Read it back.
   test, err := mc.Get("Deploy_day")
 
   return fmt.Sprintf("Found value <strong>%s</strong> for key <strong>%s</strong>.", test.Value, key)

@@ -22,7 +22,7 @@ func UsageExampleMySQL() string {
   credentials, err := config.Credentials("database")
   checkErr(err)
 
-  // Using the sqldsn formatted credentials package
+  // Using the sqldsn formatted credentials package.
   formatted, err := sqldsn.FormattedCredentials(credentials)
   checkErr(err)
 
@@ -36,7 +36,7 @@ func UsageExampleMySQL() string {
     NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,
     NO_AUTO_CREATE_USER,ONLY_FULL_GROUP_BY'`)
 
-  // Creating a table
+  // Creating a table.
   sqlCreate := `
 CREATE TABLE IF NOT EXISTS People (
 id SERIAL PRIMARY KEY,

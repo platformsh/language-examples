@@ -22,25 +22,26 @@ func UsageExampleRabbitMQ() string {
     panic(err)
   }
 
-  // Get the credentials to connect to the Solr service.
+  // Get the credentials to connect to RabbitMQ.
   credentials, err := config.Credentials("rabbitmq")
   checkErr(err)
 
 
-  // Using the amqp formatted credentials package
+  // Use the amqp formatted credentials package.
   formatted, err := FormattedCredentialsRabbitMQ(credentials)
   checkErr(err)
 
-  // Connect to the RabbitMQ server
+  // Connect to the RabbitMQ server.
   connection, err := amqp.Dial(formatted)
   checkErr(err)
   defer connection.Close()
 
-  // Make a channel
+  // Make a channel.
   channel, err := connection.Channel()
   checkErr(err)
   defer channel.Close()
 
+  // Create a queue.
   q, err := channel.QueueDeclare(
     "deploy_days", // name
     false,         // durable
@@ -53,6 +54,7 @@ func UsageExampleRabbitMQ() string {
   body := "Friday"
   msg := fmt.Sprintf("Deploying on %s\n", body)
 
+  // Publish a message.
   err = channel.Publish(
     "",      // exchange
     q.Name,  // routing key
@@ -66,6 +68,7 @@ func UsageExampleRabbitMQ() string {
 
   outputMSG := fmt.Sprintf("[x] Sent '%s'\n", body)
 
+  // Consume the message.
   msgs, err := channel.Consume(
     q.Name,  // queue
     "",      // consumer

@@ -27,18 +27,20 @@ func UsageExamplePostgreSQL() string {
   credentials, err := config.Credentials("postgresql")
   checkErr(err)
 
+  // Retrieve the formatted credentials.
   formatted, err := FormattedCredentialsPostgreSQL(credentials)
   if err != nil {
     panic(err)
   }
 
+  // Connect.
   db, err := sql.Open("postgres", formatted)
   if err != nil {
     panic(err)
   }
   defer db.Close()
 
-  // Creating a table
+  // Creating a table.
   sqlCreate := `
 CREATE TABLE IF NOT EXISTS People (
 id SERIAL PRIMARY KEY,
@@ -72,6 +74,7 @@ INSERT INTO People (name, city) VALUES
   var name string
   var city string
 
+  // Read it back.
   rows, err := db.Query("SELECT * FROM People")
   if err != nil {
     panic(err)

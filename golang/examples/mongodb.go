@@ -29,20 +29,25 @@ func UsageExampleMongoDB() string {
   credentials, err := config.Credentials("mongodb")
   checkErr(err)
 
+  // Retrieve the formatted credentials for mongo-driver.
   formatted, err := FormattedCredentialsMongoDB(credentials)
   if err != nil {
     panic(err)
   }
 
+  // Connect to MongoDB using the formatted credentials.
   ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
   client, err := mongo.Connect(ctx, options.Client().ApplyURI(formatted))
   checkErr(err)
 
+  // Create a new collection.
   collection := client.Database("main").Collection("starwars")
 
+  // Create an entry.
   res, err := collection.InsertOne(ctx, bson.M{"name": "Rey", "occupation": "Jedi"})
   id := res.InsertedID
 
+  // Read it back.
   cursor, err := collection.Find(context.Background(), bson.M{"_id": id})
   if err != nil {
     panic(err)
