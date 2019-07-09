@@ -53,8 +53,8 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
-  fmt.Println("---- Connection Status ----")
-  fmt.Println(solrInt.StatusOK)
+  // fmt.Println("---- Connection Status ----")
+  // fmt.Println(solrInt.StatusOK)
 
 
   // Add a document.
@@ -66,8 +66,8 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
-  fmt.Println("---- Add Status ----")
-  fmt.Println(response.Status)
+  // fmt.Println("---- Add Status ----")
+  fmt.Println(response)
 
 
 
@@ -80,10 +80,14 @@ func UsageExampleSolr() string {
   }
 
   fmt.Println(response2)
-  fmt.Println("---- Commit Status ----")
-  fmt.Println(response2.Status)
 
   // Select the document.
+  query := solr.NewQuery()
+  query.Q("*:*")
+  s := solrInt.Search(query)
+  r, _ := s.Result(nil)
+  fmt.Println(r.Results.Docs)
+
 
   // Delete the document.
   res, err := solrInt.Delete(solr.M{"id": 123}, nil)
@@ -91,8 +95,8 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
-  fmt.Println("---- Delete Status ----")
-  fmt.Println(res.Status)
+  // fmt.Println("---- Delete Status ----")
+  // fmt.Println(res.Status)
 
   message += fmt.Sprintf("Deleting one document - Success: %s", strconv.FormatBool(res.Success))
 
