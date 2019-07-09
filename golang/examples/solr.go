@@ -62,45 +62,57 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
-  message := fmt.Sprintf("--> Adding one document - Success: %s", strconv.FormatBool(response.Success))
-
+  message := fmt.Sprintf("Adding one document - Success: %s", strconv.FormatBool(response.Success))
   fmt.Println(message)
-
   // Commit the changes for search.
   response2, err := solrInt.Commit()
   if err != nil {
     panic(err)
   }
 
-  fmt.Println("--> Added document committed.")
   fmt.Println(response2)
 
+  // Select the document.
 
-  // Select one document.
-  q := solr.NewQuery()
-  fmt.Println("--> NewQuery.")
-
-  q.AddParam("q", "*:*")
-  fmt.Println("--> Param added.")
-
-  s := solrInt.Search(q)
-  fmt.Println("--> Search performed.")
-
-  parser := new(solr.StandardResultParser)
-  fmt.Println("--> Define a parser.")
-
-  res, err := s.Result(parser)
+  // Delete the document.
+  data := solr.M{"id": 123}
+  res, err := solrInt.Delete(data, nil)
   if err != nil {
     panic(err)
   }
-  fmt.Println("--> Results received.")
 
-  numFound := res.Results.NumFound
+  message3 := fmt.Sprintf("Deleting one document - Success: %s", strconv.FormatBool(res.Success))
 
-  message2 := fmt.Sprintf("Selecting document (1 expected): %d", numFound)
+  //
+  // fmt.Println("--> Added document committed.")
+  // fmt.Println(response2)
+  //
+  //
+  // // Select one document.
+  // q := solr.NewQuery()
+  // fmt.Println("--> NewQuery.")
+  //
+  // q.AddParam("q", "*:*")
+  // fmt.Println("--> Param added.")
+  //
+  // s := solrInt.Search(q)
+  // fmt.Println("--> Search performed.")
+  //
+  // parser := new(solr.StandardResultParser)
+  // fmt.Println("--> Define a parser.")
+  //
+  // res, err := s.Result(parser)
+  // if err != nil {
+  //   panic(err)
+  // }
+  // fmt.Println("--> Results received.")
+  //
+  // numFound := res.Results.NumFound
+  //
+  // message2 := fmt.Sprintf("Selecting document (1 expected): %d", numFound)
 
 
   // Delete one document.
 
-  return message2
+  return message3
 }
