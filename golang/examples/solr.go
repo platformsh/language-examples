@@ -89,16 +89,10 @@ func UsageExampleSolr() string {
 
   if responseStatus.Status != 1 {
     s := solrInt.Search(query)
-    // r, _ := s.Result(nil)
+    r, _ := s.Result(&solr.ExtensiveResultParser{})
     // fmt.Println(r.Results.NumFound)
-    fmt.Println(s)
+    fmt.Println(r.Results.NumFound)
   }
-
-  // fmt.Println(responseStatus)
-  //
-  // s := solrInt.Search(query)
-  // r, _ := s.Result(nil)
-  // fmt.Println(r.Results.NumFound)
 
 
 
