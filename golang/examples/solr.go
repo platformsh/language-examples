@@ -19,7 +19,7 @@ func FormattedCredentialsSolr(creds psh.Credential) (SolrCredentials, error) {
 
   path := strings.SplitAfter(creds.Path, "/")
 
-  formatted.Url = fmt.Sprintf("%s:%d/%s", creds.Host, creds.Port, path[0])
+  formatted.Url = fmt.Sprintf("http://%s:%d/%s", creds.Host, creds.Port, path[0])
   formatted.Collection = path[1]
 
   return formatted, nil
