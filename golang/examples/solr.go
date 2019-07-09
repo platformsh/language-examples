@@ -57,6 +57,17 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
+
+
+  ca, _ := solr.NewCoreAdmin(formatted.Url)
+  responseStatus, err := ca.Status(formatted.Collection)
+  if err != nil {
+    panic(err)
+  }
+
+  fmt.Println(responseStatus)
+
+
   // Add a document.
   docs := make([]solr.Document, 0, 1)
   docs = append(docs, solr.Document{"id": 123, "name": "Valentina Tereshkova"})
@@ -76,12 +87,12 @@ func UsageExampleSolr() string {
 
 
 
-  // Select the document.
-  query := solr.NewQuery()
-  query.Q("*:*")
-  s := solrInt.Search(query)
-  r, _ := s.Result(nil)
-  fmt.Println(r.Results.Docs)
+  // // Select the document.
+  // query := solr.NewQuery()
+  // query.Q("*:*")
+  // s := solrInt.Search(query)
+  // r, _ := s.Result(nil)
+  // fmt.Println(r.Results.Docs)
 
 
 
