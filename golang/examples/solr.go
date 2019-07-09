@@ -88,12 +88,12 @@ func UsageExampleSolr() string {
 
 
 
-  // // Select the document.
-  // query := solr.NewQuery()
-  // query.Q("*:*")
-  // s := solrInt.Search(query)
-  // r, _ := s.Result(nil)
-  // fmt.Println(r.Results.Docs)
+  // Select the document.
+  query := solr.NewQuery()
+  query.Q("*:*")
+  s := solrInt.Search(query)
+  r, _ := s.Result(nil)
+  fmt.Println(r.Results.NumFound)
 
 
 
