@@ -62,7 +62,7 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
-  message := fmt.Sprintf("Adding one document - Success: %s", strconv.FormatBool(response.Success))
+  message := fmt.Sprintf("--> Adding one document - Success: %s", strconv.FormatBool(response.Success))
 
   fmt.Println(message)
 
@@ -72,21 +72,26 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
-  fmt.Println(response2)
+  fmt.Println("--> Added document committed.")
 
   // Select one document.
   q := solr.NewQuery()
-  q.AddParam("q", "*:*")
-  s := solrInt.Search(q)
+  fmt.Println("--> NewQuery.")
 
-  // query := solr.NewQuery()
-  // query.Q("*:*")
-  // s := solrInt.Search(query)
+  q.AddParam("q", "*:*")
+  fmt.Println("--> Param added.")
+
+  s := solrInt.Search(q)
+  fmt.Println("--> Search performed.")
+
   parser := new(solr.StandardResultParser)
+  fmt.Println("--> Define a parser.")
+
   res, err := s.Result(parser)
   if err != nil {
     panic(err)
   }
+  fmt.Println("--> Results received.")
 
   numFound := res.Results.NumFound
 
