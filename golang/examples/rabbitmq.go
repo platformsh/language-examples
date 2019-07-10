@@ -4,6 +4,7 @@ import (
   "fmt"
   "sync"
   "github.com/streadway/amqp"
+  amqpPsh "github.com/platformsh/config-reader-go/v2/amqp"
   psh "github.com/platformsh/config-reader-go/v2"
 )
 
@@ -28,7 +29,7 @@ func UsageExampleRabbitMQ() string {
 
 
   // Use the amqp formatted credentials package.
-  formatted, err := FormattedCredentialsRabbitMQ(credentials)
+  formatted, err := amqpPsh.FormattedCredentials(credentials)
   checkErr(err)
 
   // Connect to the RabbitMQ server.

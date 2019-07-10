@@ -4,6 +4,7 @@ import (
   "fmt"
   "context"
   "time"
+  mongoPsh "github.com/platformsh/config-reader-go/v2/mongo"
   psh "github.com/platformsh/config-reader-go/v2"
   "go.mongodb.org/mongo-driver/mongo"
   "go.mongodb.org/mongo-driver/bson"
@@ -30,7 +31,7 @@ func UsageExampleMongoDB() string {
   checkErr(err)
 
   // Retrieve the formatted credentials for mongo-driver.
-  formatted, err := FormattedCredentialsMongoDB(credentials)
+  formatted, err := mongoPsh.FormattedCredentials(credentials)
   if err != nil {
     panic(err)
   }

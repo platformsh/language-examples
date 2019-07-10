@@ -3,16 +3,9 @@ package examples
 import (
   "fmt"
   psh "github.com/platformsh/config-reader-go/v2"
+  gosolr "github.com/platformsh/config-reader-go/v2/gosolr"
   solr "github.com/rtt/Go-Solr"
 )
-
-func FormattedCredentialsSolr(creds psh.Credential) (string, error) {
-
-  formatted := fmt.Sprintf("http://%s:%d/%s", creds.Host, creds.Port, creds.Path)
-
-  return formatted, nil
-
-}
 
 func UsageExampleSolr() string {
 
@@ -30,7 +23,7 @@ func UsageExampleSolr() string {
   }
 
   // Retrieve Solr formatted credentials.
-  formatted, err := FormattedCredentialsSolr(credentials)
+  formatted, err := gosolr.FormattedCredentials(credentials)
   if err != nil {
     panic(err)
   }

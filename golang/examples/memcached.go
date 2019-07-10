@@ -2,14 +2,10 @@ package examples
 
 import (
   "fmt"
+  gomemcache "github.com/platformsh/config-reader-go/v2/gomemcache"
   psh "github.com/platformsh/config-reader-go/v2"
   "github.com/bradfitz/gomemcache/memcache"
 )
-
-func FormattedCredentialsMemcached(creds psh.Credential) (string, error) {
-  formatted := fmt.Sprintf("%s:%d", creds.Host, creds.Port)
-  return formatted, nil
-}
 
 func UsageExampleMemcached() string {
 
@@ -25,7 +21,7 @@ func UsageExampleMemcached() string {
   checkErr(err)
 
   // Retrieve formatted credentials for gomemcache.
-  formatted, err := FormattedCredentialsMemcached(credentials)
+  formatted, err := gomemcache.FormattedCredentials(credentials)
   checkErr(err)
 
   // Connect to Memcached.

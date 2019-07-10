@@ -4,14 +4,9 @@ import (
   "fmt"
   "database/sql"
   _ "github.com/lib/pq"
+  libpq "github.com/platformsh/config-reader-go/v2/libpq"
   psh "github.com/platformsh/config-reader-go/v2"
 )
-
-func FormattedCredentialsPostgreSQL(creds psh.Credential) (string, error) {
-  formatted := fmt.Sprintf("host=%s port=%d user=%s " + "password=%s dbname=%s sslmode=disable",
-    creds.Host, creds.Port, creds.Username, creds.Password, creds.Path)
-  return formatted, nil
-}
 
 func UsageExamplePostgreSQL() string {
 
@@ -28,7 +23,7 @@ func UsageExamplePostgreSQL() string {
   checkErr(err)
 
   // Retrieve the formatted credentials.
-  formatted, err := FormattedCredentialsPostgreSQL(credentials)
+  formatted, err := libpq.FormattedCredentials(credentials)
   if err != nil {
     panic(err)
   }
