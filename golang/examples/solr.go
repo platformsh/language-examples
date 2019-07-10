@@ -2,25 +2,13 @@ package examples
 
 import (
   "fmt"
-  "strconv"
-  "strings"
   psh "github.com/platformsh/config-reader-go/v2"
-  "github.com/vanng822/go-solr/solr"
+  solr "github.com/rtt/Go-Solr"
 )
 
-type SolrCredentials struct {
-  Url        string
-  Collection string
-}
+func FormattedCredentialsSolr(creds psh.Credential) (string, error) {
 
-func FormattedCredentialsSolr(creds psh.Credential) (SolrCredentials, error) {
-
-  var formatted SolrCredentials
-
-  path := strings.SplitAfter(creds.Path, "/")
-
-  formatted.Url = fmt.Sprintf("http://%s:%d/%s", creds.Host, creds.Port, path[0])
-  formatted.Collection = path[1]
+  formatted := fmt.Sprintf("http://%s:%d/%s", creds.Host, creds.Port, creds.Path)
 
   return formatted, nil
 
@@ -47,62 +35,49 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
+  // Connect to Solr using the formatted credentials.
+  connection := &solr.Connection{URL:formatted}
 
+  // Add a document and commit the operation.
+  docAdd := map[string]interface{}{
+    "add": []interface{}{
+      map[string]interface{}{"id": 123, "name": "Valentina Tereshkova"},
+    },
+  }
 
-
-
-  // Create a new Solr Interface using the formatted credentials.
-  solrInt, err := solr.NewSolrInterface(formatted.Url, formatted.Collection)
+  respAdd, err := connection.Update(docAdd, true)
   if err != nil {
     panic(err)
   }
 
-  // Add a document.
-  docs := make([]solr.Document, 0, 1)
-  docs = append(docs, solr.Document{"id": 123, "name": "Valentina Tereshkova"})
+  // Select the document.
+  q := &solr.Query{
+		Params: solr.URLParamMap{
+			"q": []string{"id:123"},
+		},
+	}
 
-  response, err := solrInt.Add(docs, 0, nil)
+  resSelect, err := connection.CustomSelect(q, "query")
   if err != nil {
     panic(err)
   }
 
-  message := fmt.Sprintf("Adding one document - Success: %s\n", strconv.FormatBool(response.Success))
-  // message += strconv.Itoa(responseStatus.Status)
+  // Delete the document and commit the operation.
+  docDelete := map[string]interface{}{
+    "delete": map[string]interface{}{
+      "id": 123,
+    },
+  }
 
-  // Commit the changes for search.
-  _, err = solrInt.Commit()
+  resDel, err := connection.Update(docDelete, true)
   if err != nil {
     panic(err)
   }
 
-
-
-  // Check the core status and then select the document.
-  ca, _ := solr.NewCoreAdmin(formatted.Url)
-  query := solr.NewQuery()
-  query.Q("*:*")
-
-  responseStatus, err := ca.Status(formatted.Collection)
-  if err != nil {
-    panic(err)
-  }
-
-  if responseStatus.Status != 1 {
-    s := solrInt.Search(query)
-    r, _ := s.Result(&solr.ExtensiveResultParser{})
-    // fmt.Println(r.Results.NumFound)
-    fmt.Println(r.Results.NumFound)
-  }
-
-
-
-  // Delete the document.
-  res, err := solrInt.Delete(solr.M{"id": 123}, nil)
-  if err != nil {
-    panic(err)
-  }
-
-  message += fmt.Sprintf("Deleting one document - Success: %s", strconv.FormatBool(res.Success))
+  message := fmt.Sprintf(`Adding one document: %s
+Selecting document (1 expected): %d
+Deleting document: %s
+  `, respAdd, resSelect.Results.NumFound, resDel)
 
   return message
 }
