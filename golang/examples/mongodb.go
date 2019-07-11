@@ -11,12 +11,6 @@ import (
 	"time"
 )
 
-func FormattedCredentialsMongoDB(creds psh.Credential) (string, error) {
-	formatted := fmt.Sprintf("%s://%s:%s@%s:%d/%s",
-		creds.Scheme, creds.Username, creds.Password, creds.Host, creds.Port, creds.Path)
-	return formatted, nil
-}
-
 func UsageExampleMongoDB() string {
 
 	// Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.

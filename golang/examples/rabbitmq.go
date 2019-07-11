@@ -8,12 +8,6 @@ import (
 	"sync"
 )
 
-func FormattedCredentialsRabbitMQ(creds psh.Credential) (string, error) {
-	formatted := fmt.Sprintf("%s://%s:%s@%s:%d/", creds.Scheme, creds.Username,
-		creds.Password, creds.Host, creds.Port)
-	return formatted, nil
-}
-
 func UsageExampleRabbitMQ() string {
 
 	// Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.

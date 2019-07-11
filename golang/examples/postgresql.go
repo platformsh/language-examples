@@ -37,7 +37,7 @@ func UsageExamplePostgreSQL() string {
 
 	// Creating a table.
 	sqlCreate := `
-CREATE TABLE IF NOT EXISTS People (
+CREATE TABLE PeopleGo (
 id SERIAL PRIMARY KEY,
 name VARCHAR(30) NOT NULL,
 city VARCHAR(30) NOT NULL)`
@@ -49,7 +49,7 @@ city VARCHAR(30) NOT NULL)`
 
 	// Insert data.
 	sqlInsert := `
-INSERT INTO People (name, city) VALUES
+INSERT INTO PeopleGo(name, city) VALUES
 ('Neil Armstrong', 'Moon'),
 ('Buzz Aldrin', 'Glen Ridge'),
 ('Sally Ride', 'La Jolla');`
@@ -70,7 +70,7 @@ INSERT INTO People (name, city) VALUES
 	var city string
 
 	// Read it back.
-	rows, err := db.Query("SELECT * FROM People")
+	rows, err := db.Query("SELECT * FROM PeopleGo")
 	if err != nil {
 		panic(err)
 	} else {
@@ -82,7 +82,7 @@ INSERT INTO People (name, city) VALUES
 		table += "</tbody>\n</table>\n"
 	}
 
-	_, err = db.Exec("DROP TABLE People")
+	_, err = db.Exec("DROP TABLE PeopleGo")
 	if err != nil {
 		panic(err)
 	}
