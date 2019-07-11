@@ -38,7 +38,7 @@ func UsageExampleMySQL() string {
 
 	// Creating a table.
 	sqlCreate := `
-CREATE TABLE PeopleGo (
+CREATE TABLE IF NOT EXISTS PeopleGo (
 id SERIAL PRIMARY KEY,
 name VARCHAR(30) NOT NULL,
 city VARCHAR(30) NOT NULL)`
@@ -82,7 +82,7 @@ INSERT INTO PeopleGo (name, city) VALUES
 		table += "</tbody>\n</table>\n"
 	}
 
-	_, err = db.Exec("DROP TABLE PeopleGo")
+	_, err = db.Exec("DROP TABLE PeopleGo;")
 	if err != nil {
 		panic(err)
 	}
