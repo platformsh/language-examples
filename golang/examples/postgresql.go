@@ -3,12 +3,12 @@ package examples
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/lib/pq"
 	psh "github.com/platformsh/config-reader-go/v2"
-	sqldsn "github.com/platformsh/config-reader-go/v2/sqldsn"
+	libpq "github.com/platformsh/config-reader-go/v2/libpq"
 )
 
-func UsageExampleMySQL() string {
+func UsageExamplePostgreSQL() string {
 
 	// Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
 	// You can alternatively use os.Getenv() yourself.
@@ -18,23 +18,22 @@ func UsageExampleMySQL() string {
 	}
 
 	// The 'database' relationship is generally the name of the primary SQL database of an application.
-	// That's not required, but much of our default automation code assumes it.
-	credentials, err := config.Credentials("database")
+	// It could be anything, though, as in the case here where it's called "postgresql".
+	credentials, err := config.Credentials("postgresql")
 	checkErr(err)
 
-	// Using the sqldsn formatted credentials package.
-	formatted, err := sqldsn.FormattedCredentials(credentials)
-	checkErr(err)
+	// Retrieve the formatted credentials.
+	formatted, err := libpq.FormattedCredentials(credentials)
+	if err != nil {
+		panic(err)
+	}
 
-	db, err := sql.Open("mysql", formatted)
-	checkErr(err)
+	// Connect.
+	db, err := sql.Open("postgres", formatted)
+	if err != nil {
+		panic(err)
+	}
 	defer db.Close()
-
-	// Force MySQL into modern mode.
-	db.Exec("SET NAMES=utf8")
-	db.Exec(`SET sql_mode = 'ANSI,STRICT_TRANS_TABLES,STRICT_ALL_TABLES,
-    NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,
-    NO_AUTO_CREATE_USER,ONLY_FULL_GROUP_BY'`)
 
 	// Creating a table.
 	sqlCreate := `
@@ -50,7 +49,7 @@ city VARCHAR(30) NOT NULL)`
 
 	// Insert data.
 	sqlInsert := `
-INSERT INTO PeopleGo (name, city) VALUES
+INSERT INTO PeopleGo(name, city) VALUES
 ('Neil Armstrong', 'Moon'),
 ('Buzz Aldrin', 'Glen Ridge'),
 ('Sally Ride', 'La Jolla');`
@@ -70,6 +69,7 @@ INSERT INTO PeopleGo (name, city) VALUES
 	var name string
 	var city string
 
+	// Read it back.
 	rows, err := db.Query("SELECT * FROM PeopleGo")
 	if err != nil {
 		panic(err)
@@ -88,12 +88,4 @@ INSERT INTO PeopleGo (name, city) VALUES
 	}
 
 	return table
-}
-
-// checkErr is a simple wrapper for panicking on error.
-// It likely should not be used in a real application.
-func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
 }

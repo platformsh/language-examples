@@ -26,9 +26,11 @@ def usage_example():
         # Open a cursor to perform database operations.
         cur = conn.cursor()
 
+        cur.execute("DROP TABLE IF EXISTS People")
+
         # Creating a table.
         sql = '''
-                CREATE TABLE People (
+                CREATE TABLE IF NOT EXISTS People (
                 id SERIAL PRIMARY KEY,
                 name VARCHAR(30) NOT NULL,
                 city VARCHAR(30) NOT NULL

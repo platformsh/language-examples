@@ -22,8 +22,10 @@ try {
         // So we don't have to mess around with cursors and unbuffered queries by default.
     ]);
 
+    $conn->query("DROP TABLE IF EXISTS People");
+
     // Creating a table.
-    $sql = "CREATE TABLE People (
+    $sql = "CREATE TABLE IF NOT EXISTS People (
       id SERIAL PRIMARY KEY,
       name VARCHAR(30) NOT NULL,
       city VARCHAR(30) NOT NULL
@@ -31,9 +33,9 @@ try {
     $conn->query($sql);
 
     // Insert data.
-    $sql = "INSERT INTO People (name, city) VALUES 
-        ('Neil Armstrong', 'Moon'), 
-        ('Buzz Aldrin', 'Glen Ridge'), 
+    $sql = "INSERT INTO People (name, city) VALUES
+        ('Neil Armstrong', 'Moon'),
+        ('Buzz Aldrin', 'Glen Ridge'),
         ('Sally Ride', 'La Jolla');";
     $conn->query($sql);
 
