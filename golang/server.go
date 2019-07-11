@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	Config "github.com/platformsh/language-examples/conf"
 	"github.com/platformsh/language-examples/examples"
+	// "html"
 	"html/template"
 	"log"
 	"net/http"
@@ -15,10 +16,11 @@ import (
 )
 
 type exampleDef struct {
-	callback func() string
-	Source   string
-	Name     string
-	Output   string
+	callback       func() string
+	Source         string
+	Name           string
+	Output         string
+	RenderedOutput template.HTML
 }
 
 // This is a map of struct pointers so that we can update it inline later in main().
@@ -69,7 +71,7 @@ const pageTemplate = `<html>
 	</section>
 	<section>
 	<h3>Output</h3>
-	{{.Output}}
+	{{ .RenderedOutput }}
 	</section>
 </details>
 {{ end }}
@@ -97,6 +99,7 @@ func exampleDefinitions() exampleList {
 		go func() {
 			defer wg.Done()
 			exList[serviceID].Output = exList[serviceID].callback()
+			exList[serviceID].RenderedOutput = template.HTML(exList[serviceID].Output)
 		}()
 	}
 	wg.Wait()
