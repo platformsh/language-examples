@@ -53,7 +53,7 @@ func UsageExampleRabbitMQ() string {
   )
 
   body := "Friday"
-  msg := fmt.Sprintf("Deploying on %s\n", body)
+  msg := fmt.Sprintf("Deploying on %s", body)
 
   // Publish a message.
   err = channel.Publish(
@@ -67,7 +67,7 @@ func UsageExampleRabbitMQ() string {
     })
   checkErr(err)
 
-  outputMSG := fmt.Sprintf("[x] Sent '%s'\n", body)
+  outputMSG := fmt.Sprintf("[x] Sent '%s' <br>", body)
 
   // Consume the message.
   msgs, err := channel.Consume(
@@ -86,7 +86,7 @@ func UsageExampleRabbitMQ() string {
   wg.Add(1)
   go func() {
     for d := range msgs {
-      received = fmt.Sprintf("[x] Received message: '%s' \n", d.Body)
+      received = fmt.Sprintf("[x] Received message: '%s' <br>", d.Body)
       wg.Done()
     }
   }()

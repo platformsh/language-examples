@@ -67,9 +67,9 @@ func UsageExampleSolr() string {
     panic(err)
   }
 
-  message := fmt.Sprintf(`Adding one document: %s
-Selecting document (1 expected): %d
-Deleting document: %s
+  message := fmt.Sprintf(`Adding one document - %s<br>
+Selecting document (1 expected): %d<br>
+Deleting document - %s<br>
   `, respAdd, resSelect.Results.NumFound, resDel)
 
   return message
