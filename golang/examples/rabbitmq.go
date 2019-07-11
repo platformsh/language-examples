@@ -13,9 +13,7 @@ func UsageExampleRabbitMQ() string {
 	// Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
 	// You can alternatively use os.Getenv() yourself.
 	config, err := psh.NewRuntimeConfig()
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Get the credentials to connect to RabbitMQ.
 	credentials, err := config.Credentials("rabbitmq")

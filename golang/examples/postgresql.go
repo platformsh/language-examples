@@ -13,9 +13,7 @@ func UsageExamplePostgreSQL() string {
 	// Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
 	// You can alternatively use os.Getenv() yourself.
 	config, err := psh.NewRuntimeConfig()
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// The 'database' relationship is generally the name of the primary SQL database of an application.
 	// It could be anything, though, as in the case here where it's called "postgresql".
@@ -24,28 +22,23 @@ func UsageExamplePostgreSQL() string {
 
 	// Retrieve the formatted credentials.
 	formatted, err := libpq.FormattedCredentials(credentials)
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Connect.
 	db, err := sql.Open("postgres", formatted)
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
+
 	defer db.Close()
 
 	// Creating a table.
 	sqlCreate := `
-CREATE TABLE PeopleGo (
+CREATE TABLE IF NOT EXISTS PeopleGo (
 id SERIAL PRIMARY KEY,
 name VARCHAR(30) NOT NULL,
-city VARCHAR(30) NOT NULL)`
+city VARCHAR(30) NOT NULL);`
 
 	_, err = db.Exec(sqlCreate)
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Insert data.
 	sqlInsert := `
@@ -55,9 +48,7 @@ INSERT INTO PeopleGo(name, city) VALUES
 ('Sally Ride', 'La Jolla');`
 
 	_, err = db.Exec(sqlInsert)
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	table := `<table>
 <thead>
@@ -82,10 +73,8 @@ INSERT INTO PeopleGo(name, city) VALUES
 		table += "</tbody>\n</table>\n"
 	}
 
-	_, err = db.Exec("DROP TABLE PeopleGo")
-	if err != nil {
-		panic(err)
-	}
+	_, err = db.Exec("DROP TABLE PeopleGo;")
+	checkErr(err)
 
 	return table
 }

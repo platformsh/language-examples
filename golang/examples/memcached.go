@@ -12,9 +12,7 @@ func UsageExampleMemcached() string {
 	// Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
 	// You can alternatively use os.Getenv() yourself.
 	config, err := psh.NewRuntimeConfig()
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Get the credentials to connect to the Solr service.
 	credentials, err := config.Credentials("memcached")
@@ -34,7 +32,7 @@ func UsageExampleMemcached() string {
 	err = mc.Set(&memcache.Item{Key: key, Value: []byte(value)})
 
 	// Read it back.
-	test, err := mc.Get("Deploy_day")
+	test, err := mc.Get(key)
 
 	return fmt.Sprintf("Found value <strong>%s</strong> for key <strong>%s</strong>.", test.Value, key)
 }
