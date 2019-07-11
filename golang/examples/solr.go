@@ -12,21 +12,15 @@ func UsageExampleSolr() string {
 	// Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
 	// You can alternatively use os.Getenv() yourself.
 	config, err := psh.NewRuntimeConfig()
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Get the credentials to connect to the Solr service.
 	credentials, err := config.Credentials("solr")
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Retrieve Solr formatted credentials.
 	formatted, err := gosolr.FormattedCredentials(credentials)
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Connect to Solr using the formatted credentials.
 	connection := &solr.Connection{URL: formatted}
@@ -39,9 +33,7 @@ func UsageExampleSolr() string {
 	}
 
 	respAdd, err := connection.Update(docAdd, true)
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Select the document.
 	q := &solr.Query{
@@ -51,9 +43,7 @@ func UsageExampleSolr() string {
 	}
 
 	resSelect, err := connection.CustomSelect(q, "query")
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Delete the document and commit the operation.
 	docDelete := map[string]interface{}{
@@ -63,9 +53,7 @@ func UsageExampleSolr() string {
 	}
 
 	resDel, err := connection.Update(docDelete, true)
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	message := fmt.Sprintf(`Adding one document - %s<br>
 Selecting document (1 expected): %d<br>

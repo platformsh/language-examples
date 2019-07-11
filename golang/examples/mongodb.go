@@ -16,9 +16,7 @@ func UsageExampleMongoDB() string {
 	// Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
 	// You can alternatively use os.Getenv() yourself.
 	config, err := psh.NewRuntimeConfig()
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Get the credentials to connect to the Solr service.
 	credentials, err := config.Credentials("mongodb")
@@ -26,9 +24,7 @@ func UsageExampleMongoDB() string {
 
 	// Retrieve the formatted credentials for mongo-driver.
 	formatted, err := mongoPsh.FormattedCredentials(credentials)
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Connect to MongoDB using the formatted credentials.
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
@@ -40,20 +36,17 @@ func UsageExampleMongoDB() string {
 
 	// Clean up after ourselves.
 	err = collection.Drop(context.Background())
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	// Create an entry.
 	res, err := collection.InsertOne(ctx, bson.M{"name": "Rey", "occupation": "Jedi"})
 	checkErr(err)
+
 	id := res.InsertedID
 
 	// Read it back.
 	cursor, err := collection.Find(context.Background(), bson.M{"_id": id})
-	if err != nil {
-		panic(err)
-	}
+	checkErr(err)
 
 	var name string
 	var occupation string
@@ -64,9 +57,8 @@ func UsageExampleMongoDB() string {
 			Occupation string
 		}{}
 		err := cursor.Decode(&document)
-		if err != nil {
-			panic(err)
-		}
+		checkErr(err)
+
 		name = document.Name
 		occupation = document.Occupation
 	}
