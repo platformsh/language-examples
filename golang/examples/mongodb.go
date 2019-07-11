@@ -38,6 +38,12 @@ func UsageExampleMongoDB() string {
 	// Create a new collection.
 	collection := client.Database("main").Collection("starwars")
 
+	// Clean up after ourselves.
+	err = collection.Drop(context.Background())
+	if err != nil {
+		panic(err)
+	}
+
 	// Create an entry.
 	res, err := collection.InsertOne(ctx, bson.M{"name": "Rey", "occupation": "Jedi"})
 	checkErr(err)
