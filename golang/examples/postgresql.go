@@ -23,9 +23,6 @@ func UsageExamplePostgreSQL() string {
 	// Retrieve the formatted credentials.
 	formatted, err := libpq.FormattedCredentials(credentials)
 	checkErr(err)
-	if err != nil {
-		panic(err)
-	}
 
 	// Connect.
 	db, err := sql.Open("postgres", formatted)
