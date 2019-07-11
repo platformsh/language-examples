@@ -7,7 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 	Config "github.com/platformsh/language-examples/conf"
 	"github.com/platformsh/language-examples/examples"
-	// "html"
 	"html/template"
 	"log"
 	"net/http"

@@ -1,40 +1,40 @@
 package examples
 
 import (
-  "fmt"
-  gomemcache "github.com/platformsh/config-reader-go/v2/gomemcache"
-  psh "github.com/platformsh/config-reader-go/v2"
-  "github.com/bradfitz/gomemcache/memcache"
+	"fmt"
+	"github.com/bradfitz/gomemcache/memcache"
+	psh "github.com/platformsh/config-reader-go/v2"
+	gomemcache "github.com/platformsh/config-reader-go/v2/gomemcache"
 )
 
 func UsageExampleMemcached() string {
 
-  // Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
+	// Create a NewRuntimeConfig object to ease reading the Platform.sh environment variables.
 	// You can alternatively use os.Getenv() yourself.
-  config, err := psh.NewRuntimeConfig()
-  if err != nil {
-    panic(err)
-  }
+	config, err := psh.NewRuntimeConfig()
+	if err != nil {
+		panic(err)
+	}
 
-  // Get the credentials to connect to the Solr service.
-  credentials, err := config.Credentials("memcached")
-  checkErr(err)
+	// Get the credentials to connect to the Solr service.
+	credentials, err := config.Credentials("memcached")
+	checkErr(err)
 
-  // Retrieve formatted credentials for gomemcache.
-  formatted, err := gomemcache.FormattedCredentials(credentials)
-  checkErr(err)
+	// Retrieve formatted credentials for gomemcache.
+	formatted, err := gomemcache.FormattedCredentials(credentials)
+	checkErr(err)
 
-  // Connect to Memcached.
-  mc := memcache.New(formatted)
+	// Connect to Memcached.
+	mc := memcache.New(formatted)
 
-  // Set a value.
-  key := "Deploy_day"
-  value := "Friday"
+	// Set a value.
+	key := "Deploy_day"
+	value := "Friday"
 
-  err = mc.Set(&memcache.Item{Key: key, Value: []byte(value)})
+	err = mc.Set(&memcache.Item{Key: key, Value: []byte(value)})
 
-  // Read it back.
-  test, err := mc.Get("Deploy_day")
+	// Read it back.
+	test, err := mc.Get("Deploy_day")
 
-  return fmt.Sprintf("Found value <strong>%s</strong> for key <strong>%s</strong>.", test.Value, key)
+	return fmt.Sprintf("Found value <strong>%s</strong> for key <strong>%s</strong>.", test.Value, key)
 }
