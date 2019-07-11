@@ -40,6 +40,7 @@ func UsageExampleMongoDB() string {
 
 	// Create an entry.
 	res, err := collection.InsertOne(ctx, bson.M{"name": "Rey", "occupation": "Jedi"})
+	checkErr(err)
 	id := res.InsertedID
 
 	// Read it back.
