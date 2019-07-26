@@ -32,6 +32,11 @@ relationships:
     influxdb: 'influxdb:influxdb'
     memcached: 'memcached:memcached'
 
+mounts:
+    'restore-test':
+        source: local
+        source_path: restore-test
+
 # The configuration of app when it is exposed to the web.
 web:
     upstream:
