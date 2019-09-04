@@ -40,3 +40,4 @@ function handleRequest($requestUrl)
 }
 
 handleRequest($_SERVER['REQUEST_URI']);
+
