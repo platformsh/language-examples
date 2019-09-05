@@ -21,3 +21,4 @@ relationships:
 web:
   commands:
     start:  java -jar target/java-language-example.jar --server.port=$PORT
+
