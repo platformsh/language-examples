@@ -9,11 +9,11 @@ def usage_example():
     config = Config()
 
     # The 'database' relationship is generally the name of primary SQL database of an application.
-    # It could be anything, though, as in the case here here where it's called "mongodb".
-    credentials = config.credentials('mongodb')
+    # It could be anything, though, as in the case here here where it's called "database".
+    credentials = config.credentials('database')
 
     try:
-        formatted = config.formatted_credentials('mongodb', 'pymongo')
+        formatted = config.formatted_credentials('database', 'pymongo')
 
         server = '{0}://{1}:{2}@{3}'.format(
             credentials['scheme'],

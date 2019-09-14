@@ -22,8 +22,8 @@ public class MongoDBSample implements Supplier<String> {
         Config config = new Config();
 
         // The 'database' relationship is generally the name of primary database of an application.
-        // It could be anything, though, as in the case here here where it's called "mongodb".
-        MongoDB database = config.getCredential("mongodb", MongoDB::new);
+        // It could be anything, though, as in the case here here where it's called "database".
+        MongoDB database = config.getCredential("database", MongoDB::new);
         MongoClient mongoClient = database.get();
         final MongoDatabase mongoDatabase = mongoClient.getDatabase(database.getDatabase());
         MongoCollection<Document> collection = mongoDatabase.getCollection("scientist");

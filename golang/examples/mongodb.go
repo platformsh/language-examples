@@ -3,12 +3,13 @@ package examples
 import (
 	"context"
 	"fmt"
+	"time"
+
 	psh "github.com/platformsh/config-reader-go/v2"
 	mongoPsh "github.com/platformsh/config-reader-go/v2/mongo"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"time"
 )
 
 func UsageExampleMongoDB() string {
@@ -18,8 +19,10 @@ func UsageExampleMongoDB() string {
 	config, err := psh.NewRuntimeConfig()
 	checkErr(err)
 
-	// Get the credentials to connect to the Solr service.
-	credentials, err := config.Credentials("mongodb")
+	// Get the credentials to connect to the mongodb service.
+	// The 'database' relationship is generally the name of primary database of an application.
+	// It could be anything, though, as in the case here here where it's called "database".
+	credentials, err := config.Credentials("database")
 	checkErr(err)
 
 	// Retrieve the formatted credentials for mongo-driver.

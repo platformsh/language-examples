@@ -2,10 +2,12 @@ const mongodb = require('mongodb');
 const config = require("platformsh-config").config();
 
 exports.usageExample = async function() {
-    const credentials = config.credentials('mongodb');
+    // The 'database' relationship is generally the name of primary database of an application.
+    // It could be anything, though, as in the case here here where it's called "database".
+    const credentials = config.credentials('database');
     const MongoClient = mongodb.MongoClient;
 
-    var client = await MongoClient.connect(config.formattedCredentials('mongodb', 'mongodb'));
+    var client = await MongoClient.connect(config.formattedCredentials('database', 'mongodb'));
 
     let db = client.db(credentials["path"]);
 

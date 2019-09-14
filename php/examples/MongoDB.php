@@ -10,8 +10,8 @@ use MongoDB\Client;
 $config = new Config();
 
 // The 'database' relationship is generally the name of primary database of an application.
-// It could be anything, though, as in the case here here where it's called "mongodb".
-$credentials = $config->credentials('mongodb');
+// It could be anything, though, as in the case here here where it's called "database".
+$credentials = $config->credentials('database');
 
 try {
 
