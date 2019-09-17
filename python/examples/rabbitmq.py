@@ -32,8 +32,8 @@ def usage_example():
             print(" [x] Received {}".format(body))
 
         # Tell RabbitMQ that this particular function should receive messages from our 'hello' queue
-        channel.basic_consume(callback,
-                              queue='deploy_days',
+        channel.basic_consume('deploy_days',
+                              callback,
                               no_ack=True)
 
         # This blocks on waiting for an item from the queue, so comment it out in this demo script.
