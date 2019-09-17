@@ -58,4 +58,3 @@ web:
             root: "web"
             # The front-controller script to send non-static requests to.
             passthru: "/php/index.php"
-
