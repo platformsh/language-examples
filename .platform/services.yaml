@@ -38,3 +38,10 @@ solr:
     type: solr:8.0
     disk: 256
     size: S
+    configuration:
+        cores:
+            maincore:
+                conf_dir: !archive "solr-config"
+        endpoints:
+            solr:
+                core: maincore
