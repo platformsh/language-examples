@@ -11,7 +11,7 @@ require (
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/lib/pq v1.1.1
 	github.com/montanaflynn/stats v0.5.0 // indirect
-	github.com/platformsh/config-reader-go/v2 v2.2.3
+	github.com/platformsh/config-reader-go/v2 v2.3.0
 	github.com/rtt/Go-Solr v0.0.0-20190512221613-64fac99dcae2
 	github.com/streadway/amqp v0.0.0-20190404075320-75d898a42a94
 	github.com/tidwall/pretty v1.0.0 // indirect

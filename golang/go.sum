@@ -38,6 +38,8 @@ github.com/montanaflynn/stats v0.5.0 h1:2EkzeTSqBB4V4bJwWrt5gIIrZmpJBcoIRGS2kWLg
 github.com/montanaflynn/stats v0.5.0/go.mod h1:wL8QJuTMNUDYhXwkmfOly8iTdp5TEcJFWZD2D7SIkUc=
 github.com/platformsh/config-reader-go/v2 v2.2.3 h1:T7Qb6grZEgYyWamCvMVjnrwohjQ3j+JL0qpo0DVQ+HA=
 github.com/platformsh/config-reader-go/v2 v2.2.3/go.mod h1:b1XoU9pi4yfOL2HGUKp40BQOhhqJFMNbNXBtwousNR0=
+github.com/platformsh/config-reader-go/v2 v2.3.0 h1:t2t7nADOJ8o6K3IVbmV70LbrNW9qWHQUAtxN259HON0=
+github.com/platformsh/config-reader-go/v2 v2.3.0/go.mod h1:b1XoU9pi4yfOL2HGUKp40BQOhhqJFMNbNXBtwousNR0=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rtt/Go-Solr v0.0.0-20190512221613-64fac99dcae2 h1:CYVr4iW4FURmP0OsiAu/X7dKniuf8jVX/Z76bNY8jlA=
