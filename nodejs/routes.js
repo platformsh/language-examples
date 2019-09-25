@@ -7,7 +7,7 @@ var data = {};
 let services = {
     elasticsearch: 'Elasticsearch',
     // influxdb: 'InfluxDB',
-    memcached: 'MemcacheD',
+    memcached: 'Memcached',
     mongodb: 'MongoDB',
     mysql: 'MySQL',
 //    oraclemysql: 'Oracle MySQL',

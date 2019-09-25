@@ -34,7 +34,7 @@ exports.usageExample = async function() {
 
     let output = '';
 
-    if(response.hits.total > 0) {
+    if(response.hits.total.value > 0) {
         output += `<table>
         <thead>
         <tr><th>ID</th><th>Name</th></tr>
@@ -44,6 +44,9 @@ exports.usageExample = async function() {
             output += `<tr><td>${record._id}</td><td>${record._source.name}</td></tr>\n`;
         });
         output += "</tbody>\n</table>\n";
+    }
+    else {
+        output = "No records found.";
     }
 
     // Clean up after ourselves.

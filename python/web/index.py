@@ -60,8 +60,8 @@ def create_list():
         "postgresql": "PostgreSQL",
         "rabbitmq": "RabbitMQ",
         "redis": "Redis",
-        "solr": "Solr"
-        # "oraclemysql": "Oracle MySQL"
+        "solr": "Solr",
+        "oraclemysql": "Oracle MySQL"
     }
 
     header = '''

@@ -1,15 +1,15 @@
 # This file defines services you want available to your application.
 
 elasticsearch:
-    type: elasticsearch:5.4
+    type: elasticsearch:7.2
     disk: 256
     size: S
 influxdb:
-    type: influxdb:1.3
+    type: influxdb:1.7
     disk: 256
     size: S
 kafka:
-    type: kafka:2.1
+    type: kafka:2.2
     disk: 512
     size: S
 memcached:
@@ -20,21 +20,28 @@ mongodb:
     disk: 1024
     size: S
 mysql:
-    type: mysql:10.2
+    type: mariadb:10.4
     disk: 256
     size: S
 postgresql:
     type: postgresql:11
     disk: 256
     size: S
+rabbitmq:
+    type: rabbitmq:3.7
+    disk: 256
+    size: S
 redis:
     type: redis:5.0
     size: S
-rabbitmq:
-    type: rabbitmq:3.5
-    disk: 256
-    size: S
 solr:
-    type: solr:7.6
+    type: solr:8.0
     disk: 256
     size: S
+    configuration:
+        cores:
+            maincore:
+                conf_dir: !archive "solr-config"
+        endpoints:
+            solr:
+                core: maincore
