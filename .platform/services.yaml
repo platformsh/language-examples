@@ -20,7 +20,7 @@ mongodb:
     disk: 1024
     size: S
 mysql:
-    type: mariadb:10.3
+    type: mariadb:10.4
     disk: 256
     size: S
 postgresql:
