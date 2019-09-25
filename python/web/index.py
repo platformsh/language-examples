@@ -60,7 +60,7 @@ def create_list():
         "postgresql": "PostgreSQL",
         "rabbitmq": "RabbitMQ",
         "redis": "Redis",
-        "solr": "Solr"
+        "solr": "Solr",
         "oraclemysql": "Oracle MySQL"
     }
 
