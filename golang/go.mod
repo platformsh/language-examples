@@ -20,3 +20,5 @@ require (
 	go.mongodb.org/mongo-driver v1.0.3
 	google.golang.org/appengine v1.6.1 // indirect
 )
+
+go 1.13
