@@ -48,3 +48,4 @@ crons:
             if [ "$PLATFORM_BRANCH" = master ]; then
                 platform redeploy --yes --no-wait
             fi
+
