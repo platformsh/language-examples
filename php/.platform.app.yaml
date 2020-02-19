@@ -5,7 +5,7 @@
 name: php
 
 # The type of the application to build.
-type: php:7.3
+type: php:7.4
 build:
     flavor: composer
 
@@ -13,7 +13,6 @@ build:
 # PECL extensions that can be enabled.
 runtime:
     extensions:
-        - redis
         - pdo_pgsql
         - mongodb
         - memcached
@@ -22,6 +21,7 @@ runtime:
 hooks:
     build: |
         set -e
+        bash install-redis.sh 5.1.1
 
     deploy: |
         set -e
