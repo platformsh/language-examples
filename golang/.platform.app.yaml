@@ -53,7 +53,7 @@ web:
 # The size of the persistent disk of the application (in MB).
 disk: 1024
 
-# mounts:
-#   '/.cache':
-#       source: local
-#       source_path: cache
+mounts:
+  '/.cache':
+      source: local
+      source_path: cache
