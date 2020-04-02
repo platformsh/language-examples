@@ -5,8 +5,7 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	Config "github.com/platformsh/language-examples/conf"
-	"github.com/platformsh/language-examples/examples"
+	Config "github.com/platformsh/language-examples/golang/conf"
 	"html/template"
 	"log"
 	"net/http"
