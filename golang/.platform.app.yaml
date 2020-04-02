@@ -7,7 +7,7 @@
 name: golang
 
 # The runtime the application uses.
-type: golang:1.13
+type: golang:1.14
 
 # The hooks executed at various points in the lifecycle of the application.
 hooks:
@@ -52,3 +52,8 @@ web:
 
 # The size of the persistent disk of the application (in MB).
 disk: 1024
+
+mounts:
+    '/.cache':
+        source: local
+        source_path: cache
