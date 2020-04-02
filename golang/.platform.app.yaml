@@ -14,7 +14,7 @@ hooks:
     build: |
         go generate
         # Modify this line if you want to build differently or use an alternate name for your executable.
-        go build -o bin/app
+        go build -o bin/app main
 
 # The relationships of the application with services or other applications.
 #
