@@ -54,6 +54,6 @@ web:
 disk: 1024
 
 mounts:
-    '.cache':
+    '/.cache':
         source: local
         source_path: cache
