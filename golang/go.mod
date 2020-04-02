@@ -1,4 +1,4 @@
-module github.com/platformsh/language-examples/golang
+module github.com/platformsh/language-examples
 
 require (
 	github.com/bradfitz/gomemcache v0.0.0-20190329173943-551aad21a668
