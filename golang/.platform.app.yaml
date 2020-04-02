@@ -13,8 +13,6 @@ type: golang:1.14
 hooks:
     build: |
         go generate
-        # A little test commit here.
-        go env
         # Modify this line if you want to build differently or use an alternate name for your executable.
         go build -o bin/app
 
@@ -55,7 +53,7 @@ web:
 # The size of the persistent disk of the application (in MB).
 disk: 1024
 
-# mounts:
-#     '/.cache':
-#         source: local
-#         source_path: cache
+mounts:
+    '/.cache':
+        source: local
+        source_path: cache
