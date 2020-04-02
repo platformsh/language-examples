@@ -5,11 +5,8 @@ This project builds a working copy of every language/service combination that Pl
 ## Structure
 
 * `services.yaml` contains the latest version of every service Platform.sh offers that an application container can connect to.
-
 * `/main` contains a trivial index container.
-
 * Each other directory is an application container for the latest supportable version of each supported language.
-
 * `routes.yaml` defines a route to each language container at `/$language`.
 
 ## App container specification
