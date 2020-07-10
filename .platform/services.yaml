@@ -5,11 +5,11 @@ elasticsearch:
     disk: 256
     size: S
 influxdb:
-    type: influxdb:1.7
+    type: influxdb:1.8
     disk: 256
     size: S
 kafka:
-    type: kafka:2.2
+    type: kafka:2.5
     disk: 512
     size: S
 memcached:
@@ -24,7 +24,7 @@ mysql:
     disk: 256
     size: S
 postgresql:
-    type: postgresql:11
+    type: postgresql:12
     disk: 256
     size: S
 rabbitmq:
@@ -32,7 +32,7 @@ rabbitmq:
     disk: 256
     size: S
 redis:
-    type: redis:5.0
+    type: redis:6.0
     size: S
 solr:
     type: solr:8.0
