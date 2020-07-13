@@ -29,7 +29,7 @@ postgresql:
     size: S
 rabbitmq:
     type: rabbitmq:3.8
-    disk: 256
+    disk: 1024
     size: S
 redis:
     type: redis:6.0
