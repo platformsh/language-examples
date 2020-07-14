@@ -1,7 +1,7 @@
 
 import pysolr
 import traceback
-# from xml.etree import ElementTree as et
+from xml.etree import ElementTree as et
 import json
 from platformshconfig import Config
 
