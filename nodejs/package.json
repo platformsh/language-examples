@@ -12,7 +12,7 @@
     "express": "^4.17.1",
     "influxdb-nodejs": "^2.11.0",
     "memcached": "^2.2.2",
-    "mongodb": "^2.0.48",
+    "mongodb": "^3.5.9",
     "mongoose": "^5.7.8",
     "mysql2": "^1.7.0",
     "parse_url": "^0.1.1",
