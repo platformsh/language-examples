@@ -32,8 +32,9 @@ function escapeHtml(s) {
 // Call all of the run() methods of all services, and store their output once.
 async function runData(key) {
     let value = undefined;
-    try{
+    try {
         const method = data[key].usageExample;
+        console.log("Generating output for ${key}}");
         value = await method();
     } catch (err) {
         console.error(err);
