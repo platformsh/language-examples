@@ -34,7 +34,7 @@ async function runData(key) {
     let value = undefined;
     try {
         const method = data[key].usageExample;
-        console.log("Generating output for ${key}}");
+        console.log(`"Generating output for ${key}`);
         value = await method();
     } catch (err) {
         console.error(err);
