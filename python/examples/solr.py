@@ -1,6 +1,7 @@
 
 import pysolr
 from xml.etree import ElementTree as et
+import json
 from platformshconfig import Config
 
 
@@ -14,6 +15,7 @@ def usage_example():
     credentials = config.credentials('solr')
 
     try:
+        # Ge the pysolr-formatted connection string.
         formatted_url = config.formatted_credentials('solr', 'pysolr')
 
         # Create a new Solr Client using config variables
@@ -25,19 +27,16 @@ def usage_example():
             "id": 123,
             "name": "Valentina Tereshkova"
         }
-
-        result0 = client.add([doc_1])
-        client.commit()
-        message += 'Adding one document. Status (0 is success): {0} <br />'.format(et.fromstring(result0)[0][0].text)
+        result0 = client.add([doc_1], commit=True)
+        message += 'Adding one document. Status (0 is success): {} <br />'.format(json.loads(result0)['responseHeader']['status'])
 
         # Select one document
         query = client.search('*:*')
-        message += '\nSelecting documents (1 expected): {0} <br />'.format(str(query.hits))
+        message += '\nSelecting documents (1 expected): {} <br />'.format(str(query.hits))
 
         # Delete one document
-        result1 = client.delete(doc_1['id'])
-        client.commit()
-        message += '\nDeleting one document. Status (0 is success): {0}'.format(et.fromstring(result1)[0][0].text)
+        result1 = client.delete(doc_1['id'], commit=True)
+        message += '\nDeleting one document. Status (0 is success): {}'.format(et.fromstring(result1)[0][0].text)
 
         return message
 

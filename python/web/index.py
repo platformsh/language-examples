@@ -104,7 +104,7 @@ def create_list():
         name = names[service]
         source = html.escape(file_get_contents(service))
         output = getattr(getattr(examples, service), 'usage_example')()
-
+        
         body += '''
                     <details>
                     <summary>{0} Sample Code</summary>
