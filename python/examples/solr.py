@@ -1,6 +1,8 @@
 
 import pysolr
-from xml.etree import ElementTree as et
+import traceback
+# from xml.etree import ElementTree as et
+import json
 from platformshconfig import Config
 
 
@@ -16,8 +18,6 @@ def usage_example():
     try:
         formatted_url = config.formatted_credentials('solr', 'pysolr')
 
-        print(formatted_url)
-
         # Create a new Solr Client using config variables
         client = pysolr.Solr(formatted_url)
 
@@ -30,7 +30,7 @@ def usage_example():
 
         result0 = client.add([doc_1])
         client.commit()
-        message += 'Adding one document. Status (0 is success): {0} <br />'.format(et.fromstring(result0)[0][0].text)
+        message += 'Adding one document. Status (0 is success): {0} <br />'.format(json.loads(result0)['responseHeader']['status'])
 
         # Select one document
         query = client.search('*:*')
@@ -45,3 +45,5 @@ def usage_example():
 
     except Exception as e:
         return e
+
+# print(usage_example())
