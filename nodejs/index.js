@@ -26,7 +26,8 @@ function sleep(milliseconds) {
 }
 
 console.log("Waiting for services to be ready.");
-sleep(2000);
+sleep(4000);
+console.log("Done waiting. Hopefully services have started.");
 
 var app = express();
 
