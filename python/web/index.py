@@ -51,17 +51,17 @@ def add_example_output_route(example):
 
 def create_list():
     names = {
-        # "elasticsearch": "Elasticsearch",
+        "elasticsearch": "Elasticsearch",
         # "influxdb": "InfluxDB",
-        # "kafka": "Kafka",
-        # "memcached": "Memcached",
-        # "mongodb": "MongoDB",
-        # "mysql": "MySQL",
-        # "postgresql": "PostgreSQL",
-        # "rabbitmq": "RabbitMQ",
-        # "redis": "Redis",
+        "kafka": "Kafka",
+        "memcached": "Memcached",
+        "mongodb": "MongoDB",
+        "mysql": "MySQL",
+        "postgresql": "PostgreSQL",
+        "rabbitmq": "RabbitMQ",
+        "redis": "Redis",
         "solr": "Solr",
-        # "oraclemysql": "Oracle MySQL"
+        "oraclemysql": "Oracle MySQL"
     }
 
     header = '''
@@ -100,13 +100,10 @@ def create_list():
 
     body = ''
     services = [service for service in dir(examples) if service in names.keys()]
-    print(services)
     for service in services:
         name = names[service]
         source = html.escape(file_get_contents(service))
         output = getattr(getattr(examples, service), 'usage_example')()
-        # print(output2)
-        # output = "dummy output in index.py"
         body += '''
                     <details>
                     <summary>{0} Sample Code</summary>
