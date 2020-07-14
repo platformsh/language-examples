@@ -16,6 +16,8 @@ def usage_example():
     try:
         formatted_url = config.formatted_credentials('solr', 'pysolr')
 
+        print(formatted_url)
+
         # Create a new Solr Client using config variables
         client = pysolr.Solr(formatted_url)
 
