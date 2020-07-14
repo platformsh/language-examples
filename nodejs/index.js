@@ -17,6 +17,17 @@ if (process.env.NODE_ENV === 'test') {
 else {
 }
 
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
+
+console.log("Waiting for services to be ready.");
+sleep(2000);
+
 var app = express();
 
 // Set up a base path for routes based on the Route definition.
