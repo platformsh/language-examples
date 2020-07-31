@@ -3,6 +3,9 @@ const config = require("platformsh-config").config();
 
 exports.usageExample = async function() {
 
+    const solrUrl = config.formattedCredentials('solr', 'solr-node');
+    console.debug("Solr URL is: " + solrUrl);
+    console.debug(config.credentials('solr'));
     let client = new solr(config.formattedCredentials('solr', 'solr-node'));
 
     let output = '';
