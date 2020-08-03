@@ -8,7 +8,7 @@ let services = {
     elasticsearch: 'Elasticsearch',
     // influxdb: 'InfluxDB',
     memcached: 'Memcached',
-    // mongodb: 'MongoDB',
+    mongodb: 'MongoDB',
     // mysql: 'MySQL',
 //    oraclemysql: 'Oracle MySQL',
 //     postgresql: 'PostgreSQL',
