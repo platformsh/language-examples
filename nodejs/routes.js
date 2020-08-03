@@ -5,14 +5,14 @@ const fs = require('fs');
 var data = {};
 
 let services = {
-    elasticsearch: 'Elasticsearch',
+    // elasticsearch: 'Elasticsearch',
     // influxdb: 'InfluxDB',
-    memcached: 'Memcached',
-    mongodb: 'MongoDB',
-    mysql: 'MySQL',
+    // memcached: 'Memcached',
+    // mongodb: 'MongoDB',
+    // mysql: 'MySQL',
 //    oraclemysql: 'Oracle MySQL',
-    postgresql: 'PostgreSQL',
-    redis: 'Redis',
+//     postgresql: 'PostgreSQL',
+//     redis: 'Redis',
     solr: 'Solr',
 };
 
