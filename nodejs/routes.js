@@ -11,8 +11,8 @@ let services = {
     mongodb: 'MongoDB',
     mysql: 'MySQL',
 //    oraclemysql: 'Oracle MySQL',
-    postgresql: 'PostgreSQL',
-//     redis: 'Redis',
+//     postgresql: 'PostgreSQL',
+    redis: 'Redis',
     solr: 'Solr',
 };
 
