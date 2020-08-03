@@ -13,10 +13,16 @@ exports.usageExample = async function() {
     let output = '';
 
     // Add a document.
-    let addResult = await client.update({
-        id: 123,
-        name: 'Valentina Tereshkova',
-    });
+    let addResult = await client.add([
+        {
+            id: 123,
+            name: 'Valentina Tereshkova',
+        }
+    ])
+    // let addResult = await client.update({
+    //     id: 123,
+    //     name: 'Valentina Tereshkova',
+    // });
 
     output += "Adding one document. Status (0 is success): " + addResult.responseHeader.status +  "<br />\n";
 
