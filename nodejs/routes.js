@@ -5,7 +5,7 @@ const fs = require('fs');
 var data = {};
 
 let services = {
-    // elasticsearch: 'Elasticsearch',
+    elasticsearch: 'Elasticsearch',
     // influxdb: 'InfluxDB',
     // memcached: 'Memcached',
     // mongodb: 'MongoDB',
