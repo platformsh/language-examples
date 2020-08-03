@@ -9,7 +9,7 @@ let services = {
     // influxdb: 'InfluxDB',
     memcached: 'Memcached',
     mongodb: 'MongoDB',
-    // mysql: 'MySQL',
+    mysql: 'MySQL',
 //    oraclemysql: 'Oracle MySQL',
 //     postgresql: 'PostgreSQL',
 //     redis: 'Redis',
