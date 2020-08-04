@@ -7,8 +7,8 @@ exports.usageExample = async function() {
     console.debug("Solr URL is: ");
     console.debug(solrUrl);
     console.debug(config.credentials('solr'));
-    // let client = new solr(config.formattedCredentials('solr', 'solr-node'));
-    client = new solr({host: 'solr.internal', port: 8080, core: 'maincore', protocol: 'http'});
+    let client = new solr(config.formattedCredentials('solr', 'solr-node'));
+    //let client = new solr({host: 'solr.internal', port: 8080, core: 'maincore', protocol: 'http'});
 
     let output = '';
 
