@@ -5,7 +5,7 @@ elasticsearch:
     disk: 256
     size: S
 influxdb:
-    type: influxdb:1.7
+    type: influxdb:1.8
     disk: 256
     size: S
 kafka:
