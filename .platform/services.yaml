@@ -32,7 +32,7 @@ rabbitmq:
     disk: 1024
     size: S
 redis:
-    type: redis:5.0
+    type: redis:6.0
     size: S
 solr:
     type: solr:8.0
