@@ -13,7 +13,7 @@ kafka:
     disk: 512
     size: S
 memcached:
-    type: memcached:1.4
+    type: memcached:1.6
     size: S
 mongodb:
     type: mongodb:3.6
