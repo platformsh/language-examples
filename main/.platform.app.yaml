@@ -16,7 +16,7 @@ hooks:
 relationships:
     elasticsearch: 'elasticsearch77:elasticsearch'
     influxdb: 'influxdb18:influxdb'
-    kafka: 'kafka22:kafka'
+    kafka: 'kafka25:kafka'
     memcached: 'memcached16:memcached'
     mongodb: 'mongodb36:mongodb'
     mysql: 'mariadb104:mysql'

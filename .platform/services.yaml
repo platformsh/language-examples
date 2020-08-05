@@ -8,8 +8,8 @@ influxdb18:
     type: influxdb:1.8
     disk: 256
     size: S
-kafka22:
-    type: kafka:2.2
+kafka25:
+    type: kafka:2.5
     disk: 512
     size: S
 memcached16:

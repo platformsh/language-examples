@@ -16,7 +16,7 @@ relationships:
   solr: 'solr80:solr'
   rabbitmq: 'rabbitmq37:rabbitmq'
   influxdb: 'influxdb18:influxdb'
-  kafka: 'kafka22:kafka'
+  kafka: 'kafka25:kafka'
 
 web:
   commands:
