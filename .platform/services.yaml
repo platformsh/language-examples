@@ -34,8 +34,8 @@ rabbitmq38:
 redis6:
     type: redis:6.0
     size: S
-solr80:
-    type: solr:8.0
+solr84:
+    type: solr:8.4
     disk: 256
     size: S
     configuration:

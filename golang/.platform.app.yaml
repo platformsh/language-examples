@@ -24,7 +24,7 @@ hooks:
 relationships:
     database: 'mariadb104:mysql'
     postgresql: 'postgresql12:postgresql'
-    solr: 'solr80:solr'
+    solr: 'solr84:solr'
    # redis: 'redis6:redis'
    # elasticsearch: 'elasticsearch77:elasticsearch'
     mongodb: 'mongodb36:mongodb'
