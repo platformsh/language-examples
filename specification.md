@@ -1,7 +1,7 @@
 # Language examples design spec
 
 * Every language is its own container, named for the language.  It should run the most recent version of the language possible.
-* Each container container should connect to every service possible.
+* Each container should connect to every service possible.
 * Every container should respond to requests at `/foo` with the source code example to connect to the `foo` service.
 * Every container should respond to requests at `/foo/output` with the output of the source code example. That is, all source code examples should be "live".
 * The example source and output should be "bare", not full HTML pages, as they are intended to be embedded into other resources.
