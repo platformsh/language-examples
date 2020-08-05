@@ -1,7 +1,7 @@
 # This file defines services you want available to your application.
 
-elasticsearch72:
-    type: elasticsearch:7.2
+elasticsearch77:
+    type: elasticsearch:7.7
     disk: 256
     size: S
 influxdb18:

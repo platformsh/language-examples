@@ -11,7 +11,7 @@ relationships:
   postgresql: 'postgresql11:postgresql'
   mongodb: 'mongodb36:mongodb'
   redis: 'redis6:redis'
-  elasticsearch: 'elasticsearch72:elasticsearch'
+  elasticsearch: 'elasticsearch77:elasticsearch'
   memcached: 'memcached16:memcached'
   solr: 'solr80:solr'
   rabbitmq: 'rabbitmq37:rabbitmq'

@@ -14,7 +14,7 @@ hooks:
         curl -sS https://platform.sh/cli/installer | php
 
 relationships:
-    elasticsearch: 'elasticsearch72:elasticsearch'
+    elasticsearch: 'elasticsearch77:elasticsearch'
     influxdb: 'influxdb18:influxdb'
     kafka: 'kafka22:kafka'
     memcached: 'memcached16:memcached'

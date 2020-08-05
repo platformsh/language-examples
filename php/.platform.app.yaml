@@ -35,7 +35,7 @@ relationships:
     postgresql: 'postgresql11:postgresql'
     solr: 'solr80:solr'
     redis: 'redis6:redis'
-    elasticsearch: 'elasticsearch72:elasticsearch'
+    elasticsearch: 'elasticsearch77:elasticsearch'
     mongodb: 'mongodb36:mongodb'
     rabbitmq: 'rabbitmq37:rabbitmq'
     influxdb: 'influxdb18:influxdb'
