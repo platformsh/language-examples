@@ -1,6 +1,7 @@
 # Language examples design spec
 
 * Every language is its own container, named for the language.  It should run the most recent version of the language possible.
+* All services should be named to their version, and thus the name updated when the version is updated.  That sidesteps the upgrade problems that various service types suffer from.
 * Each container should connect to every service possible.
 * Every container should respond to requests at `/foo` with the source code example to connect to the `foo` service.
 * Every container should respond to requests at `/foo/output` with the output of the source code example. That is, all source code examples should be "live".
