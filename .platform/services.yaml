@@ -23,8 +23,8 @@ mariadb104:
     type: mariadb:10.4
     disk: 256
     size: S
-postgresql11:
-    type: postgresql:11
+postgresql12:
+    type: postgresql:12
     disk: 256
     size: S
 rabbitmq38:

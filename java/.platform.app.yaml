@@ -8,7 +8,7 @@ hooks:
 
 relationships:
   database: 'mariadb104:mysql'
-  postgresql: 'postgresql11:postgresql'
+  postgresql: 'postgresql12:postgresql'
   mongodb: 'mongodb36:mongodb'
   redis: 'redis6:redis'
   elasticsearch: 'elasticsearch77:elasticsearch'
