@@ -18,7 +18,7 @@ exports.usageExample = async function() {
         {'name': 'Katheryn Janeway', 'rank': 'Captain'},
     ];
 
-    await collection.insert(documents, {w: 1});
+    await collection.insertMany(documents, {w: 1});
 
     let result = await collection.find({rank:"Captain"}).toArray();
 
@@ -37,7 +37,7 @@ exports.usageExample = async function() {
     output += `</tbody>\n</table>\n`;
 
     // Clean up after ourselves.
-    collection.remove();
+    collection.deleteMany();
 
     return output;
 };

@@ -43,5 +43,5 @@ app.use(function(req, res, next){
 
 // Start the server.
 app.listen(config.port, function() {
-    console.log(`Listening on port ${config.port}`)
+    console.log(`Listening on port ${config.port}`);
 });
