@@ -1,5 +1,5 @@
 name: nodejs
-type: nodejs:10
+type: nodejs:12
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
@@ -7,12 +7,12 @@ type: nodejs:10
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
   database: 'mariadb104:mysql'
-  postgresql: 'postgresql11:postgresql'
-  solr: 'solr80:solr'
+  postgresql: 'postgresql12:postgresql'
+  solr: 'solr84:solr'
   redis: 'redis6:redis'
-  elasticsearch: 'elasticsearch72:elasticsearch'
+  elasticsearch: 'elasticsearch77:elasticsearch'
   mongodb: 'mongodb36:mongodb'
-  rabbitmq: 'rabbitmq37:rabbitmq'
+  rabbitmq: 'rabbitmq38:rabbitmq'
   influxdb: 'influxdb18:influxdb'
   memcached: 'memcached16:memcached'
 
@@ -33,6 +33,8 @@ web:
           allow: true
 
 mounts:
-  "/run": "shared:files/run"
+  "run":
+    source: local
+    source_path: 'run'
 
 disk: 512

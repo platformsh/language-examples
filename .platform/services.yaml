@@ -1,15 +1,15 @@
 # This file defines services you want available to your application.
 
-elasticsearch72:
-    type: elasticsearch:7.2
+elasticsearch77:
+    type: elasticsearch:7.7
     disk: 256
     size: S
 influxdb18:
     type: influxdb:1.8
     disk: 256
     size: S
-kafka22:
-    type: kafka:2.2
+kafka25:
+    type: kafka:2.5
     disk: 512
     size: S
 memcached16:
@@ -23,19 +23,19 @@ mariadb104:
     type: mariadb:10.4
     disk: 256
     size: S
-postgresql11:
-    type: postgresql:11
+postgresql12:
+    type: postgresql:12
     disk: 256
     size: S
-rabbitmq37:
-    type: rabbitmq:3.7
+rabbitmq38:
+    type: rabbitmq:3.8
     disk: 1024
     size: S
 redis6:
     type: redis:6.0
     size: S
-solr80:
-    type: solr:8.0
+solr84:
+    type: solr:8.4
     disk: 256
     size: S
     configuration:
