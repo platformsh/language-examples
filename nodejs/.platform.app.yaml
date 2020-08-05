@@ -1,5 +1,5 @@
 name: nodejs
-type: nodejs:10
+type: nodejs:14
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
@@ -33,6 +33,8 @@ web:
           allow: true
 
 mounts:
-  "/run": "shared:files/run"
+  "run":
+    source: local
+    source_path: 'run'
 
 disk: 512
