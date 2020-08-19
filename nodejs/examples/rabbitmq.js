@@ -1,29 +1,30 @@
-const config = require("platformsh-config").config();
 const amqp = require('amqplib/callback_api');
+const config = require("platformsh-config").config();
 
-const credentials = config.credentials('rabbitmq');
+exports.usageExample = async function() {
+    try {
+        const credentials = config.credentials('rabbitmq');
+        console.log(credentials);
 
-const rabbit_connection = 'amqp://' + credentials.username + ':' + credentials.password + '@' + credentials.host + ':' + credentials.port;
+        let connectionString = 'amqp://' + credentials.username + ':' + credentials.password + '@' + credentials.host + ':' + credentials.port;
+        console.log(connectionString);
 
-amqp.connect(rabbit_connection, function(error0, connection) {
-    if (error0) {
-        throw error0;
+        let connection = await amqp.connect(connectionString);
+        console.log(connection);
+
+        let channel = await connection.createChannel();
+        console.log(channel);
+
+        let queue = 'hellotest';
+        let message = 'Deploy Friday!';
+
+        await channel.assertQueue(queue, {durable: false});
+        await channel.sendToQueue(queue, Buffer.from(message))
+
+        let output = 'Message sent: ' + queue + ' ' + message;
+
+        return output;
+    } catch (error) {
+        console.error(error);
     }
-    connection.createChannel(function(error1, channel) {
-        if (error1) {
-            throw error1;
-        }
-        var queue = 'hello';
-        var msg = 'Deploy Friday!';
-        channel.assertQueue(queue, {
-            durable: false
-        });
-        channel.sendToQueue(queue, Buffer.from(msg));
-        console.log(" [x] Sent %s", msg);
-    });
-
-    setTimeout(function() {
-        connection.close();
-        process.exit(0);
-    }, 500);
-});
+};
