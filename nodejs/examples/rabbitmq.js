@@ -11,6 +11,9 @@ exports.usageExample = async function() {
 
         let connection = await amqp.connect(connectionString);
         console.log(connection);
+        //let connection = await amqp.connect(connectionString, function (err, conn){
+        //   console.log(err);
+        //});
 
         let channel = await connection.createChannel();
         console.log(channel);
