@@ -8,18 +8,18 @@
   },
   "license": "MIT",
   "dependencies": {
-    "bl": "^2.2.1",
-    "elasticsearch": "^15.5.0",
+    "bl": "^4.0.3",
+    "elasticsearch": "^16.7.1",
     "express": "^4.17.1",
     "influxdb-nodejs": "^2.11.0",
     "memcached": "^2.2.2",
-    "mongodb": "^3.6.1",
-    "mongoose": "^5.10.2",
-    "mysql2": "^1.7.0",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.10.12",
+    "mysql2": "^2.2.5",
     "parse_url": "^0.1.1",
-    "pg": "^7.18.2",
+    "pg": "^8.4.2",
     "platformsh-config": "^2.3.1",
-    "redis": "^2.8.0",
+    "redis": "^3.0.2",
     "solr-node": "^1.2.1"
   }
 }
