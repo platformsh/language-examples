@@ -4,23 +4,10 @@ const platformsh = require('platformsh-config');
 
 let config = platformsh.config();
 
-if (process.env.NODE_ENV === 'test') {
-
-    config = {
-        applicationName: 'test',
-        port: 8080,
-        getRoute: (id) => {
-            return {url: 'http://localhost/nodejs'}
-        }
-    };
-}
-else {
-}
-
 var app = express();
 
 // Set up a base path for routes based on the Route definition.
-let basePath = '';
+let basePath = '/';
 if (config.isValidPlatform()) {
     const platformRoute = config.getRoute('nodejs');
     basePath = '/' + (parseUrl(platformRoute['url'])[5] || '');
