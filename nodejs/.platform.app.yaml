@@ -18,7 +18,7 @@ relationships:
 
 web:
   commands:
-    start: "nodejs index.js"
+    start: "node index.js"
     #in this setup you will find your application stdout and stderr in /app/run/logs
   locations:
     "/public":
