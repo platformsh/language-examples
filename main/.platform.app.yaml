@@ -23,7 +23,7 @@ relationships:
     postgresql: 'postgresql12:postgresql'
     rabbitmq: 'rabbitmq38:rabbitmq'
     redis: 'redis6:redis'
-    solr: 'solr84:solr'
+    solr: 'solr86:solr'
 
 # The size of the persistent disk of the application (in MB).
 disk: 128

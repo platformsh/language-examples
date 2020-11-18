@@ -1,47 +1,37 @@
-const express = require('express');
-const parseUrl = require('parse_url');
-const platformsh = require('platformsh-config');
+const parseUrl = require("parse_url");
+const platformsh = require("platformsh-config");
+const express = require("express");
 
-let config = platformsh.config();
+const config = platformsh.config();
 
-if (process.env.NODE_ENV === 'test') {
-
-    config = {
-        applicationName: 'test',
-        port: 8080,
-        getRoute: (id) => {
-            return {url: 'http://localhost/nodejs'}
-        }
-    };
+// Exit if the running environment doesn't have everything needed.
+// @see enable-local.sh for local dev.
+if (!config.isValidPlatform()) {
+    console.error("The app isn't running in a PSH environment. Source the enable-local.sh file for local dev.");
+    process.exit(-1);
 }
-else {
-}
-
-var app = express();
 
 // Set up a base path for routes based on the Route definition.
-let basePath = '';
-if (config.isValidPlatform()) {
-    const platformRoute = config.getRoute('nodejs');
-    basePath = '/' + (parseUrl(platformRoute['url'])[5] || '');
-}
+const platformRoute = config.getRoute("nodejs");
+const basePath = "/" + (parseUrl(platformRoute["url"])[5] || "");
 
-app.use(basePath, require('./routes'));
+const app = express();
 
-app.use(function(req, res, next){
+app.use(basePath, require("./routes"));
+
+app.use(function (req, res, next) {
     res.status(404);
 
     // Respond with JSON.
-    if (req.accepts('json')) {
-        res.send({ error: 'Sorry, no sample code is available.' });
-        return;
+    if (req.accepts("json")) {
+        return res.send({ error: "Sorry, no sample code is available." });
     }
 
     // Default to plain-text.
-    res.type('txt').send('Sorry, no sample code is available.');
+    return res.type("txt").send("Sorry, no sample code is available.");
 });
 
 // Start the server.
-app.listen(config.port, function() {
+app.listen(config.port, function () {
     console.log(`Listening on port ${config.port}`);
 });

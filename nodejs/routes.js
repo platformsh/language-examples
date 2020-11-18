@@ -6,7 +6,7 @@ var data = {};
 
 let services = {
     elasticsearch: 'Elasticsearch',
-    // influxdb: 'InfluxDB',
+    influxdb: 'InfluxDB',
     memcached: 'Memcached',
     mongodb: 'MongoDB',
     mysql: 'MySQL',
@@ -31,26 +31,21 @@ function escapeHtml(s) {
 
 // Call all of the run() methods of all services, and store their output once.
 async function runData(key) {
-    let value = undefined;
     try{
         const method = data[key].usageExample;
-        value = await method();
+        const value = await method();
+        if (value) {
+            data[key].output = value;
+        }
+        return Promise.resolve();
     } catch (err) {
         console.error(err);
     }
-    if (value) {
-        data[key].output = value;
-    }
 }
 
-// array of Promise<void>
-const promises = Object.keys(data).map(runData);
-
-
 async function index(req, res) {
-
     try {
-        await Promise.all(promises);
+        await Promise.all(Object.keys(data).map(runData));
     }
     catch (error) {
         console.error(error);
@@ -94,17 +89,16 @@ async function index(req, res) {
 <h1>Service examples for Node.js</h1>
 `);
 
-    Object.keys(data).forEach ((key) => {
-        let name = key;
+    Object.values(data).forEach (({label, source, output}) => {
         res.write(`<details>
-      <summary>${data[key].label} Sample Code</summary>
+      <summary>${label} Sample Code</summary>
       <section>
       <h3>Source</h3>
-      <pre>${data[key].source}</pre>
+      <pre>${source}</pre>
       </section>
       <section>
       <h3>Output</h3>
-      ${data[key].output}
+      ${output}
       </section>
       </details>
       `);

@@ -1,5 +1,5 @@
 name: nodejs
-type: nodejs:12
+type: nodejs:14
 
 # The relationships of the application with services or other applications.
 # The left-hand side is the name of the relationship as it will be exposed
@@ -8,7 +8,7 @@ type: nodejs:12
 relationships:
   database: 'mariadb104:mysql'
   postgresql: 'postgresql12:postgresql'
-  solr: 'solr84:solr'
+  solr: 'solr86:solr'
   redis: 'redis6:redis'
   elasticsearch: 'elasticsearch77:elasticsearch'
   mongodb: 'mongodb36:mongodb'
@@ -18,7 +18,7 @@ relationships:
 
 web:
   commands:
-    start: "nodejs index.js"
+    start: "node index.js"
     #in this setup you will find your application stdout and stderr in /app/run/logs
   locations:
     "/public":

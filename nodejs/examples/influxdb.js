@@ -1,25 +1,53 @@
-const influxdb = require('influxdb-nodejs');
+const Influx = require("influx");
 const config = require("platformsh-config").config();
 
-exports.usageExample = async function() {
+exports.usageExample = async function () {
+    const {
+        username = "admin",
+        password = "admin",
+        host,
+        port,
+    } = config.credentials("influxdb");
 
-    const credentials = config.credentials('influxdb');
+    const influx = new Influx.InfluxDB(
+        `http://${username}:${password}@${host}:${port}/deploys`
+    );
 
-    // Connecting to the InfluxDB server. By default it has no user defined, so you will need to create it.
-    let connectionString = `http://${credentials.host}:${credentials.port}/`;
-    let client = new influxdb(connectionString);
+    await influx.createDatabase("deploys");
 
-    let password = Math.random().toString(36).slice(-8);
-    let response = await client.queryPost(`create user "deploy_user" with password \'${password}\' with all privileges`);
+    await influx.writePoints([
+        {
+            measurement: "deploy_time",
+            tags: { host: "server01", region: "us-west" },
+            fields: { value: 0.64, cpuCount: 10 },
+            timestamp: new Date(2020, 10, 9, 10),
+        },
+        {
+            measurement: "deploy_time",
+            tags: { host: "server01", region: "us-west" },
+            fields: { value: 0.84, cpuCount: 10 },
+            timestamp: new Date(2020, 10, 9, 10, 30),
+        },
+    ]);
 
-    // Now reconnect with an authenticated connection so that we can access a database.
-    connectionString = `http://deploy_user:${password}@${credentials.host}:${credentials.port}/deploys`;
-    client = new influxdb(connectionString);
+    const result = await influx.query(`select * from deploy_time`);
 
-    await client.createDatabase();
+    await influx.dropDatabase("deploys");
 
-    // And remove the user.
-    response = await client.queryPost(`delete user "deploy_user"`);
+    const outputRows = result
+        .map(({ value, time }) => `<tr><td>${time}</td><td>${value}</td></tr>`)
+        .join("\n");
 
-    return output;
+    return `
+    <table>
+        <thead>
+            <tr>
+                <th>Timestamp</th><th>Value</th>
+            </tr>
+        </thhead>
+        <tbody>
+            ${outputRows}
+        </tbody>
+    </table>
+    `;
 };
