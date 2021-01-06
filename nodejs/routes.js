@@ -12,6 +12,7 @@ let services = {
     mysql: 'MySQL',
 //    oraclemysql: 'Oracle MySQL',
     postgresql: 'PostgreSQL',
+    rabbitmq: 'RabbitMQ',
     redis: 'Redis',
     solr: 'Solr',
 };
