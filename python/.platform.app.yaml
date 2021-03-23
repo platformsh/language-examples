@@ -3,7 +3,7 @@
 #
 # See https://docs.platform.sh/configuration/app.html
 
-# The name of this app. Must be unique within a project.
+# The name of this app, which must be unique within a project.
 name: python
 
 # The runtime the application uses.
