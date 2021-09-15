@@ -1,5 +1,8 @@
 # This file defines services you want available to your application.
 
+headlesschrome:
+    type: chrome-headless:73
+    size: S
 elasticsearch77:
     type: elasticsearch:7.7
     disk: 256
@@ -12,6 +15,10 @@ kafka25:
     type: kafka:2.5
     disk: 512
     size: S
+mariadb104:
+    type: mariadb:10.4
+    disk: 256
+    size: S
 memcached16:
     type: memcached:1.6
     size: S
@@ -19,8 +26,12 @@ mongodb36:
     type: mongodb:3.6
     disk: 1024
     size: S
-mariadb104:
-    type: mariadb:10.4
+networkstorage:
+    type: network-storage:1.0
+    disk: 256
+    size: S
+oraclemysql:
+    type: oracle-mysql:8.0
     disk: 256
     size: S
 postgresql12:
@@ -45,3 +56,7 @@ solr86:
         endpoints:
             solr:
                 core: maincore
+vault:
+    type: vault-kms:1.6
+    disk: 512
+    size: S
