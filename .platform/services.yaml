@@ -1,11 +1,11 @@
 # This file defines services you want available to your application.
 
-headlesschrome:
-    type: chrome-headless:73
-    size: S
 elasticsearch77:
     type: elasticsearch:7.7
     disk: 256
+    size: S
+headlesschrome:
+    type: chrome-headless:73
     size: S
 influxdb18:
     type: influxdb:1.8

@@ -15,15 +15,18 @@ hooks:
 
 relationships:
     elasticsearch: 'elasticsearch77:elasticsearch'
+    headlesschrome: 'headlesschrome:http'
     influxdb: 'influxdb18:influxdb'
     kafka: 'kafka25:kafka'
     memcached: 'memcached16:memcached'
     mongodb: 'mongodb36:mongodb'
+    oraclemysql: 'oraclemysql:mysql'
     mysql: 'mariadb104:mysql'
     postgresql: 'postgresql12:postgresql'
     rabbitmq: 'rabbitmq38:rabbitmq'
     redis: 'redis6:redis'
     solr: 'solr86:solr'
+    vault: 'vault:vault'
 
 # The size of the persistent disk of the application (in MB).
 disk: 128
@@ -49,3 +52,8 @@ crons:
                 platform redeploy --yes --no-wait
             fi
 
+mounts:
+    networkstorage:
+        source: service
+        service: networkstorage
+        source_path: networkstorage
