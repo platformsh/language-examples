@@ -4,9 +4,9 @@
 # to be processed by Platform.sh.
 
 "https://{default}/":
-    id: mainb
+    id: main
     type: upstream
-    upstream: "main:http"
+    upstream: "mainb:http"
     cache:
         enabled: true
         cookies: []
