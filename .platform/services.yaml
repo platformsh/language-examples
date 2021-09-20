@@ -1,47 +1,47 @@
-# This file defines services you want available to your application.
+# # This file defines services you want available to your application.
 
-elasticsearch77:
-    type: elasticsearch:7.7
-    disk: 256
-    size: S
-influxdb18:
-    type: influxdb:1.8
-    disk: 256
-    size: S
-kafka25:
-    type: kafka:2.5
-    disk: 512
-    size: S
-memcached16:
-    type: memcached:1.6
-    size: S
-mongodb36:
-    type: mongodb:3.6
-    disk: 1024
-    size: S
-mariadb104:
-    type: mariadb:10.4
-    disk: 256
-    size: S
-postgresql12:
-    type: postgresql:12
-    disk: 256
-    size: S
-rabbitmq38:
-    type: rabbitmq:3.8
-    disk: 1024
-    size: S
-redis6:
-    type: redis:6.0
-    size: S
-solr86:
-    type: solr:8.6
-    disk: 256
-    size: S
-    configuration:
-        cores:
-            maincore:
-                conf_dir: !archive "solr-config"
-        endpoints:
-            solr:
-                core: maincore
+# elasticsearch77b:
+#     type: elasticsearch:7.7
+#     disk: 256
+#     size: S
+# influxdb18b:
+#     type: influxdb:1.8
+#     disk: 256
+#     size: S
+# kafka25b:
+#     type: kafka:2.5
+#     disk: 512
+#     size: S
+# memcached16b:
+#     type: memcached:1.6
+#     size: S
+# mongodb36b:
+#     type: mongodb:3.6
+#     disk: 1024
+#     size: S
+# mariadb104b:
+#     type: mariadb:10.4
+#     disk: 256
+#     size: S
+# postgresql12b:
+#     type: postgresql:12
+#     disk: 256
+#     size: S
+# rabbitmq38b:
+#     type: rabbitmq:3.8
+#     disk: 1024
+#     size: S
+# redis6b:
+#     type: redis:6.0
+#     size: S
+# solr86b:
+#     type: solr:8.6
+#     disk: 256
+#     size: S
+#     configuration:
+#         cores:
+#             maincore:
+#                 conf_dir: !archive "solr-config"
+#         endpoints:
+#             solr:
+#                 core: maincore
