@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "example-python"
+version = "0.1.0"
+description = ""
+authors = ["Platform.sh"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+platformshconfig = "^2.4.0"
+redis = "^3.5.3"
+PyMySQL = "^1.0.2"
+Flask = "^2.0.1"
+gevent = "^21.8.0"
+elasticsearch = "^7.14.1"
+pymongo = "^3.12.0"
+influxdb = "^5.3.1"
+pymemcache = "^3.5.0"
+pysolr = "^3.9.0"
+pika = "^1.2.0"
+psycopg-binary = "^3.0b1"
+solrpy = "^1.0.0"
+kafka-python = "^2.0.2"
+examples = { path = "./examples/", develop = false }
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
