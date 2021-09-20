@@ -31,7 +31,7 @@ rabbitmq38b:
     type: rabbitmq:3.8
     disk: 1024
     size: S
-redis6:
+redis6b:
     type: redis:6.0
     size: S
 solr86b:
