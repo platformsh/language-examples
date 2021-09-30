@@ -60,3 +60,15 @@ vault:
     type: vault-kms:1.6
     disk: 512
     size: S
+    configuration:
+        endpoints:
+            sign:
+                - policy: admin
+                  key: vault-sign
+                  type: sign
+                - policy: sign
+                  key: vault-sign
+                  type: sign
+                - policy: verify
+                  key: vault-sign
+                  type: sign
