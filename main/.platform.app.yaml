@@ -26,7 +26,7 @@ relationships:
     rabbitmq: 'rabbitmq38:rabbitmq'
     redis: 'redis6:redis'
     solr: 'solr86:solr'
-    vault: 'vault:vault'
+    vault: 'vault:sign'
 
 # The size of the persistent disk of the application (in MB).
 disk: 128
