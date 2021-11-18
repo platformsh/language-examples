@@ -17,22 +17,22 @@
     type: upstream
     upstream: "php:http"
 
-"https://{default}/nodejs":
-    id: nodejs
-    type: upstream
-    upstream: "nodejs:http"
+# "https://{default}/nodejs":
+#     id: nodejs
+#     type: upstream
+#     upstream: "nodejs:http"
 
-"https://{default}/python":
-    id: python
-    type: upstream
-    upstream: "python:http"
+# "https://{default}/python":
+#     id: python
+#     type: upstream
+#     upstream: "python:http"
 
-"https://{default}/java":
-    id: java
-    type: upstream
-    upstream: "java:http"
+# "https://{default}/java":
+#     id: java
+#     type: upstream
+#     upstream: "java:http"
 
-"https://{default}/golang":
-    id: golang
-    type: upstream
-    upstream: "golang:http"
+# "https://{default}/golang":
+#     id: golang
+#     type: upstream
+#     upstream: "golang:http"
