@@ -45,8 +45,8 @@ crons:
                 platform redeploy --yes --no-wait
             fi
 
-mounts:
-    networkstorage:
-        source: service
-        service: networkstorage
-        source_path: networkstorage
+# mounts:
+#     networkstorage:
+#         source: service
+#         service: networkstorage
+#         source_path: networkstorage
