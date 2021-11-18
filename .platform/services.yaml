@@ -1,74 +1,100 @@
 # This file defines services you want available to your application.
 
+elasticsearch65:
+    type: elasticsearch:6.5
+    disk: 256
+    size: S
+elasticsearch68:
+    type: elasticsearch:6.8
+    disk: 256
+    size: S
+elasticsearch72:
+    type: elasticsearch:7.2
+    disk: 256
+    size: S
+elasticsearch75:
+    type: elasticsearch:7.5
+    disk: 256
+    size: S
 elasticsearch77:
     type: elasticsearch:7.7
     disk: 256
     size: S
-headlesschrome:
-    type: chrome-headless:73
-    size: S
-influxdb18:
-    type: influxdb:1.8
+elasticsearch79:
+    type: elasticsearch:7.9
     disk: 256
     size: S
-kafka25:
-    type: kafka:2.5
-    disk: 512
-    size: S
-mariadb104:
-    type: mariadb:10.4
+elasticsearch710:
+    type: elasticsearch:7.10
     disk: 256
     size: S
-memcached16:
-    type: memcached:1.6
-    size: S
-mongodb36:
-    type: mongodb:3.6
-    disk: 1024
-    size: S
-networkstorage:
-    type: network-storage:1.0
-    disk: 256
-    size: S
-oraclemysql:
-    type: oracle-mysql:8.0
-    disk: 256
-    size: S
-postgresql12:
-    type: postgresql:12
-    disk: 256
-    size: S
-rabbitmq38:
-    type: rabbitmq:3.8
-    disk: 1024
-    size: S
-redis6:
-    type: redis:6.0
-    size: S
-solr86:
-    type: solr:8.6
-    disk: 256
-    size: S
-    configuration:
-        cores:
-            maincore:
-                conf_dir: !archive "solr-config"
-        endpoints:
-            solr:
-                core: maincore
-vault:
-    type: vault-kms:1.6
-    disk: 512
-    size: S
-    configuration:
-        endpoints:
-            sign:
-                - policy: admin
-                  key: vault-sign
-                  type: sign
-                - policy: sign
-                  key: vault-sign
-                  type: sign
-                - policy: verify
-                  key: vault-sign
-                  type: sign
+
+
+# headlesschrome:
+#     type: chrome-headless:73
+#     size: S
+# influxdb18:
+#     type: influxdb:1.8
+#     disk: 256
+#     size: S
+# kafka25:
+#     type: kafka:2.5
+#     disk: 512
+#     size: S
+# mariadb104:
+#     type: mariadb:10.4
+#     disk: 256
+#     size: S
+# memcached16:
+#     type: memcached:1.6
+#     size: S
+# mongodb36:
+#     type: mongodb:3.6
+#     disk: 1024
+#     size: S
+# networkstorage:
+#     type: network-storage:1.0
+#     disk: 256
+#     size: S
+# oraclemysql:
+#     type: oracle-mysql:8.0
+#     disk: 256
+#     size: S
+# postgresql12:
+#     type: postgresql:12
+#     disk: 256
+#     size: S
+# rabbitmq38:
+#     type: rabbitmq:3.8
+#     disk: 1024
+#     size: S
+# redis6:
+#     type: redis:6.0
+#     size: S
+# solr86:
+#     type: solr:8.6
+#     disk: 256
+#     size: S
+#     configuration:
+#         cores:
+#             maincore:
+#                 conf_dir: !archive "solr-config"
+#         endpoints:
+#             solr:
+#                 core: maincore
+# vault:
+#     type: vault-kms:1.6
+#     disk: 512
+#     size: S
+#     configuration:
+#         endpoints:
+#             sign:
+#                 - policy: admin
+#                   key: vault-sign
+#                   type: sign
+#                 - policy: sign
+#                   key: vault-sign
+#                   type: sign
+#                 - policy: verify
+#                   key: vault-sign
+#                   type: sign

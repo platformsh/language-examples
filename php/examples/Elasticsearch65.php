@@ -10,7 +10,7 @@ use Platformsh\ConfigReader\Config;
 $config = new Config();
 
 // Get the credentials to connect to the Elasticsearch service.
-$credentials = $config->credentials('elasticsearch');
+$credentials = $config->credentials('elasticsearch65');
 
 try {
     // The Elasticsearch library lets you connect to multiple hosts.
