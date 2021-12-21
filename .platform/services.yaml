@@ -56,7 +56,7 @@ solr86:
         endpoints:
             solr:
                 core: maincore
-vault:
+vault-kms:
     type: vault-kms:1.6
     disk: 512
     size: S
