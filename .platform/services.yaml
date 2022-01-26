@@ -30,6 +30,10 @@ networkstorage:
     type: network-storage:1.0
     disk: 256
     size: S
+opensearch12:
+    type: opensearch:1.2
+    disk: 256
+    size: S
 oraclemysql:
     type: oracle-mysql:8.0
     disk: 256
