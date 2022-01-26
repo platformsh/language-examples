@@ -20,6 +20,7 @@ relationships:
     kafka: 'kafka25:kafka'
     memcached: 'memcached16:memcached'
     mongodb: 'mongodb36:mongodb'
+    opensearch: 'opensearch12:opensearch'
     oraclemysql: 'oraclemysql:mysql'
     mysql: 'mariadb104:mysql'
     postgresql: 'postgresql12:postgresql'
