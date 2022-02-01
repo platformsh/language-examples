@@ -12,6 +12,7 @@ relationships:
   redis: 'redis6:redis'
   elasticsearch: 'elasticsearch77:elasticsearch'
   mongodb: 'mongodb36:mongodb'
+  opensearch: 'opensearch12:opensearch'
   rabbitmq: 'rabbitmq38:rabbitmq'
   influxdb: 'influxdb18:influxdb'
   memcached: 'memcached16:memcached'

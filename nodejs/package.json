@@ -8,6 +8,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@opensearch-project/opensearch": "^1.0.2",
     "bl": "^4.0.3",
     "elasticsearch": "^16.7.1",
     "express": "^4.17.1",
