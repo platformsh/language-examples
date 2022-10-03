@@ -31,7 +31,9 @@ public class MemcachedSample implements Supplier<String> {
         // Read it back.
         Object test = client.get(key);
 
+        logger.append("<p>");
         logger.append(String.format("Found value %s for key %s.", test, key));
+        logger.append("</p>");
 
         return logger.toString();
     }

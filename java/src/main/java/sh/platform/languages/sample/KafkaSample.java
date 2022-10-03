@@ -53,6 +53,7 @@ public class KafkaSample implements Supplier<String> {
             Consumer<Long, String> consumer = kafka.getConsumer(configConsumer, "animals");
             ConsumerRecords<Long, String> consumerRecords = consumer.poll(Duration.ofSeconds(3));
 
+            logger.append("<p>");
             // Print each record.
             consumerRecords.forEach(record -> {
                 logger.append("Record: Key " + record.key());
@@ -60,6 +61,7 @@ public class KafkaSample implements Supplier<String> {
                 logger.append(" partition " + record.partition());
                 logger.append(" offset " + record.offset()).append('\n');
             });
+            logger.append("</p>");
 
             // Commits the offset of record to broker.
             consumer.commitSync();
