@@ -56,7 +56,9 @@ public class InfluxdbSample implements Supplier<String> {
                     .map(QueryResult.Result::getSeries)
                     .collect(Collectors.toList());
 
-            logger.append("Result ").append(result);
+            logger.append("<p>");
+            logger.append(result);
+            logger.append("</p>");
             influxDB.query(new Query("DROP DATABASE server"));
             influxDB.query(new Query("DROP user admin"));
             influxDB.close();
