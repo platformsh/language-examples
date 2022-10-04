@@ -53,7 +53,7 @@ public class PostgreSQLSample implements Supplier<String> {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 logger.append(String.format("<li>id <code>%d</code> has a name of <code>%s</code>", id, name));
-                logger.append('</li>');
+                logger.append("</li>");
             }
             logger.append("</ul>");
             statement.execute("DROP TABLE JAVA_FRAMEWORKS");

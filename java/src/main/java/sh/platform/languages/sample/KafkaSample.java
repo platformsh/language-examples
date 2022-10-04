@@ -36,15 +36,15 @@ public class KafkaSample implements Supplier<String> {
             // Sending data into the stream.
             RecordMetadata metadata = producer.send(new ProducerRecord<>("animals", "lion")).get();
             logger.append("<li>Record sent with to partition <code>").append(metadata.partition())
-                    .append("</code> with offset <code>").append(metadata.offset()).append('</code></li>');
+                    .append("</code> with offset <code>").append(metadata.offset()).append("</code></li>");
 
             metadata = producer.send(new ProducerRecord<>("animals", "dog")).get();
             logger.append("<li>Record sent with to partition <code>").append(metadata.partition())
-                    .append("</code> with offset <code>").append(metadata.offset()).append('</code></li>');
+                    .append("</code> with offset <code>").append(metadata.offset()).append("</code></li>");
 
             metadata = producer.send(new ProducerRecord<>("animals", "cat")).get();
             logger.append("<li>Record sent with to partition <code>").append(metadata.partition())
-                    .append("</code> with offset <code>").append(metadata.offset()).append(</code>'</li>');
+                    .append("</code> with offset <code>").append(metadata.offset()).append("</code></li>");
             logger.append("</ul>");
 
             // Consumer, read data from the stream.
@@ -61,7 +61,7 @@ public class KafkaSample implements Supplier<String> {
                 logger.append("<li>Record: Key <code>" + record.key());
                 logger.append("</code> value <code>" + record.value());
                 logger.append("</code> partition <code>" + record.partition());
-                logger.append("</code> offset <code>" + record.offset()).append('</code></li>');
+                logger.append("</code> offset <code>" + record.offset()).append("</code></li>");
             });
             logger.append("</ul>");
 
