@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"errors"
 	"io"
 	"io/ioutil"
 	"log"
@@ -12,16 +13,19 @@ import (
 
 const (
 	sourceDirectory = "examples"
-	backTick        = "\\x60"
 	outputFile      = "sources.go"
 )
 
-type debacktickWriter struct {
+type noBacktickWriter struct {
 	writer io.Writer
 }
 
-func (dw *debacktickWriter) Write(buf []byte) (int, error) {
-	_, err := dw.writer.Write(bytes.ReplaceAll(buf, []byte("`"), []byte(backTick)))
+func (dw *noBacktickWriter) Write(buf []byte) (int, error) {
+	if bytes.ContainsRune(buf, '`') {
+		return 0, errors.New("source must not contains backtick, as golang does not allow to escape nested backticks in multiline strings. Use newlines and string concatenation instead")
+	}
+
+	_, err := dw.writer.Write(buf)
 	return len(buf), err
 }
 
@@ -30,7 +34,7 @@ func (dw *debacktickWriter) Write(buf []byte) (int, error) {
 func main() {
 	fs, _ := ioutil.ReadDir(sourceDirectory)
 	out, _ := os.Create(outputFile)
-	outFilterBacktick := &debacktickWriter{writer: out}
+	outFilterBacktick := &noBacktickWriter{writer: out}
 	_, err := out.Write([]byte("package main \n\nconst (\n"))
 	if err != nil {
 		log.Fatal("Writing header failed: ", err)
@@ -47,7 +51,7 @@ func main() {
 			}
 			_, err = io.Copy(outFilterBacktick, inputFileStream)
 			if err != nil {
-				log.Fatal("Writing inputFileStream content failed: ", err)
+				log.Fatalf("Writing inputFileStream content failed for file %q: %v.", file.Name(), err)
 			}
 			_, err = out.Write([]byte("`\n"))
 			if err != nil {
