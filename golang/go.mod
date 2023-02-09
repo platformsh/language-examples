@@ -2,7 +2,7 @@ module github.com/platformsh/language-examples
 
 require (
 	github.com/bradfitz/gomemcache v0.0.0-20190329173943-551aad21a668
-	github.com/gin-gonic/gin v1.7.0
+	github.com/gin-gonic/gin v1.7.7
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
