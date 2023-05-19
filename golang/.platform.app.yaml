@@ -25,12 +25,12 @@ relationships:
     database: 'mariadb104:mysql'
     postgresql: 'postgresql12:postgresql'
     solr: 'solr86:solr'
-   # redis: 'redis6:redis'
-   # elasticsearch: 'elasticsearch77:elasticsearch'
     mongodb: 'mongodb36:mongodb'
     rabbitmq: 'rabbitmq39:rabbitmq'
     influxdb: 'influxdb18:influxdb'
     memcached: 'memcached16:memcached'
+   # redis: 'redis6:redis'
+   # elasticsearch: 'elasticsearch77:elasticsearch'
 
 # The configuration of app when it is exposed to the web.
 web:
