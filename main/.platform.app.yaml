@@ -24,7 +24,7 @@ relationships:
     oraclemysql: 'oraclemysql:mysql'
     mysql: 'mariadb104:mysql'
     postgresql: 'postgresql12:postgresql'
-    rabbitmq: 'rabbitmq38:rabbitmq'
+    rabbitmq: 'rabbitmq39:rabbitmq'
     redis: 'redis6:redis'
     solr: 'solr86:solr'
     vault-kms: 'vault-kms:sign'
